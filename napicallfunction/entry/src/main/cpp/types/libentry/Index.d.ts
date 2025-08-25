@@ -1,0 +1,1 @@
+export const NativeCallArkTS: (obj:Object, a: number, b: number) => number;

@@ -1,0 +1,49 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\admin\\.ohos\\config\\default_napicallfunction_c3oHS_8occtN65F4jvSdUWOpmHoc2IWxuBVRFNvECj0=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BE2E91F97EA2B6620A088C24B09E5C603CF3C7B7395DD33C03438333F12A874455D819905AB202C",
+          "profile": "C:\\Users\\admin\\.ohos\\config\\default_napicallfunction_c3oHS_8occtN65F4jvSdUWOpmHoc2IWxuBVRFNvECj0=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\admin\\.ohos\\config\\default_napicallfunction_c3oHS_8occtN65F4jvSdUWOpmHoc2IWxuBVRFNvECj0=.p12",
+          "storePassword": "0000001B7BA40BEB1FC80872382573AEDC8F8F00E921F97868D09BC6C6CD43B1968843AF98A73838B29A93"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
