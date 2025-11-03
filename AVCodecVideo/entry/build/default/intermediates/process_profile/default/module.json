@@ -1,0 +1,93 @@
+{
+	"app": {
+		"bundleName": "com.samples.AVCodecSample",
+		"vendor": "example",
+		"versionCode": 1000000,
+		"versionName": "1.0.0",
+		"icon": "$media:app_icon",
+		"label": "$string:app_name",
+		"apiReleaseType": "Beta1",
+		"compileSdkVersion": "5.1.1.66",
+		"targetAPIVersion": 50101019,
+		"minAPIVersion": 50000012,
+		"compileSdkType": "HarmonyOS",
+		"appEnvironments": [],
+		"bundleType": "app",
+		"buildMode": "debug",
+		"debug": true
+	},
+	"module": {
+		"name": "entry",
+		"type": "entry",
+		"description": "$string:module_desc",
+		"mainElement": "EntryAbility",
+		"deviceTypes": [
+			"phone"
+		],
+		"deliveryWithInstall": true,
+		"installationFree": false,
+		"pages": "$profile:main_pages",
+		"abilities": [
+			{
+				"name": "EntryAbility",
+				"srcEntry": "./ets/entryability/EntryAbility.ets",
+				"description": "$string:EntryAbility_desc",
+				"icon": "$media:icon",
+				"label": "$string:EntryAbility_label",
+				"startWindowIcon": "$media:icon",
+				"startWindowBackground": "$color:start_window_background",
+				"exported": true,
+				"skills": [
+					{
+						"entities": [
+							"entity.system.home"
+						],
+						"actions": [
+							"action.system.home"
+						]
+					}
+				]
+			}
+		],
+		"extensionAbilities": [
+			{
+				"name": "EntryBackupAbility",
+				"srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+				"type": "backup",
+				"exported": false,
+				"metadata": [
+					{
+						"name": "ohos.extension.backup",
+						"resource": "$profile:backup_config"
+					}
+				]
+			}
+		],
+		"requestPermissions": [
+			{
+				"name": "ohos.permission.CAMERA",
+				"reason": "$string:camera_reason",
+				"usedScene": {
+					"abilities": [
+						"EntryAbility"
+					],
+					"when": "always"
+				}
+			},
+			{
+				"name": "ohos.permission.MICROPHONE",
+				"reason": "$string:reason",
+				"usedScene": {
+					"abilities": [
+						"FormAbility"
+					],
+					"when": "inuse"
+				}
+			}
+		],
+		"packageName": "entry",
+		"virtualMachine": "ark12.0.2.0",
+		"compileMode": "esmodule",
+		"dependencies": []
+	}
+}

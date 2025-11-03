@@ -1,0 +1,56 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\admin\\.ohos\\config\\default_AVCodecVideo_Nb9K68tCF8HDp5vJSmAeWCDdRYXTri20SayKP4akaFc=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001AF56C57988FCB5BDA78CDDCE0D8C0A3D1B176288976BE3FAB39C928AC86B2101EC61ADF00F1EF",
+          "profile": "C:\\Users\\admin\\.ohos\\config\\default_AVCodecVideo_Nb9K68tCF8HDp5vJSmAeWCDdRYXTri20SayKP4akaFc=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\admin\\.ohos\\config\\default_AVCodecVideo_Nb9K68tCF8HDp5vJSmAeWCDdRYXTri20SayKP4akaFc=.p12",
+          "storePassword": "0000001AC778479510E8B952A1C833DEEBA88CAA9B2F4D2FE5F0112DAE6F434C0C9B63EA119AA5F9E1F0"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

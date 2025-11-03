@@ -1,0 +1,746 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚK½if (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import fileIo from "@ohos.file.fs";
+import display from "@ohos.display";
+import camera from "@ohos.multimedia.camera";
+import photoAccessHelper from "@ohos.file.photoAccessHelper";
+import player from 'libplayer.so';
+import recorder from 'librecorder.so';
+import Logger from '../common/utils/Logger';
+import DateTimeUtil from '../common/utils/DateTimeUtils';
+import { CommonConstants as Const } from '../common/CommonConstants';
+import { CameraDataModel } from '../model/CameraDateModel';
+import { videoProfileCheck } from '../common/utils/CameraCheck';
+const TAG = Const.INDEX_TAG;
+const DATETIME = new DateTimeUtil();
+class Player extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__buttonEnabled = new ObservedPropertySimplePU(true, this, "buttonEnabled");
+        this.__isShow = new ObservedPropertySimplePU(false, this, "isShow");
+        this.cameraData = new CameraDataModel();
+        this.selectFilePath = null;
+        this.display = display.getDefaultDisplaySync();
+        this.heightPx = (this.display.width * Const.DEFAULT_HEIGHT / Const.DEFAULT_WIDTH) + Const.PX;
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.buttonEnabled !== undefined) {
+            this.buttonEnabled = params.buttonEnabled;
+        }
+        if (params.isShow !== undefined) {
+            this.isShow = params.isShow;
+        }
+        if (params.cameraData !== undefined) {
+            this.cameraData = params.cameraData;
+        }
+        if (params.selectFilePath !== undefined) {
+            this.selectFilePath = params.selectFilePath;
+        }
+        if (params.display !== undefined) {
+            this.display = params.display;
+        }
+        if (params.heightPx !== undefined) {
+            this.heightPx = params.heightPx;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__buttonEnabled.purgeDependencyOnElmtId(rmElmtId);
+        this.__isShow.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__buttonEnabled.aboutToBeDeleted();
+        this.__isShow.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get buttonEnabled() {
+        return this.__buttonEnabled.get();
+    }
+    set buttonEnabled(newValue) {
+        this.__buttonEnabled.set(newValue);
+    }
+    get isShow() {
+        return this.__isShow.get();
+    }
+    set isShow(newValue) {
+        this.__isShow.set(newValue);
+    }
+    selectFile() {
+        let photoPicker = new photoAccessHelper.PhotoViewPicker();
+        photoPicker.select({
+            MIMEType: photoAccessHelper.PhotoViewMIMETypes.VIDEO_TYPE,
+            maxSelectNumber: 1
+        })
+            .then((photoSelectResult) => {
+            this.selectFilePath = photoSelectResult.photoUris[0];
+            if (this.selectFilePath === null) {
+                this.getUIContext().getPromptAction().showToast({
+                    message: { "id": 16777220, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" },
+                    duration: Const.DURATION,
+                    bottom: Const.BOTTOM
+                });
+            }
+            else {
+                this.play();
+                Logger.info(TAG, 'documentViewPicker.select to file succeed and URI is:' + this.selectFilePath);
+            }
+        });
+    }
+    play() {
+        let inputFile = fileIo.openSync(this.selectFilePath, fileIo.OpenMode.READ_ONLY);
+        if (!inputFile) {
+            Logger.error(TAG, 'player inputFile is null');
+        }
+        let inputFileState = fileIo.statSync(inputFile.fd);
+        if (inputFileState.size <= 0) {
+            Logger.error(TAG, 'player inputFile size is 0');
+        }
+        this.buttonEnabled = false;
+        player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, () => {
+            Logger.info(TAG, 'player JSCallback');
+            this.buttonEnabled = true;
+            fileIo.close(inputFile);
+        });
+    }
+    async checkIsProfileSupport() {
+        let cameraManager = camera.getCameraManager(this.getUIContext().getHostContext());
+        if (!cameraManager) {
+            Logger.error(TAG, 'camera.getCameraManager error!');
+        }
+        let videoProfile = videoProfileCheck(cameraManager, this.cameraData);
+        if (!videoProfile) {
+            Logger.error(TAG, 'videoProfile is not found');
+            this.getUIContext().getPromptAction().showToast({
+                message: { "id": 16777221, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" },
+                duration: Const.DURATION,
+                bottom: Const.BOTTOM,
+                backgroundColor: Color.White,
+                backgroundBlurStyle: BlurStyle.NONE
+            });
+            this.cameraData = new CameraDataModel();
+            return;
+        }
+    }
+    SettingButton(parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithChild();
+            Button.width({ "id": 16777246, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.height({ "id": 16777244, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.type(ButtonType.Circle);
+            Button.backgroundColor({ "id": 16777233, "type": 10001, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.margin({ right: { "id": 16777245, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" } });
+            Button.onClick(() => {
+                this.getUIContext().showTextPickerDialog({
+                    defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
+                    selectedTextStyle: ({
+                        font: ({
+                            size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+                        })
+                    }),
+                    range: Const.RECORDER_INFO,
+                    canLoop: false,
+                    alignment: DialogAlignment.Center,
+                    backgroundColor: Color.White,
+                    backgroundBlurStyle: BlurStyle.BACKGROUND_ULTRA_THICK,
+                    onAccept: (value) => {
+                        switch (value.value[0]) {
+                            case Const.VIDEO_MIMETYPE[0]: {
+                                this.cameraData.setCodecFormat(Const.TRUE, Const.MIME_VIDEO_HEVC);
+                                break;
+                            }
+                            case Const.VIDEO_MIMETYPE[1]: {
+                                this.cameraData.setCodecFormat(Const.FALSE, Const.MIME_VIDEO_AVC);
+                                break;
+                            }
+                            case Const.VIDEO_MIMETYPE[2]: {
+                                this.cameraData.setCodecFormat(Const.FALSE, Const.MIME_VIDEO_HEVC);
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                        switch (value.value[1]) {
+                            case Const.VIDEO_RESOLUTION[0]: {
+                                this.cameraData.setResolution(Const.VIDEO_WIDTH_4K, Const.VIDEO_HEIGHT_4K, Const.BITRATE_VIDEO_30M);
+                                break;
+                            }
+                            case Const.VIDEO_RESOLUTION[1]: {
+                                this.cameraData.setResolution(Const.VIDEO_WIDTH_1080P, Const.VIDEO_HEIGHT_1080P, Const.BITRATE_VIDEO_20M);
+                                break;
+                            }
+                            case Const.VIDEO_RESOLUTION[2]: {
+                                this.cameraData.setResolution(Const.VIDEO_WIDTH_720P, Const.VIDEO_HEIGHT_720P, Const.BITRATE_VIDEO_10M);
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                        switch (value.value[2]) {
+                            case Const.VIDEO_FRAMERATE[0]: {
+                                this.cameraData.frameRate = Const.FRAMERATE_VIDEO_30FPS;
+                                break;
+                            }
+                            case Const.VIDEO_FRAMERATE[1]: {
+                                this.cameraData.frameRate = Const.FRAMERATE_VIDEO_60FPS;
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                        this.checkIsProfileSupport();
+                    }
+                });
+            });
+        }, Button);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Image.create({ "id": 16777253, "type": 20000, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Image.width({ "id": 16777248, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Image.height({ "id": 16777247, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+        }, Image);
+        Button.pop();
+    }
+    Authorized(parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.justifyContent(FlexAlign.End);
+            Column.padding({ left: '16vp', right: '16vp' });
+            Column.width('100%');
+            Column.height('100%');
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create({ "id": 16777231, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Text.width('100%');
+            Text.fontSize('16vp');
+            Text.margin({ bottom: '12vp' });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.justifyContent(FlexAlign.SpaceAround);
+            Row.alignItems(VerticalAlign.Bottom);
+            Row.margin({ bottom: '44vp' });
+            Row.width('100%');
+            Row.height('52vp');
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel({ "id": 16777230, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.onClick(() => {
+                this.isShow = false;
+            });
+            Button.width('48%');
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Blank.create();
+        }, Blank);
+        Blank.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            SaveButton.create({ text: SaveDescription.SAVE });
+            SaveButton.onClick(async () => {
+                const context = this.getUIContext().getHostContext();
+                let helper = photoAccessHelper.getPhotoAccessHelper(context);
+                let uri = await helper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', {
+                    title: `AVCodecVideo_${DATETIME.getDate()}_${DATETIME.getTime()}`
+                });
+                let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+                this.cameraData.outputfd = file.fd;
+                if (this.cameraData.outputfd !== null) {
+                    recorder.initNative(this.cameraData.outputfd, this.cameraData.videoCodecMime, this.cameraData.cameraWidth, this.cameraData.cameraHeight, this.cameraData.frameRate, this.cameraData.isHDRVivid, this.cameraData.bitRate).then((data) => {
+                        if (data.surfaceId !== null) {
+                            this.cameraData.surfaceId = data.surfaceId;
+                            this.getUIContext().getRouter().pushUrl({
+                                url: 'pages/Recorder',
+                                params: this.cameraData
+                            });
+                        }
+                    });
+                }
+                else {
+                    Logger.error(TAG, 'get outputfd failed!');
+                }
+            });
+            SaveButton.width('48%');
+            SaveButton.height('40vp');
+        }, SaveButton);
+        Row.pop();
+        Column.pop();
+    }
+    Window(parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.alignRules({
+                'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+                'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+            });
+            Row.margin({ top: { "id": 16777251, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" } });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            XComponent.create({
+                id: 'player',
+                type: XComponentType.SURFACE,
+                libraryname: 'player'
+            }, "com.samples.AVCodecSample/entry");
+            XComponent.height(this.heightPx);
+            XComponent.width(Const.FULL_SIZE);
+        }, XComponent);
+        Row.pop();
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            RelativeContainer.create();
+            RelativeContainer.width({ "id": 16777224, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            RelativeContainer.height({ "id": 16777223, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+        }, RelativeContainer);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.width({ "id": 16777224, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Row.height({ "id": 16777249, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Row.margin({ top: { "id": 16777250, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" } });
+            Row.justifyContent(FlexAlign.End);
+            Row.alignRules({
+                'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+                'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+            });
+        }, Row);
+        this.SettingButton.bind(this)();
+        Row.pop();
+        this.Window.bind(this)();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.alignRules({
+                'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
+                'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+            });
+            Column.padding({ left: '16vp', right: '16vp', bottom: '16vp' });
+            Column.width({ "id": 16777224, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Column.height({ "id": 16777238, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Column.justifyContent(FlexAlign.End);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel(this.buttonEnabled ? { "id": 16777226, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" } : { "id": 16777227, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.onClick(() => {
+                this.selectFile();
+            });
+            Button.size({
+                width: '100%',
+                height: { "id": 16777236, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" }
+            });
+            Button.enabled(this.buttonEnabled);
+            Button.margin({ bottom: { "id": 16777235, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" } });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel({ "id": 16777229, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" });
+            Button.onClick(() => {
+                this.isShow = true;
+            });
+            Button.bindSheet({ value: this.isShow, changeEvent: newValue => { this.isShow = newValue; } }, { builder: this.Authorized.bind(this) }, {
+                height: 210,
+                title: {
+                    title: { "id": 16777232, "type": 10003, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" }
+                }
+            });
+            Button.size({
+                width: '100%',
+                height: { "id": 16777236, "type": 10002, params: [], "bundleName": "com.samples.AVCodecSample", "moduleName": "entry" }
+            });
+            Button.enabled(this.buttonEnabled);
+        }, Button);
+        Button.pop();
+        Column.pop();
+        RelativeContainer.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "Player";
+    }
+}
+registerNamedRoute(() => new Player(undefined, {}), "", { bundleName: "com.samples.AVCodecSample", moduleName: "entry", pagePath: "pages/Index", pageFullPath: "entry/src/main/ets/pages/Index", integratedHsp: "false", moduleType: "followWithHap" });
+//# sourceMappingURL=Index.js.mapÂ›Ù\ hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.file.fs.d.tsÙ\ hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.display.d.tsÙf hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.multimedia.camera.d.tsÙk hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.file.photoAccessHelper.d.ts» hvigor_ignore_libplayer.so½ hvigor_ignore_librecorder.soÙ:D:\AVCodecVideo\entry\src\main\ets\common\utils\Logger.etsÙAD:\AVCodecVideo\entry\src\main\ets\common\utils\DateTimeUtils.etsÙ=D:\AVCodecVideo\entry\src\main\ets\common\CommonConstants.etsÙ<D:\AVCodecVideo\entry\src\main\ets\model\CameraDateModel.etsÙ?D:\AVCodecVideo\entry\src\main\ets\common\utils\CameraCheck.etsÙ2D:\AVCodecVideo\entry\src\main\ets\pages\Index.etsÔrBšªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath¬shouldEmitJs¥entryÃÂµD:\AVCodecVideo\entry¯D:\AVCodecVideo¥entry¥1.0.0Ô  µD:\AVCodecVideo\entryÃÃÚ)r/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { fileIo } from '@kit.CoreFileKit';
+import { display } from '@kit.ArkUI';
+import { camera } from '@kit.CameraKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import player from 'libplayer.so';
+import recorder from 'librecorder.so';
+import Logger from '../common/utils/Logger';
+import DateTimeUtil from '../common/utils/DateTimeUtils';
+import { CommonConstants as Const } from '../common/CommonConstants';
+import { CameraDataModel } from '../model/CameraDateModel';
+import { videoProfileCheck } from '../common/utils/CameraCheck';
+
+const TAG: string = Const.INDEX_TAG;
+const DATETIME: DateTimeUtil = new DateTimeUtil();
+
+@Entry
+@Component
+struct Player {
+  @State buttonEnabled: boolean = true;
+  @State isShow: boolean = false;
+  private cameraData: CameraDataModel = new CameraDataModel();
+  private selectFilePath: string | null = null;
+  private display = display.getDefaultDisplaySync();
+  private heightPx = (this.display.width * Const.DEFAULT_HEIGHT / Const.DEFAULT_WIDTH) + Const.PX;
+
+  selectFile() {
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select({
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.VIDEO_TYPE,
+      maxSelectNumber: 1
+    })
+      .then((photoSelectResult) => {
+        this.selectFilePath = photoSelectResult.photoUris[0];
+        if (this.selectFilePath === null) {
+          this.getUIContext().getPromptAction().showToast({
+            message: $r('app.string.alert'),
+            duration: Const.DURATION,
+            bottom: Const.BOTTOM
+          });
+        } else {
+          this.play();
+          Logger.info(TAG, 'documentViewPicker.select to file succeed and URI is:' + this.selectFilePath);
+        }
+      });
+  }
+
+  play() {
+    let inputFile = fileIo.openSync(this.selectFilePath, fileIo.OpenMode.READ_ONLY);
+    if (!inputFile) {
+      Logger.error(TAG, 'player inputFile is null');
+    }
+    let inputFileState = fileIo.statSync(inputFile.fd);
+    if (inputFileState.size <= 0) {
+      Logger.error(TAG, 'player inputFile size is 0');
+    }
+    this.buttonEnabled = false;
+    player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, () => {
+      Logger.info(TAG, 'player JSCallback');
+      this.buttonEnabled = true;
+      fileIo.close(inputFile);
+    })
+  }
+
+  async checkIsProfileSupport(): Promise<void> {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(this.getUIContext().getHostContext());
+    if (!cameraManager) {
+      Logger.error(TAG, 'camera.getCameraManager error!');
+    }
+
+    let videoProfile: undefined | camera.VideoProfile = videoProfileCheck(cameraManager, this.cameraData);
+    if (!videoProfile) {
+      Logger.error(TAG, 'videoProfile is not found');
+      this.getUIContext().getPromptAction().showToast({
+        message: $r('app.string.alert_setting'),
+        duration: Const.DURATION,
+        bottom: Const.BOTTOM,
+        backgroundColor: Color.White,
+        backgroundBlurStyle: BlurStyle.NONE
+      })
+      this.cameraData = new CameraDataModel();
+      return;
+    }
+  }
+
+  @Builder
+  SettingButton() {
+    Button() {
+      Image($r('app.media.gearshape'))
+        .width($r('app.float.set_image_width'))
+        .height($r('app.float.set_image_height'))
+    }
+    .width($r('app.float.set_button_width'))
+    .height($r('app.float.set_button_height'))
+    .type(ButtonType.Circle)
+    .backgroundColor($r('app.color.set_button_background'))
+    .margin({ right: $r('app.float.set_button_margin_right') })
+    .onClick(() => {
+      this.getUIContext().showTextPickerDialog({
+        defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
+        selectedTextStyle: ({
+          font: ({
+            size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+          })
+        }),
+        range: Const.RECORDER_INFO,
+        canLoop: false,
+        alignment: DialogAlignment.Center,
+        backgroundColor: Color.White,
+        backgroundBlurStyle: BlurStyle.BACKGROUND_ULTRA_THICK,
+        onAccept: (value: TextPickerResult) => {
+          switch (value.value[0]) {
+            case Const.VIDEO_MIMETYPE[0]: {
+              this.cameraData.setCodecFormat(Const.TRUE, Const.MIME_VIDEO_HEVC);
+              break;
+            }
+            case Const.VIDEO_MIMETYPE[1]: {
+              this.cameraData.setCodecFormat(Const.FALSE, Const.MIME_VIDEO_AVC);
+              break;
+            }
+            case Const.VIDEO_MIMETYPE[2]: {
+              this.cameraData.setCodecFormat(Const.FALSE, Const.MIME_VIDEO_HEVC);
+              break;
+            }
+            default:
+              break;
+          }
+
+          switch (value.value[1]) {
+            case Const.VIDEO_RESOLUTION[0]: {
+              this.cameraData.setResolution(Const.VIDEO_WIDTH_4K, Const.VIDEO_HEIGHT_4K, Const.BITRATE_VIDEO_30M);
+              break;
+            }
+            case Const.VIDEO_RESOLUTION[1]: {
+              this.cameraData.setResolution(Const.VIDEO_WIDTH_1080P, Const.VIDEO_HEIGHT_1080P, Const.BITRATE_VIDEO_20M);
+              break;
+            }
+            case Const.VIDEO_RESOLUTION[2]: {
+              this.cameraData.setResolution(Const.VIDEO_WIDTH_720P, Const.VIDEO_HEIGHT_720P, Const.BITRATE_VIDEO_10M);
+              break;
+            }
+            default:
+              break;
+          }
+
+          switch (value.value[2]) {
+            case Const.VIDEO_FRAMERATE[0]: {
+              this.cameraData.frameRate = Const.FRAMERATE_VIDEO_30FPS;
+              break;
+            }
+            case Const.VIDEO_FRAMERATE[1]: {
+              this.cameraData.frameRate = Const.FRAMERATE_VIDEO_60FPS;
+              break;
+            }
+            default:
+              break;
+          }
+          this.checkIsProfileSupport();
+        }
+      });
+    })
+  }
+
+  @Builder
+  Authorized() {
+    Column() {
+      Text($r('app.string.saveButtonNote'))
+        .width('100%')
+        .fontSize('16vp')
+        .margin({ bottom: '12vp' })
+
+      Row() {
+        Button($r('app.string.saveButtonCancel'))
+          .onClick(() => {
+            this.isShow = false;
+          })
+          .width('48%')
+
+        Blank()
+
+        SaveButton({ text: SaveDescription.SAVE })
+          .onClick(async () => {
+            const context = this.getUIContext().getHostContext();
+            let helper = photoAccessHelper.getPhotoAccessHelper(context);
+            let uri = await helper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', {
+              title: `AVCodecVideo_${DATETIME.getDate()}_${DATETIME.getTime()}`
+            });
+            let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+            this.cameraData.outputfd = file.fd;
+            if (this.cameraData.outputfd !== null) {
+              recorder.initNative(this.cameraData.outputfd, this.cameraData.videoCodecMime, this.cameraData.cameraWidth,
+                this.cameraData.cameraHeight, this.cameraData.frameRate, this.cameraData.isHDRVivid,
+                this.cameraData.bitRate).then((data) => {
+                if (data.surfaceId !== null) {
+                  this.cameraData.surfaceId = data.surfaceId;
+                  this.getUIContext().getRouter().pushUrl({
+                    url: 'pages/Recorder',
+                    params: this.cameraData
+                  });
+                }
+              })
+            } else {
+              Logger.error(TAG, 'get outputfd failed!');
+            }
+          })
+          .width('48%')
+          .height('40vp')
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .alignItems(VerticalAlign.Bottom)
+      .margin({ bottom: '44vp' })
+      .width('100%')
+      .height('52vp')
+    }
+    .justifyContent(FlexAlign.End)
+    .padding({left: '16vp', right: '16vp'})
+    .width('100%')
+    .height('100%')
+  }
+
+  @Builder
+  Window() {
+    Row() {
+      XComponent({
+        id: 'player',
+        type: XComponentType.SURFACE,
+        libraryname: 'player'
+      })
+        .height(this.heightPx)
+        .width(Const.FULL_SIZE)
+    }
+    .alignRules({
+      'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+      'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+    })
+    .margin({ top: $r('app.float.window_margin_top') })
+  }
+
+  build() {
+    RelativeContainer() {
+      Row() {
+        this.SettingButton()
+      }
+      .width($r('app.string.full_width'))
+      .height($r('app.float.set_row_height'))
+      .margin({ top: $r('app.float.set_row_margin_top') })
+      .justifyContent(FlexAlign.End)
+      .alignRules({
+        'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+        'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+      })
+
+      this.Window()
+
+      Column() {
+        Button(this.buttonEnabled ? $r('app.string.play') : $r('app.string.playing'))
+          .onClick(() => {
+            this.selectFile();
+          })
+          .size({
+            width: '100%',
+            height: $r('app.float.index_button_height')
+          })
+          .enabled(this.buttonEnabled)
+          .margin({ bottom: $r('app.float.button_margin_bottom') })
+
+        Button($r('app.string.record'))
+          .onClick(() => {
+            this.isShow = true;
+          })
+          .bindSheet($$this.isShow, this.Authorized, {
+            height: 210,
+            title: {
+              title: $r('app.string.saveButtonTitle')
+            }
+          })
+          .size({
+            width: '100%',
+            height: $r('app.float.index_button_height')
+          })
+          .enabled(this.buttonEnabled)
+      }
+      .alignRules({
+        'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
+        'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+      })
+      .padding({left: '16vp', right: '16vp', bottom:'16vp'})
+      .width($r('app.string.full_width'))
+      .height($r('app.float.index_column_height'))
+      .justifyContent(FlexAlign.End)
+    }
+    .width($r('app.string.full_width'))
+    .height($r('app.string.full_height'))
+  }
+}ÀÔrC›­@ohos.file.fs­@ohos.display·@ohos.multimedia.camera¼@ohos.file.photoAccessHelper¬libplayer.so®librecorder.so¶../common/utils/Logger½../common/utils/DateTimeUtils¹../common/CommonConstants»../common/utils/CameraCheck¸../model/CameraDateModelÔrD—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙ\ hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.file.fs.d.tsAÃªoh-resolveÂDAÃÙ\ hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.display.d.tsAÃªoh-resolveÂDAÃÙf hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.multimedia.camera.d.tsAÃªoh-resolveÂDAÃÙk hvigor_ignore_D:_5.1.1.420_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.file.photoAccessHelper.d.tsÔrE‘¯hostModulesInfo‘ÔrF’²hostDependencyName®hostModuleName¼@ohos.file.photoAccessHelper¥entryÃªoh-resolveÂDAÃ» hvigor_ignore_libplayer.soE‘F¬libplayer.so¥entryÃªoh-resolveÂDAÃ½ hvigor_ignore_librecorder.soAÃªoh-resolveÂDAÂÙ:D:\AVCodecVideo\entry\src\main\ets\common\utils\Logger.etsAÃªoh-resolveÂDAÂÙAD:\AVCodecVideo\entry\src\main\ets\common\utils\DateTimeUtils.etsAÃªoh-resolveÂDAÂÙ=D:\AVCodecVideo\entry\src\main\ets\common\CommonConstants.etsAÃªoh-resolveÂDAÂÙ?D:\AVCodecVideo\entry\src\main\ets\common\utils\CameraCheck.etsAÃªoh-resolveÂDAÂÙ<D:\AVCodecVideo\entry\src\main\ets\model\CameraDateModel.etsAÃªoh-resolveÂ“ÔrG–§version¤fileªsourceRoot§sources¥names¨mappings¨Index.js ‘©Index.etsÜv‘”    ‘” –”   ” 	” ” ”" )”# *–”   ” 	” ” ”# $”$ %–”   ” 	” ” ”, '”- (–”   ” 	” ” "”< 8”= 9–”   ” ” ” ”! !”" "–”   ” ” ” ”% %”& &–”   ” ” ” ”+ +”, ,–”   ” ” ” ”8 8”9 9š”   ” ”	 	” ” ”! !”# #”) )”ÌD ÌD”ÌE ÌE˜”   ” ”	 	” ” ”   ”: :”; ;˜”   ” ”	 	” ” ”" "”? ?”Ì@ Ì@˜”   ” ”	 	” ” ” ” #” $˜”   ” ” ” ” #”! /”# 1”$ 2’”  ”  ‘”  ’”< !"”Ì@ !&’”5 "”: " ”” #(” #,”- #;”/ #=’” $*”" $.•” %” %” %”4 %1”6 %3Ü ” &” &” &” &”% &"”& &#”+ &(”. &+”3 &0”4 &1”ÌB &?”ÌE &ÌB”ÌJ &ÌG”ÌK &ÌH”ÌX &ÌU”ÌY &ÌV”Ì\ &ÌY”Ìa &Ì^”Ìb &Ì_”Ìd &Ìa‘” 2’” !	” !’” !	” !’” "	” "’” "	” "’” (” (š” )” )” )” )” )”/ )+”0 ),”? );”ÌA )=”ÌB )>•” *” *” *” *” *˜” +” +” +”' +!”( +"”: +4”; +5”ÌE +?”” ,” ,” ,” ,’”	 -”
+ -—” .” .” .” .”$ .”& . ”( ."œ” /” /” /” /”" /”3 //”4 /0”= /9”> /:”? /;”Ì@ /<”ÌA /=˜” 0” 0” 0” 0”# 0”( 0$”, 0(”. 0*›” 1
+” 1” 1”! 1”# 1”$ 1”3 1-”5 1/”6 10”? 19”Ì@ 1:“” 2” 2”ÌŒ 2+–” 3” 3” 3”# 3”$ 3”, 3$–” 4” 4” 4”! 4”" 4”( 4 “” 5” 5” 5‘” 6	‘” 6–” 7
+” 7” 7” 7” 7” 7” 8
+” 8” 8” 8” 8” 8”! 8”ÌX 8ÌR”Ì[ 8ÌU”Ì_ 8ÌY”Ì` 8ÌZ”Ìn 8Ìh”Ìo 8Ìi”Ìp 8Ìj‘” 9	”” :”	 :”
+ :” :	’” ;” ;’” =” =Ü ” >” >” >” >” >” >”' >#”( >$”, >(”- >)”; >7”= >9”ÌC >?”ÌD >Ì@”ÌL >ÌH”ÌM >ÌI”ÌV >ÌR”ÌW >ÌS”ÌX >ÌT•” ?” ?” ?	” ?” ?š” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@”8 Ì@2”9 Ì@3”: Ì@4‘”	 ÌA” ÌB” ÌB” ÌB” ÌB”# ÌB”$ ÌB ”, ÌB(”- ÌB)”6 ÌB2”7 ÌB3”9 ÌB5”: ÌB6”; ÌB7˜” ÌC” ÌC” ÌC” ÌC” ÌC”# ÌC”$ ÌC ”& ÌC"š” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”: ÌD4”; ÌD5”< ÌD6‘”	 ÌE—” ÌF” ÌF” ÌF	” ÌF” ÌF”" ÌF”# ÌFÜ ” ÌG” ÌG
+” ÌG” ÌG” ÌG”# ÌG”$ ÌG ”& ÌG"”( ÌG$”- ÌG)”. ÌG*”; ÌG7”= ÌG9”ÌK ÌGÌG”ÌL ÌGÌH”ÌP ÌGÌL”ÌR ÌGÌN”ÌU ÌGÌQ”ÌW ÌGÌSš” ÌH” ÌH” ÌH” ÌH” ÌH” ÌH” ÌH”0 ÌH*”1 ÌH+”2 ÌH,—” ÌI” ÌI
+” ÌI” ÌI”! ÌI”% ÌI”& ÌI ˜” ÌJ” ÌJ” ÌJ” ÌJ” ÌJ”" ÌJ”# ÌJ”$ ÌJ”” ÌK”	 ÌK”
+ ÌK” ÌK’” ÌL” ÌL”” ÌN”	 ÌN”
+ ÌN” ÌNÜ ” ÌO” ÌO” ÌO” ÌO.”" ÌO4”# ÌO5”3 ÌOÌE”4 ÌOÌF”8 ÌOÌJ”9 ÌOÌK”ÌE ÌOÌW”ÌG ÌOÌY”ÌH ÌOÌZ”ÌV ÌOÌh”ÌX ÌOÌj”ÌY ÌOÌk”ÌZ ÌOÌl•” ÌP” ÌP” ÌP	” ÌP” ÌPš” ÌQ” ÌQ” ÌQ” ÌQ” ÌQ” ÌQ” ÌQ”> ÌQ8”? ÌQ9”Ì@ ÌQ:‘”	 ÌR” ÌT” ÌT” ÌT” ÌT8”, ÌTÌI”- ÌTÌJ”: ÌTÌW”< ÌTÌY”Ì@ ÌTÌ]”ÌA ÌTÌ^”ÌK ÌTÌh”ÌL ÌTÌi”ÌM ÌTÌj•” ÌU” ÌU” ÌU	” ÌU” ÌUš” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV”9 ÌV3”: ÌV4”; ÌV5›” ÌW” ÌW
+” ÌW” ÌW” ÌW”  ÌW”/ ÌW)”1 ÌW+”2 ÌW,”; ÌW5”< ÌW6“” ÌX” ÌX”Ìˆ ÌX/–” ÌY” ÌY” ÌY” ÌY”  ÌY”( ÌY –” ÌZ” ÌZ” ÌZ” ÌZ” ÌZ”$ ÌZ–” Ì[” Ì[”! Ì[”& Ì[”' Ì[”, Ì[$–” Ì\”# Ì\”% Ì\”. Ì\&”/ Ì\'”3 Ì\+“” Ì]” Ì]” Ì]™” Ì^” Ì^
+” Ì^” Ì^” Ì^”" Ì^”1 Ì^+”3 Ì^-”4 Ì^.’” Ì_” Ì_‘”	 Ì`’” Ìa” Ìa’” Ìd” Ìd’” Ìe” Ìe
+”” Ìe” Ìe
+” Ìj” Ìj
+”” Ìe” Ìe
+” Ìk” Ìk˜” Ìe” Ìe
+” Ìl” Ìl	” Ìl
+”" Ìl”# Ìl”) Ìl”” Ìe” Ìe
+” Ìm”" Ìm™” Ìe” Ìe
+” Ìn” Ìn” Ìn” Ìn”! Ìn”Ì’ Ìn<”Ì” Ìn>—” Ìe” Ìe
+” Ìo” Ìo” Ìo” Ìo”  Ìo˜” Ìp” Ìp
+” Ìp”! Ìp”# Ìp”$ Ìp”8 Ìp.”9 Ìp/–” Ìq”+ Ìq”- Ìq!”2 Ìq&”3 Ìq'”ÌM ÌqÌA”” Ìr”% Ìr”' Ìr”( Ìr”” Ìs
+” Ìs” Ìs” Ìs–” Ìt”  Ìt”" Ìt”' Ìt”( Ìt”ÌE Ìt5’” Ìu” Ìu’” Ìv	” Ìv
+–” Ìw” Ìw” Ìw”  Ìw”! Ìw”. Ìw"”” Ìx” Ìx” Ìx”" Ìx–” Ìy” Ìy” Ìy”. Ìy"”/ Ìy#”5 Ìy)–” Ìz”# Ìz”% Ìz”* Ìz”+ Ìz”0 Ìz$–” Ì{”' Ì{”) Ì{”2 Ì{&”3 Ì{'”ÌI Ì{=—” Ì|” Ì|” Ì|” Ì|”$ Ì|*”& Ì|,”( Ì|.™” Ì}
+”  Ì}”% Ì}”& Ì}”+ Ì}”, Ì}”- Ì}”. Ì} ”0 Ì}"š” Ì~”! Ì~”& Ì~”' Ì~”5 Ì~%”6 Ì~&”7 Ì~'”8 Ì~(”9 Ì~)”: Ì~*Ü ”  Ì”$ Ì”% Ì”/ Ì”0 Ì”> Ì,”? Ì-”ÌD Ì2”ÌE Ì3”ÌI Ì7”ÌK Ì9”ÌP Ì>”ÌQ Ì?”Ì` ÌÌN”Ìa ÌÌO”Ìb ÌÌP’”  Ì€”& Ì€‘” Ìš” Ì‚”! Ì‚”& Ì‚”' Ì‚”5 Ì‚%”6 Ì‚&”7 Ì‚'”8 Ì‚(”9 Ì‚)”: Ì‚*Ü ”  Ìƒ”$ Ìƒ”% Ìƒ”/ Ìƒ”0 Ìƒ”> Ìƒ,”? Ìƒ-”ÌD Ìƒ2”ÌE Ìƒ3”ÌJ Ìƒ8”ÌL Ìƒ:”ÌQ Ìƒ?”ÌR ÌƒÌ@”Ì` ÌƒÌN”Ìa ÌƒÌO”Ìb ÌƒÌP’”  Ì„”& Ì„‘” Ì…š” Ì†”! Ì†”& Ì†”' Ì†”5 Ì†%”6 Ì†&”7 Ì†'”8 Ì†(”9 Ì†)”: Ì†*Ü ”  Ì‡”$ Ì‡”% Ì‡”/ Ì‡”0 Ì‡”> Ì‡,”? Ì‡-”ÌD Ì‡2”ÌE Ì‡3”ÌJ Ì‡8”ÌL Ì‡:”ÌQ Ì‡?”ÌR Ì‡Ì@”Ìa Ì‡ÌO”Ìb Ì‡ÌP”Ìc Ì‡ÌQ’”  Ìˆ”& Ìˆ‘” Ì‰‘” ÌŠ’”  Ì‹”& Ì‹‘” ÌŒ™” Ì
+”  Ì”% Ì”& Ì”+ Ì”, Ì”- Ì”. Ì ”0 Ì"š” Ì”! Ì”& Ì”' Ì”7 Ì'”8 Ì(”9 Ì)”: Ì*”; Ì+”< Ì,Ü ”  Ì”$ Ì”% Ì”/ Ì”0 Ì”= Ì+”> Ì,”ÌC Ì1”ÌD Ì2”ÌR ÌÌ@”ÌT ÌÌB”ÌY ÌÌG”ÌZ ÌÌH”Ìi ÌÌW”Ìk ÌÌY”Ìp ÌÌ^”Ìq ÌÌ_”Ì‚ ÌÌp”Ìƒ ÌÌq”Ì„ ÌÌr’”  Ì‘”& Ì‘‘” Ì’š” Ì“”! Ì“”& Ì“”' Ì“”7 Ì“'”8 Ì“(”9 Ì“)”: Ì“*”; Ì“+”< Ì“,Ü ”  Ì””$ Ì””% Ì””/ Ì””0 Ì””= Ì”+”> Ì”,”ÌC Ì”1”ÌD Ì”2”ÌU Ì”ÌC”ÌW Ì”ÌE”Ì\ Ì”ÌJ”Ì] Ì”ÌK”Ìo Ì”Ì]”Ìq Ì”Ì_”Ìv Ì”Ìd”Ìw Ì”Ìe”Ìˆ Ì”Ìv”Ì‰ Ì”Ìw”ÌŠ Ì”Ìx’”  Ì•”& Ì•‘” Ì–š” Ì—”! Ì—”& Ì—”' Ì—”7 Ì—'”8 Ì—(”9 Ì—)”: Ì—*”; Ì—+”< Ì—,Ü ”  Ì˜”$ Ì˜”% Ì˜”/ Ì˜”0 Ì˜”= Ì˜+”> Ì˜,”ÌC Ì˜1”ÌD Ì˜2”ÌT Ì˜ÌB”ÌV Ì˜ÌD”Ì[ Ì˜ÌI”Ì\ Ì˜ÌJ”Ìm Ì˜Ì[”Ìo Ì˜Ì]”Ìt Ì˜Ìb”Ìu Ì˜Ìc”Ì† Ì˜Ìt”Ì‡ Ì˜Ìu”Ìˆ Ì˜Ìv’”  Ì™”& Ì™‘” Ìš‘” Ì›’”  Ìœ”& Ìœ‘” Ì™” ÌŸ
+”  ÌŸ”% ÌŸ”& ÌŸ”+ ÌŸ”, ÌŸ”- ÌŸ”. ÌŸ ”0 ÌŸ"š” Ì ”! Ì ”& Ì ”' Ì ”6 Ì &”7 Ì '”8 Ì (”9 Ì )”: Ì *”; Ì +›”  Ì¡”$ Ì¡”% Ì¡”/ Ì¡”0 Ì¡”9 Ì¡'”< Ì¡*”ÌA Ì¡/”ÌB Ì¡0”ÌW Ì¡ÌE”ÌX Ì¡ÌF’”  Ì¢”& Ì¢‘” Ì£š” Ì¤”! Ì¤”& Ì¤”' Ì¤”6 Ì¤&”7 Ì¤'”8 Ì¤(”9 Ì¤)”: Ì¤*”; Ì¤+›”  Ì¥”$ Ì¥”% Ì¥”/ Ì¥”0 Ì¥”9 Ì¥'”< Ì¥*”ÌA Ì¥/”ÌB Ì¥0”ÌW Ì¥ÌE”ÌX Ì¥ÌF’”  Ì¦”& Ì¦‘” Ì§‘” Ì¨’”  Ì©”& Ì©‘” Ìª–” Ì«
+” Ì«” Ì«”2 Ì«$”4 Ì«&”5 Ì«'’” Ì¬” Ì¬	“” Ì­” Ì­” Ì­	’” Ì®” Ì®’” Ìf” Ìf”” Ìf” Ìf” Ìg	” Ìg”” Ìf” Ìf” Ìh	” Ìh’” Ìe” Ìe
+‘” Ì¯’” Ì²” Ì²’” Ì³” Ì³
+˜” Ì³” Ì³
+” Ìä”! Ìä”" Ìä”+ Ìä”, Ìä”/ Ìä!” Ì³” Ì³
+” Ìå” Ìå” Ìå” Ìå”! Ìå”# Ìå”) Ìå”+ Ìå”0 Ìå!”2 Ìå#”8 Ìå)”: Ìå*–” Ì³” Ì³
+” Ìæ” Ìæ
+” Ìæ” Ìæ–” Ì³” Ì³
+” Ìç” Ìç” Ìç”  Ìç’” Ì´” Ì´
+–” Ì´” Ì´
+” Ìµ	” Ìµ” Ìµ” Ìµ–” Ì´” Ì´
+” Ì¶	” Ì¶” Ì¶”  Ì¶š” Ì´” Ì´
+” Ì·	” Ì·” Ì·” Ì·”  Ì·”" Ì·”( Ì· ”* Ì·"’” Ì´” Ì´
+’” Ì¹” Ì¹	˜” Ì¹” Ì¹	” ÌŞ” ÌŞ” ÌŞ”( ÌŞ”) ÌŞ ”4 ÌŞ+˜” Ì¹” Ì¹	” Ìß” Ìß” Ìß”( Ìß”) Ìß ”/ Ìß&š” Ì¹” Ì¹	” Ìà” Ìà” Ìà” Ìà” Ìà”! Ìà”' Ìà”) Ìà –” Ì¹” Ì¹	” Ìá” Ìá” Ìá” Ìá–” Ì¹” Ì¹	” Ìâ” Ìâ” Ìâ” Ìâ’” Ìº” Ìº—” Ìº” Ìº” Ì»” Ì»” Ì»” Ì»”  Ì»—” Ì¼” Ì¼” Ì¼” Ì¼” Ì¼”# Ì¼”$ Ì¼ ’” Ì½
+” Ì½–” Ìº” Ìº” Ì¾” Ì¾” Ì¾” Ì¾’” Ìº” Ìº’” ÌÀ” ÌÀ’” ÌÀ” ÌÀš” ÌÂ” ÌÂ” ÌÂ”  ÌÂ”$ ÌÂ”& ÌÂ”5 ÌÂ*”6 ÌÂ+”: ÌÂ/”< ÌÂ1˜” ÌÂ” ÌÂ” ÌÃ” ÌÃ” ÌÃ”$ ÌÃ”( ÌÃ”* ÌÃœ” ÌÄ” ÌÄ” ÌÄ”  ÌÄ”$ ÌÄ ”% ÌÄ!”1 ÌÄ-”3 ÌÄ/”4 ÌÄ0”ÌB ÌÄ>”ÌD ÌÄÌ@”ÌE ÌÄÌA›” ÌÅ” ÌÅ” ÌÅ” ÌÅ”. ÌÅ*”/ ÌÅ+”ÌC ÌÅ?”ÌD ÌÅÌ@”ÌK ÌÅÌG”ÌL ÌÅÌH”ÌM ÌÅÌIÜ ” ÌÆ” ÌÆ” ÌÆ” ÌÆ”  ÌÆ”& ÌÆ"”' ÌÆ#”2 ÌÆ.”3 ÌÆ/”ÌD ÌÆÌ@”ÌE ÌÆÌA”ÌN ÌÆÌJ”ÌO ÌÆÌK”ÌT ÌÆÌP”ÌV ÌÆÌR”Ì[ ÌÆÌW”Ì] ÌÆÌY” ÌÇ” ÌÇ” ÌÇ”+ ÌÇ%”3 ÌÇ-”4 ÌÇ.”; ÌÇ5”= ÌÇ7”ÌA ÌÇ;”ÌI ÌÇÌC”ÌJ ÌÇÌD”ÌQ ÌÇÌK”ÌS ÌÇÌM”ÌU ÌÇÌO“” ÌÈ” ÌÈ” ÌÈÜ ” ÌÉ” ÌÉ” ÌÉ” ÌÉ”! ÌÉ”' ÌÉ#”( ÌÉ$”, ÌÉ(”- ÌÉ)”0 ÌÉ,”2 ÌÉ.”8 ÌÉ4”9 ÌÉ5”ÌA ÌÉ=”ÌB ÌÉ>”ÌL ÌÉÌH”ÌO ÌÉÌK”ÌU ÌÉÌQ”ÌV ÌÉÌR”Ì^ ÌÉÌZ”Ì_ ÌÉÌ[”Ìe ÌÉÌa”Ìf ÌÉÌb”Ìg ÌÉÌc›” ÌÊ” ÌÊ” ÌÊ” ÌÊ”  ÌÊ”( ÌÊ$”+ ÌÊ'”/ ÌÊ+”0 ÌÊ,”2 ÌÊ.”3 ÌÊ/š” ÌË” ÌË” ÌË” ÌË”# ÌË”$ ÌË ”, ÌË(”1 ÌË-”5 ÌË1”7 ÌË3Ü 6” ÌÌ” ÌÌ” ÌÌ”' ÌÌ!”( ÌÌ"”, ÌÌ&”- ÌÌ'”7 ÌÌ1”8 ÌÌ2”Ì@ ÌÌ:”ÌB ÌÌ<”ÌF ÌÌÌ@”ÌG ÌÌÌA”ÌQ ÌÌÌK”ÌR ÌÌÌL”Ì` ÌÌÌZ”Ìb ÌÌÌ\”Ìf ÌÌÌ`”Ìg ÌÌÌa”Ìq ÌÌÌk”Ìr ÌÌÌl”Ì} ÌÌÌw”Ì ÌÍ”Ìƒ ÌÍ”Ì„ ÌÍ”Ì ÌÍ”Ì ÌÍ ”Ì› ÌÍ,”Ì ÌÍ.”Ì¡ ÌÍ2”Ì¢ ÌÍ3”Ì¬ ÌÍ=”Ì­ ÌÍ>”Ì¶ ÌÍÌG”Ì¸ ÌÍÌI”Ì¼ ÌÍÌM”Ì½ ÌÍÌN”ÌÇ ÌÍÌX”ÌÈ ÌÍÌY”ÌÒ ÌÍÌc”ÌÔ ÌÎ”ÌØ ÌÎ”ÌÙ ÌÎ”Ìã ÌÎ”Ìä ÌÎ ”Ìë ÌÎ'”Ìì ÌÎ(”Ìí ÌÎ)”Ìñ ÌÎ-”Ìò ÌÎ.”Ìó ÌÎ/”Ì÷ ÌÎ3”Ìù ÌÎ5”Ìû ÌÎ7˜” ÌÏ” ÌÏ”  ÌÏ”! ÌÏ”* ÌÏ"”/ ÌÏ'”3 ÌÏ+”5 ÌÏ-›” ÌĞ”  ÌĞ”! ÌĞ”+ ÌĞ!”, ÌĞ"”5 ÌĞ+”8 ÌĞ.”< ÌĞ2”= ÌĞ3”ÌF ÌĞ<”ÌG ÌĞ=›” ÌÑ”  ÌÑ”! ÌÑ”- ÌÑ#”/ ÌÑ%”0 ÌÑ&”9 ÌÑ/”; ÌÑ1”< ÌÑ2”ÌC ÌÑ9”ÌD ÌÑ:””  ÌÒ”# ÌÒ”% ÌÒ”5 ÌÒ)–”  ÌÓ”& ÌÓ”( ÌÓ”, ÌÓ ”- ÌÓ!”7 ÌÓ+“” ÌÔ” ÌÔ” ÌÔ‘” ÌÕ”” ÌÖ” ÌÖ” ÌÖ” ÌÖ‘” Ì×‘” Ì×š” ÌØ” ÌØ” ÌØ”  ÌØ”! ÌØ”$ ÌØ”& ÌØ ”< ÌØ6”= ÌØ7”> ÌØ8‘” ÌÙ’” ÌÚ
+” ÌÚ–” ÌÂ” ÌÂ” ÌÛ” ÌÛ” ÌÛ”" ÌÛ–” ÌÂ” ÌÂ” ÌÜ” ÌÜ” ÌÜ”$ ÌÜ’” Ì¹” Ì¹	’” Ì³” Ì³
+‘” Ìè’” Ìë”
+ Ìë’” Ìì” Ìì•” Ìì” Ìì” Ìõ” Ìõ” Ìõ” Ìö” Ìö” Ìö” Ìö”! Ìö”# Ìö”2 Ìö(”4 Ìö*”; Ìö1”= Ìö3”ÌJ ÌöÌ@”ÌK ÌöÌA”ÌN ÌöÌD”ÌP ÌöÌF” Ì÷” Ì÷” Ì÷” Ì÷”" Ì÷”$ Ì÷”3 Ì÷)”5 Ì÷+”< Ì÷2”> Ì÷4”ÌM Ì÷ÌC”ÌN Ì÷ÌD”ÌS Ì÷ÌI”ÌU Ì÷ÌK‘” Ìø™” Ìì” Ìì” Ìù” Ìù” Ìù” Ìù” Ìù”Ì Ìù4”Ì Ìù6“” Ìí” Ìí” Ìí”” Ìî” Ìî
+” Ìî” Ìî–” Ìï” Ìï” Ìï”$ Ìï”% Ìï”, Ìï$”” Ìğ” Ìğ” Ìğ”% Ìğ‘” Ìñ˜” Ìí” Ìí” Ìò	” Ìò” Ìò”" Ìò”# Ìò”+ Ìò˜” Ìí” Ìí” Ìó	” Ìó” Ìó”" Ìó”# Ìó”, Ìó’” Ìì” Ìì‘” Ìú‘” Ìü’” Ìı” Ìı”” Ìı” Ìı” Í1”# Í1
+”” Ìı” Ìı” Í2”$ Í2’” Ìş” Ìş	”” Ìş” Ìş	” Í” Í”” Ìş” Ìş	” Í” Í™” Ìş” Ìş	” Í” Í” Í” Í” Í”Ì Í7”Ì Í9˜” Ìş” Ìş	” Í” Í” Í”( Í”) Í ”, Í#•” Ìş” Ìş	” Í” Í” Í” Í” Í” Í” Í”! Í”# Í”2 Í*”4 Í,”; Í3”= Í5”ÌJ ÍÌB”ÌK ÍÌC”ÌN ÍÌF”ÌP ÍÌH” Í” Í” Í” Í”" Í”$ Í”3 Í+”5 Í-”< Í4”> Í6”ÌM ÍÌE”ÌN ÍÌF”ÌS ÍÌK”ÌU ÍÌM‘” Í•” Ìÿ” Ìÿ” Ìÿ” Ìÿ”' Ìÿ’” Ìş” Ìş	•” Í
+” Í
+
+” Í
+” Í
+”  Í
+’” Í” Í•” Í” Í” Í(” Í(” Í(” Í)” Í)” Í)” Í)”$ Í)”& Í)”5 Í)-”7 Í)/”> Í)6”Ì@ Í)8”ÌM Í)ÌE”ÌN Í)ÌF”ÌT Í)ÌL”ÌV Í)ÌN” Í*” Í*” Í*” Í*”" Í*”$ Í*”3 Í*+”5 Í*-”< Í*4”> Í*6”ÌM Í*ÌE”ÌN Í*ÌF”ÌS Í*ÌK”ÌU Í*ÌM‘” Í+Ü ” Í” Í” Í,” Í,” Í,” Í,”! Í,”# Í,”) Í,”+ Í,”0 Í,#”2 Í,%”8 Í,+”: Í,-”Ì@ Í,3”ÌB Í,4”ÌH Í,:”ÌJ Í,;”” Í” Í” Í-” Í-”” Í” Í” Í.” Í.˜” Í” Í” Í/”! Í/”" Í/”+ Í/”, Í/ ”/ Í/#›” Í” Í”# Í”' Í”( Í”5 Í!”6 Í"”7 Í#”Ì¨ Í:”Ì© Í;”Í ÍÌT—” Í” Í” Í” Í” Í” Í”  Í–” Í” Í” Í” Í”! Í”" Í’” Í
+” Í•” Í” Í” Í” Í” Í”” Í” Í” Í” Í“” Í” Í”Ì‡ Í7‘” Í˜” Í” Í” Í” Í” Í” Í”  Í”- Í%™” Í” Í” Í” Í” Í” Í”" Í”Ì“ ÍÌ@”Ì• ÍÌB’” Í” Í’” Í” Í—” Í” Í” Í” Í” Í” Í”  Í—” Í” Í” Í” Í” Í”" Í”# Í’” Í
+” ÍŸ” Í” Í” Í” Í”& Í”+ Í”1 Í"”ÌN Í”ÌS Í”ÌY Í"”Ìv Í$”Ìz Í(”Ì{ Í)”Ì… Í3”Ì” Í5”” Í” Í” Í” Í“” Í” Í” Í“” Í” Í”ÌŠ Í5‘” Í ‘” Í!•” Í” Í” Í"” Í"” Í"”” Í#” Í#” Í#” Í#“” Í$” Í$”Ì‡ Í$7‘” Í%˜” Í” Í” Í&” Í&” Í&” Í&”  Í&”- Í&%’” Í” Í’” Í” Í’” Ìı” Ìı‘” Í3ÔrH–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ‘”  ÍE ‘”  ÍF ‘”  ÍG ‘”  ÍH ‘”  ÍI ‘”  ÍJ ‘”  ÍK ‘”  ÍL ‘”  ÍM ‘”  ÍN ‘”  ÍO ‘”  ÍP ‘”  ÍQ ‘”  ÍR ‘”  ÍS ‘”  ÍT ‘”  ÍU ‘”  ÍV ‘”  ÍW ‘”  ÍX ‘”  ÍY ‘”  ÍZ ‘”  Í[ ‘”  Í\ ‘”  Í] ‘”  Í^ ‘”  Í_ ‘”  Í` ‘”  Ía ‘”  Íb ‘”  Íc ‘”  Íd ‘”  Íe ‘”  Íf ‘”  Íg ‘”  Íh ‘”  Íi ‘”  Íj ‘”  Ík ‘”  Íl ‘”  Ím ‘”  Ín ‘”  Ío ‘”  Íp ‘”  Íq ‘”  Ír ‘”  Ís ‘”  Ít ‘”  Íu ‘”  Ív ‘”  Íw ‘”  Íx ‘”  Íy ‘”  Íz ‘”  Í{ ‘”  Í| ‘”  Í} ‘”  Í~ ÔrI’§missing¦pluginÃ¦genAbcÂÔ  ÔrJ”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache›ÔrK•¤type¥start£endªspecifiers¦source±ImportDeclarationÍîÍ‘ÔrL”¤type¥start£end¥local¶ImportDefaultSpecifierÍõÍûÔrM”¤type¥start£end¤nameªIdentifierÍõÍû¦fileIoÔrN•¤type¥start£end¥value£raw§LiteralÍÍ­@ohos.file.fs¯"@ohos.file.fs"K±ImportDeclarationÍÍ7‘L¶ImportDefaultSpecifierÍÍ!MªIdentifierÍÍ!§displayN§LiteralÍ'Í6­@ohos.display¯"@ohos.display"K±ImportDeclarationÍ9Íf‘L¶ImportDefaultSpecifierÍ@ÍFMªIdentifierÍ@ÍF¦cameraN§LiteralÍLÍe·@ohos.multimedia.camera¹"@ohos.multimedia.camera"K±ImportDeclarationÍhÍ¥‘L¶ImportDefaultSpecifierÍoÍ€MªIdentifierÍoÍ€±photoAccessHelperN§LiteralÍ†Í¤¼@ohos.file.photoAccessHelper¾"@ohos.file.photoAccessHelper"K±ImportDeclarationÍ§ÍÉ‘L¶ImportDefaultSpecifierÍ®Í´MªIdentifierÍ®Í´¦playerN§LiteralÍºÍÈ¬libplayer.so®'libplayer.so'K±ImportDeclarationÍËÍñ‘L¶ImportDefaultSpecifierÍÒÍÚMªIdentifierÍÒÍÚ¨recorderN§LiteralÍàÍğ®librecorder.so°'librecorder.so'K±ImportDeclarationÍóÍ‘L¶ImportDefaultSpecifierÍúÍ MªIdentifierÍúÍ ¦LoggerN§LiteralÍÍ¶../common/utils/Logger¸'../common/utils/Logger'K±ImportDeclarationÍ!ÍZ‘L¶ImportDefaultSpecifierÍ(Í4MªIdentifierÍ(Í4¬DateTimeUtilN§LiteralÍ:ÍY½../common/utils/DateTimeUtils¿'../common/utils/DateTimeUtils'K±ImportDeclarationÍ\Í¡‘ÔrO•¤type¥start£end¨imported¥local¯ImportSpecifierÍeÍ}MªIdentifierÍeÍt¯CommonConstantsMªIdentifierÍxÍ}¥ConstN§LiteralÍ…Í ¹../common/CommonConstants»'../common/CommonConstants'K±ImportDeclarationÍ£ÍŞ‘O¯ImportSpecifierÍ¬Í»MªIdentifierÍ¬Í»¯CameraDataModelMªIdentifierÍ¬Í»¯CameraDataModelN§LiteralÍÃÍİ¸../model/CameraDateModelº'../model/CameraDateModel'K±ImportDeclarationÍàÍ ‘O¯ImportSpecifierÍéÍúMªIdentifierÍéÍú±videoProfileCheckMªIdentifierÍéÍú±videoProfileCheckN§LiteralÍÍ»../common/utils/CameraCheck½'../common/utils/CameraCheck'

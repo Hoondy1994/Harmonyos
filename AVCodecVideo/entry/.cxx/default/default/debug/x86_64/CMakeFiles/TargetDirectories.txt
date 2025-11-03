@@ -1,0 +1,4 @@
+D:/AVCodecVideo/entry/.cxx/default/default/debug/x86_64/CMakeFiles/player.dir
+D:/AVCodecVideo/entry/.cxx/default/default/debug/x86_64/CMakeFiles/recorder.dir
+D:/AVCodecVideo/entry/.cxx/default/default/debug/x86_64/CMakeFiles/edit_cache.dir
+D:/AVCodecVideo/entry/.cxx/default/default/debug/x86_64/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,18 @@
+# ninja log v6
+1018	4555	7728002374717086	CMakeFiles/player.dir/render/PluginRender.cpp.o	3c0c49d3d99ea30e
+840	4568	7728002372941602	CMakeFiles/player.dir/capbilities/VideoDecoder.cpp.o	36a2994c9b88e4b3
+1682	4573	7728002381360965	CMakeFiles/recorder.dir/capbilities/AudioCapturer.cpp.o	e5313d1a097813e8
+1592	4586	7728002380469552	CMakeFiles/recorder.dir/capbilities/VideoEncoder.cpp.o	abb895610592e66d
+1109	4801	7728002375631151	CMakeFiles/player.dir/render/PluginManager.cpp.o	2f87727c3b0ae136
+926	4815	7728002373807122	CMakeFiles/player.dir/capbilities/AudioDecoder.cpp.o	d0c92fb9c2950977
+1201	4842	7728002376556687	CMakeFiles/player.dir/common/SampleCallback.cpp.o	f534e8219599bbcb
+1860	4853	7728002383145476	CMakeFiles/recorder.dir/common/SampleCallback.cpp.o	71c30ff684885998
+1772	4921	7728002382261329	CMakeFiles/recorder.dir/capbilities/AudioEncoder.cpp.o	e1320fd86a2fee13
+1491	4970	7728002379458801	CMakeFiles/recorder.dir/capbilities/Muxer.cpp.o	595d6e7a651b0980
+758	5010	7728002372126272	CMakeFiles/player.dir/capbilities/Demuxer.cpp.o	c8892f77cad65710
+1325	5213	7728002377792997	CMakeFiles/recorder.dir/sample/recorder/RecorderNative.cpp.o	564a98bc93fd7c42
+1409	5220	7728002378633119	CMakeFiles/recorder.dir/sample/recorder/Recorder.cpp.o	64ae8cf3bdea9e0b
+28	5643	7728002364816641	CMakeFiles/player.dir/sample/player/PlayerNative.cpp.o	984358c9ff5e2555
+679	5823	7728002371336180	CMakeFiles/player.dir/sample/player/Player.cpp.o	6ffbe7fb707f36ad
+5221	6488	7728002416751586	D:/AVCodecVideo/entry/build/default/intermediates/cmake/default/obj/arm64-v8a/librecorder.so	d202029e30956c24
+5823	6489	7728002422775098	D:/AVCodecVideo/entry/build/default/intermediates/cmake/default/obj/arm64-v8a/libplayer.so	6c25ebd1bbf80156

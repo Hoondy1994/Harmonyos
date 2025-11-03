@@ -1,0 +1,4917 @@
+{
+  "version": "2.0",
+  "ppid": 23900,
+  "events": [
+    {
+      "head": {
+        "id": "db45a2a8-17c1-4beb-9b7b-58b75fa2b41b",
+        "name": "watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431561480800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "name": "init",
+        "description": "Initialize and build task graph.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431572739500,
+        "endTime": 19433937441000
+      },
+      "additional": {
+        "children": [
+          "6f88407f-9af4-4e44-b03a-d3f4897bc871",
+          "34c45dcb-367b-4fad-95ac-5764ef434851",
+          "b7efe179-b48b-4687-a41b-a35947347204",
+          "8fa74c23-d7a9-44d8-84b9-baca44ea34d7",
+          "6cdc7810-4db1-45c4-864d-2dcef9f492e0",
+          "1ea388ad-c14d-498d-bc28-f10ca29347f3",
+          "0d234c3c-2f5c-4643-aec7-1ceab4e89bdd"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "Init",
+        "taskRunReasons": [],
+        "logId": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "6f88407f-9af4-4e44-b03a-d3f4897bc871",
+        "name": "create hvigor project model",
+        "description": "Initialize hvigor project model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431572743700,
+        "endTime": 19431588439000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "b762ad8f-7acc-4211-90bf-f9f3eb94ad91"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "name": "configure hvigor plugin",
+        "description": "Configure hvigor plugin.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431588458700,
+        "endTime": 19433935060600
+      },
+      "additional": {
+        "children": [
+          "08b4b8c9-52c7-4003-aa15-c5972262c129",
+          "38817cc4-50a7-4fdc-bbfa-ed79cfbf48ae",
+          "917041ab-0c83-49f1-a41a-7a982a18eac2",
+          "e378f903-d7f0-49d0-9c6f-05638b1c698e",
+          "00ab6706-c30c-480d-952c-ee906518b8c2",
+          "e98ecdc0-70b8-4483-a972-4634320a1a81",
+          "5288ab80-e5f8-44f3-9310-4871a5bef655",
+          "8f52a456-6a9a-4783-bc2b-8d44a86af910",
+          "c08c3efd-598c-4257-9c7e-db5ceaa2505f"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "b7efe179-b48b-4687-a41b-a35947347204",
+        "name": "build task graph",
+        "description": "Build task graph.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433935086300,
+        "endTime": 19433937410500
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "6ce5e299-adec-4dfa-b8e0-193b427f3b53"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "8fa74c23-d7a9-44d8-84b9-baca44ea34d7",
+        "name": "init task execution option",
+        "description": "Init task execution option.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433937416300,
+        "endTime": 19433937432300
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "9a768c4f-082d-4c1d-bdf9-6e660a5fcbd1"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "6cdc7810-4db1-45c4-864d-2dcef9f492e0",
+        "name": "\"configEvaluated\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431577760400,
+        "endTime": 19431578249600
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "24ebd9bf-ee9b-4336-91d1-6e2bf66cf77c"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "24ebd9bf-ee9b-4336-91d1-6e2bf66cf77c",
+        "name": "\"configEvaluated\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431577760400,
+        "endTime": 19431578249600
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "6cdc7810-4db1-45c4-864d-2dcef9f492e0",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "1ea388ad-c14d-498d-bc28-f10ca29347f3",
+        "name": "\"nodesInitialized\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431583879000,
+        "endTime": 19431583950200
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "7dcae05b-3cdc-425a-a603-896c3bf61f5e"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "7dcae05b-3cdc-425a-a603-896c3bf61f5e",
+        "name": "\"nodesInitialized\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431583879000,
+        "endTime": 19431583950200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "1ea388ad-c14d-498d-bc28-f10ca29347f3",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "11be4ee6-e9bb-4e57-b22f-80da73c55843",
+        "name": "Hvigor init with startParameters:{\n  hvigorfileTypeCheck: false,\n  parallelExecution: true,\n  incrementalExecution: true,\n  printStackTrace: false,\n  daemon: true,\n  analyze: 0,\n  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },\n  hotCompile: undefined,\n  hotReloadBuild: undefined\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431584731900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d95d6120-6406-42c8-a617-37e06cd8a4b2",
+        "name": "Cache service initialization finished in 3 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431588293200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b762ad8f-7acc-4211-90bf-f9f3eb94ad91",
+        "name": "create hvigor project model",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431572743700,
+        "endTime": 19431588439000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "6f88407f-9af4-4e44-b03a-d3f4897bc871",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "08b4b8c9-52c7-4003-aa15-c5972262c129",
+        "name": "init configuration",
+        "description": "Initialize configuration.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431594171400,
+        "endTime": 19431594212200
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "641e53a3-d7bc-457e-8cd0-15dda342fe22"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "38817cc4-50a7-4fdc-bbfa-ed79cfbf48ae",
+        "name": "configure project task",
+        "description": "Configure project task.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431594253900,
+        "endTime": 19431598741500
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "889621da-e405-427f-942c-9db5ccf8edf2"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "917041ab-0c83-49f1-a41a-7a982a18eac2",
+        "name": "eval project",
+        "description": "Evaluate project.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431598854500,
+        "endTime": 19433804441100
+      },
+      "additional": {
+        "children": [
+          "3ff929be-9d15-4d30-92d0-38ae2c87670c",
+          "b14abcd2-6b64-4f8e-9fb4-14ac2d29aaf9",
+          "0383b124-57a8-46c3-836d-272bf5cd8ce6"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "48af9499-a639-4aa8-8c1e-1684358995f7"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "e378f903-d7f0-49d0-9c6f-05638b1c698e",
+        "name": "eval modules",
+        "description": "Evaluate modules.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433804772600,
+        "endTime": 19433869681800
+      },
+      "additional": {
+        "children": [
+          "f25e0fc7-dae9-4f83-bd95-d90008feee1b"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "cf8efb25-12d7-472e-b911-e5b6c696ac39"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "00ab6706-c30c-480d-952c-ee906518b8c2",
+        "name": "add config dependencies",
+        "description": "Add configuration dependencies.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433869776800,
+        "endTime": 19433901250300
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "dc540f1b-98f5-468d-aa45-9d766103377d"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "e98ecdc0-70b8-4483-a972-4634320a1a81",
+        "name": "ohpm install",
+        "description": "Ohpm install event.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433902882600,
+        "endTime": 19433915907600
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "426d25ef-39c7-406e-ab62-2f50f5108366"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "5288ab80-e5f8-44f3-9310-4871a5bef655",
+        "name": "eval hook",
+        "description": "EvaluateEvent hook.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433915929600,
+        "endTime": 19433934712600
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "1c77de18-5f05-4a60-841b-8766be8da24a"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "8f52a456-6a9a-4783-bc2b-8d44a86af910",
+        "name": "fin configuration",
+        "description": "Finish configuration.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433934735900,
+        "endTime": 19433935048200
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "70dc38f4-389a-490d-b6c5-fd0c8d8c98a8"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "641e53a3-d7bc-457e-8cd0-15dda342fe22",
+        "name": "init configuration",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431594171400,
+        "endTime": 19431594212200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "08b4b8c9-52c7-4003-aa15-c5972262c129",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "889621da-e405-427f-942c-9db5ccf8edf2",
+        "name": "configure project task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431594253900,
+        "endTime": 19431598741500
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "38817cc4-50a7-4fdc-bbfa-ed79cfbf48ae",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "3ff929be-9d15-4d30-92d0-38ae2c87670c",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431599734000,
+        "endTime": 19431599882700
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "917041ab-0c83-49f1-a41a-7a982a18eac2",
+        "logId": "38d094b2-ac22-4cfa-b8f1-50092701d7f0"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "38d094b2-ac22-4cfa-b8f1-50092701d7f0",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431599734000,
+        "endTime": 19431599882700
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "3ff929be-9d15-4d30-92d0-38ae2c87670c",
+        "parent": "48af9499-a639-4aa8-8c1e-1684358995f7"
+      }
+    },
+    {
+      "head": {
+        "id": "b14abcd2-6b64-4f8e-9fb4-14ac2d29aaf9",
+        "name": "eval hvigorfile",
+        "description": "Evaluate hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431602079800,
+        "endTime": 19433803157800
+      },
+      "additional": {
+        "children": [
+          "a3a427b6-c32d-467c-9d02-0ca3e9a8477a",
+          "8e7c68d1-1e31-48d2-bcd4-7bffab54017b"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "917041ab-0c83-49f1-a41a-7a982a18eac2",
+        "logId": "338871c9-1409-4ac0-98c4-209dd7977b00"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "a3a427b6-c32d-467c-9d02-0ca3e9a8477a",
+        "name": "require hvigorfile",
+        "description": "Require hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431602080800,
+        "endTime": 19433479815600
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "b14abcd2-6b64-4f8e-9fb4-14ac2d29aaf9",
+        "logId": "d49ecf68-237e-41e3-b0e2-98e14d61b8ed"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "8e7c68d1-1e31-48d2-bcd4-7bffab54017b",
+        "name": "bind plugins",
+        "description": "Bind plugins.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433479858200,
+        "endTime": 19433803114500
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "b14abcd2-6b64-4f8e-9fb4-14ac2d29aaf9",
+        "logId": "c6b83419-5146-4643-84bb-982e3a0ae1e6"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "04856a08-cba6-4bc8-8619-f7b474d71a0f",
+        "name": "hvigorfile, resolving D:\\AVCodecVideo\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431602086500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "9f3ef3c2-4623-4dab-b2ef-611b50b2c950",
+        "name": "hvigorfile, require result:  { default: { system: [Function: appTasks], plugins: [] } }",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433479642900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d49ecf68-237e-41e3-b0e2-98e14d61b8ed",
+        "name": "require hvigorfile",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431602080800,
+        "endTime": 19433479815600
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "a3a427b6-c32d-467c-9d02-0ca3e9a8477a",
+        "parent": "338871c9-1409-4ac0-98c4-209dd7977b00"
+      }
+    },
+    {
+      "head": {
+        "id": "4269b495-d4c6-4828-b0b9-142d2719fcf5",
+        "name": "hvigorfile, binding system plugins [Function: appTasks]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433479970300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "396eaebb-3fd3-401a-aecb-b4efc84d6ef6",
+        "name": "Start initialize project's product build option map with build mode debug.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433694794600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "ead1e5dc-ec8e-4425-b369-57389d1a509e",
+        "name": "Picking option from product 'default' with build mode 'debug'.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433695201500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "5e89849e-e536-40d7-8762-73e37c8e79ee",
+        "name": "Product 'default' build option: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433695754800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "fb3e3571-234f-48c1-9147-8b70b61cd573",
+        "name": "End initialize project's product build option map with build mode 'debug'.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433695895400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "4a27d978-7fc8-464d-8b9b-162090f8c065",
+        "name": "Product 'default' using build option: {\n  \"debuggable\": true\n} in this build.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433700159100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "33033350-0843-4e75-97af-d52434258309",
+        "name": "not found resModel json file in : D:\\AVCodecVideo\\entry\\src\\ohosTest\\module.json5",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433701472900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "043f175a-c8f4-4eb2-b70c-71a82f15757e",
+        "name": "No signingConfig found, initRemoteHspCache failed.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433709831200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a1792d96-ce24-42b0-8381-593455061ad9",
+        "name": "harmonyOS sdk scan",
+        "description": "HarmonyOS sdk scan",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433714846500,
+        "endTime": 19433718484400
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "Other",
+        "taskRunReasons": []
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "c84a272f-d71c-44e6-801a-a09981511156",
+        "name": "Local scan or download HarmonyOS sdk components toolchains,ets,js,native,previewer",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433715602400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "7f0eaa61-c49c-49d3-8bab-dfa568bdc51b",
+        "name": "hmscore sdk scan",
+        "description": "Hmscore sdk scan",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433719578800,
+        "endTime": 19433721374200
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "Other",
+        "taskRunReasons": []
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "f71c3853-1273-4c66-83fa-f9eb88cd9373",
+        "name": "Local scan or download hmscore sdk components toolchains,ets,native",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433720196300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "990908e1-f4b1-449a-9501-bf1a2b1f6491",
+        "name": "Start recording SDK configuration permission data.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433728662500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d52d0e57-a5e5-4024-922c-70366482623d",
+        "name": "Sdk init in 55 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433766976500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "44c7cf40-f97b-4dec-bdf2-a32ccc0bbc2c",
+        "name": "sdkVersion",
+        "description": "5.1.1.66",
+        "type": "mark"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433767243500
+      },
+      "additional": {
+        "time": {
+          "year": 2025,
+          "month": 6,
+          "day": 28,
+          "hour": 15,
+          "minute": 20,
+          "second": 35
+        },
+        "markType": "other"
+      }
+    },
+    {
+      "head": {
+        "id": "3d3962cb-3d82-426a-9289-1818c857da9e",
+        "name": "caseSensitiveCheckOff",
+        "description": "caseSensitiveCheck check is off",
+        "type": "mark"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433767352400
+      },
+      "additional": {
+        "time": {
+          "year": 2025,
+          "month": 6,
+          "day": 28,
+          "hour": 15,
+          "minute": 20,
+          "second": 35
+        },
+        "markType": "other"
+      }
+    },
+    {
+      "head": {
+        "id": "d73579d0-4c82-44de-b306-670446ab837d",
+        "name": "Project task initialization takes 34 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433802386900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "bf25e4f7-a691-4cf5-b018-65ee29f40b93",
+        "name": "hvigorfile, binding custom plugins []",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433802755100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "4ec5dc12-9232-4f33-9cbf-a8b2860e04b9",
+        "name": "hvigorfile, no custom plugins were found in D:\\AVCodecVideo\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433802881300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "acd4795b-8dfc-4595-964b-e87280913eda",
+        "name": "hvigorfile, resolve finished D:\\AVCodecVideo\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433802978600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "c6b83419-5146-4643-84bb-982e3a0ae1e6",
+        "name": "bind plugins",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433479858200,
+        "endTime": 19433803114500
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "8e7c68d1-1e31-48d2-bcd4-7bffab54017b",
+        "parent": "338871c9-1409-4ac0-98c4-209dd7977b00"
+      }
+    },
+    {
+      "head": {
+        "id": "338871c9-1409-4ac0-98c4-209dd7977b00",
+        "name": "eval hvigorfile",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431602079800,
+        "endTime": 19433803157800
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "d49ecf68-237e-41e3-b0e2-98e14d61b8ed",
+          "c6b83419-5146-4643-84bb-982e3a0ae1e6"
+        ],
+        "durationId": "b14abcd2-6b64-4f8e-9fb4-14ac2d29aaf9",
+        "parent": "48af9499-a639-4aa8-8c1e-1684358995f7"
+      }
+    },
+    {
+      "head": {
+        "id": "0383b124-57a8-46c3-836d-272bf5cd8ce6",
+        "name": "\"afterNodeEvaluate\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433804359200,
+        "endTime": 19433804410300
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "917041ab-0c83-49f1-a41a-7a982a18eac2",
+        "logId": "1217646a-dbd2-4ed4-890f-9a7d71af37cd"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "1217646a-dbd2-4ed4-890f-9a7d71af37cd",
+        "name": "\"afterNodeEvaluate\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433804359200,
+        "endTime": 19433804410300
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "0383b124-57a8-46c3-836d-272bf5cd8ce6",
+        "parent": "48af9499-a639-4aa8-8c1e-1684358995f7"
+      }
+    },
+    {
+      "head": {
+        "id": "48af9499-a639-4aa8-8c1e-1684358995f7",
+        "name": "eval project",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431598854500,
+        "endTime": 19433804441100
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "38d094b2-ac22-4cfa-b8f1-50092701d7f0",
+          "338871c9-1409-4ac0-98c4-209dd7977b00",
+          "1217646a-dbd2-4ed4-890f-9a7d71af37cd"
+        ],
+        "durationId": "917041ab-0c83-49f1-a41a-7a982a18eac2",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "f25e0fc7-dae9-4f83-bd95-d90008feee1b",
+        "name": "eval submodule",
+        "description": "Evaluate submodule.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433805544100,
+        "endTime": 19433869591400
+      },
+      "additional": {
+        "children": [
+          "304776a4-fcc4-430a-afbe-5cd4801ade87",
+          "52f4e505-4fe0-4e42-b958-6a2bd8565625",
+          "5fec40be-a24b-4d5d-97c7-569f2e48473b"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "e378f903-d7f0-49d0-9c6f-05638b1c698e",
+        "logId": "77dc3031-6837-4566-9d72-e638b2bc2f33"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "304776a4-fcc4-430a-afbe-5cd4801ade87",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433810207800,
+        "endTime": 19433810272000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f25e0fc7-dae9-4f83-bd95-d90008feee1b",
+        "logId": "e696d479-9e41-4da4-90bf-d07755a2eb75"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "e696d479-9e41-4da4-90bf-d07755a2eb75",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433810207800,
+        "endTime": 19433810272000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "304776a4-fcc4-430a-afbe-5cd4801ade87",
+        "parent": "77dc3031-6837-4566-9d72-e638b2bc2f33"
+      }
+    },
+    {
+      "head": {
+        "id": "52f4e505-4fe0-4e42-b958-6a2bd8565625",
+        "name": "eval hvigorfile",
+        "description": "Evaluate hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433814483100,
+        "endTime": 19433867290000
+      },
+      "additional": {
+        "children": [
+          "fae85d02-3513-4027-af2a-d97c7ce6286e",
+          "527541e9-4ee4-44f0-966b-ef81ae47a594"
+        ],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f25e0fc7-dae9-4f83-bd95-d90008feee1b",
+        "logId": "ccfc6e8b-5104-4599-9790-d012b94eab03"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "fae85d02-3513-4027-af2a-d97c7ce6286e",
+        "name": "require hvigorfile",
+        "description": "Require hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433814485100,
+        "endTime": 19433825221200
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "52f4e505-4fe0-4e42-b958-6a2bd8565625",
+        "logId": "abf988ee-24c7-400c-89b7-cf65b19eb92c"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "527541e9-4ee4-44f0-966b-ef81ae47a594",
+        "name": "bind plugins",
+        "description": "Bind plugins.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433825236000,
+        "endTime": 19433867270800
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "52f4e505-4fe0-4e42-b958-6a2bd8565625",
+        "logId": "e95845c6-33bd-45c9-a1ec-490321ef684a"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "cffe3642-45d0-4792-a10b-76d15e36e3bb",
+        "name": "hvigorfile, resolving D:\\AVCodecVideo\\entry\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433814496300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "80b2a414-7606-446e-8727-d13185238356",
+        "name": "hvigorfile, require result:  { default: { system: [Function: hapTasks], plugins: [] } }",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433825035900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "abf988ee-24c7-400c-89b7-cf65b19eb92c",
+        "name": "require hvigorfile",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433814485100,
+        "endTime": 19433825221200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "fae85d02-3513-4027-af2a-d97c7ce6286e",
+        "parent": "ccfc6e8b-5104-4599-9790-d012b94eab03"
+      }
+    },
+    {
+      "head": {
+        "id": "3023fd4a-0316-4a7f-8fba-1a311fd5fce5",
+        "name": "hvigorfile, binding system plugins [Function: hapTasks]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433825349000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0bb4b9ec-4ba5-485b-b123-8243a88ab6ac",
+        "name": "failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'\nRequire stack:\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor-ohos-plugin\\src\\plugin\\factory\\plugin-factory.js\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor-ohos-plugin\\index.js\n- D:\\AVCodecVideo\\hvigorfile.ts\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor\\src\\base\\internal\\lifecycle\\configuration.js\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor\\src\\base\\boot\\index.js\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor\\src\\base\\daemon\\cluster\\worker-process-lifecycle.js\n- D:\\5.1.1.420\\DevEco Studio\\tools\\hvigor\\hvigor\\src\\base\\daemon\\process\\daemon-process-boot-script.js",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433826346000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "68f70658-7918-4939-b9ab-d6b9fd346e99",
+        "name": "Start initialize module-target build option map, moduleName=entry, buildMode=release",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433844734500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "7c63e689-ef70-4036-a2f5-e1305a09fd52",
+        "name": "Target 'default' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433845599600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "31984856-ce12-4989-9c8b-c33a705fd423",
+        "name": "Target 'ohosTest' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433847667500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "8450682e-2517-44b9-9fe5-a4c8bc95665d",
+        "name": "Module 'entry' target 'default' build option: {\n  \"debuggable\": false,\n  \"copyFrom\": \"default\",\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433848406600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "50d5641c-35e1-48ca-a4e3-38d05a43b261",
+        "name": "Module 'entry' target 'ohosTest' build option: {\n  \"debuggable\": true,\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433848581200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "29d9a9ff-389b-4fb4-b7d1-d0dc80b900f9",
+        "name": "End initialize module-target build option map, moduleName=entry",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433848681400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "88326ea4-0e35-4fed-83ac-cfbbedeb8e8a",
+        "name": "Start initialize module-target build option map, moduleName=entry, buildMode=debug",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433848826700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "cd93524b-9986-49fa-8a87-1bdf5a961d87",
+        "name": "Target 'default' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433848939800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "e85ce0d1-ce69-47fe-9a52-5cdb04dadb6c",
+        "name": "Target 'ohosTest' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433849778500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "8bcda868-7ddd-429d-b240-ea335cc98351",
+        "name": "Module 'entry' target 'default' build option: {\n  \"debuggable\": true,\n  \"copyFrom\": \"default\",\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433850100900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "51bfd8c6-6fa4-46cd-9557-74c7f8488796",
+        "name": "Module 'entry' target 'ohosTest' build option: {\n  \"debuggable\": true,\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433850356300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "9df00ee4-de07-47aa-a22a-f26d158e69e7",
+        "name": "End initialize module-target build option map, moduleName=entry",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433850467100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "aed65dcc-84a9-486c-b2f4-798627bd4c3a",
+        "name": "Start initialize module-target build option map, moduleName=entry, buildMode=debug",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433850782700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "441cbb7d-0409-4117-96a8-36b23292f718",
+        "name": "Target 'default' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433850950400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "899ebfe9-9d4c-4925-8a80-5da1ada614db",
+        "name": "Target 'ohosTest' config: {}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433851718300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f73e67a1-02c9-4b4c-9aa1-ffbf3ac54ee6",
+        "name": "Module 'entry' target 'default' build option: {\n  \"debuggable\": true,\n  \"copyFrom\": \"default\",\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433851988000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "7786a5e7-d619-42a4-8a89-9a46da1c7857",
+        "name": "Module 'entry' target 'ohosTest' build option: {\n  \"debuggable\": true,\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433852094100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "46a14894-32c1-4755-8cdf-a7309d924b0b",
+        "name": "End initialize module-target build option map, moduleName=entry",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433852187300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "bd150a4c-e43e-4f4a-89fa-64a9f6653cc5",
+        "name": "Module 'entry' target 'default' using build option: {\n  \"debuggable\": true,\n  \"copyFrom\": \"default\",\n  \"externalNativeOptions\": {\n    \"path\": \"./src/main/cpp/CMakeLists.txt\",\n    \"arguments\": \"\",\n    \"cppFlags\": \"\",\n    \"abiFilters\": [\n      \"arm64-v8a\",\n      \"x86_64\"\n    ]\n  }\n} in this build.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433852637900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f9c565cb-c892-4e20-994e-e636c52c93a0",
+        "name": "Module entry task initialization takes 10 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433866493500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "1c648abc-837b-4eb9-8c7d-99c3b015999b",
+        "name": "hvigorfile, binding custom plugins []",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433866920400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "37cd2e01-e348-4aa9-a4db-6a82bc2fa986",
+        "name": "hvigorfile, no custom plugins were found in D:\\AVCodecVideo\\entry\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433867045000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "88152127-894f-4946-9a10-cdc3857a79fc",
+        "name": "hvigorfile, resolve finished D:\\AVCodecVideo\\entry\\hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433867171000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "e95845c6-33bd-45c9-a1ec-490321ef684a",
+        "name": "bind plugins",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433825236000,
+        "endTime": 19433867270800
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "527541e9-4ee4-44f0-966b-ef81ae47a594",
+        "parent": "ccfc6e8b-5104-4599-9790-d012b94eab03"
+      }
+    },
+    {
+      "head": {
+        "id": "ccfc6e8b-5104-4599-9790-d012b94eab03",
+        "name": "eval hvigorfile",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433814483100,
+        "endTime": 19433867290000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "abf988ee-24c7-400c-89b7-cf65b19eb92c",
+          "e95845c6-33bd-45c9-a1ec-490321ef684a"
+        ],
+        "durationId": "52f4e505-4fe0-4e42-b958-6a2bd8565625",
+        "parent": "77dc3031-6837-4566-9d72-e638b2bc2f33"
+      }
+    },
+    {
+      "head": {
+        "id": "5fec40be-a24b-4d5d-97c7-569f2e48473b",
+        "name": "\"afterNodeEvaluate\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433869513100,
+        "endTime": 19433869549700
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f25e0fc7-dae9-4f83-bd95-d90008feee1b",
+        "logId": "0e810591-a75b-458e-bacf-95fb33cdf21c"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "0e810591-a75b-458e-bacf-95fb33cdf21c",
+        "name": "\"afterNodeEvaluate\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433869513100,
+        "endTime": 19433869549700
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "5fec40be-a24b-4d5d-97c7-569f2e48473b",
+        "parent": "77dc3031-6837-4566-9d72-e638b2bc2f33"
+      }
+    },
+    {
+      "head": {
+        "id": "77dc3031-6837-4566-9d72-e638b2bc2f33",
+        "name": "eval submodule",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433805544100,
+        "endTime": 19433869591400
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "e696d479-9e41-4da4-90bf-d07755a2eb75",
+          "ccfc6e8b-5104-4599-9790-d012b94eab03",
+          "0e810591-a75b-458e-bacf-95fb33cdf21c"
+        ],
+        "durationId": "f25e0fc7-dae9-4f83-bd95-d90008feee1b",
+        "parent": "cf8efb25-12d7-472e-b911-e5b6c696ac39"
+      }
+    },
+    {
+      "head": {
+        "id": "cf8efb25-12d7-472e-b911-e5b6c696ac39",
+        "name": "eval modules",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433804772600,
+        "endTime": 19433869681800
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "77dc3031-6837-4566-9d72-e638b2bc2f33"
+        ],
+        "durationId": "e378f903-d7f0-49d0-9c6f-05638b1c698e",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "755c274c-96df-40d2-bcc7-aa579b4649ed",
+        "name": "watch files: [\n  'D:\\\\AVCodecVideo\\\\hvigorfile.ts',\n  'D:\\\\AVCodecVideo\\\\entry\\\\hvigorfile.ts'\n]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433900302300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "56c6791d-b5a0-49e9-9556-ffbb0c63ed91",
+        "name": "hvigorfile, resolve hvigorfile dependencies in 32 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433901118800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "dc540f1b-98f5-468d-aa45-9d766103377d",
+        "name": "add config dependencies",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433869776800,
+        "endTime": 19433901250300
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "00ab6706-c30c-480d-952c-ee906518b8c2",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "c08c3efd-598c-4257-9c7e-db5ceaa2505f",
+        "name": "\"nodesEvaluated\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433902243400,
+        "endTime": 19433902849800
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "logId": "60e23756-d098-428a-8640-7dcdda19309e"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "0eeae84c-3d78-4d7d-adfb-0a3de7354989",
+        "name": "project has submodules:entry",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433902413500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "60e23756-d098-428a-8640-7dcdda19309e",
+        "name": "\"nodesEvaluated\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433902243400,
+        "endTime": 19433902849800
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "c08c3efd-598c-4257-9c7e-db5ceaa2505f",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "a490dd4d-bfe3-4f44-809e-6e83bb7c6315",
+        "name": "start to load updatedOhPackageInfo to the disk",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433905175100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "3918d0d6-d2a4-4afc-a471-5cd76c6d607f",
+        "name": "load to the disk finished",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433914437100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "426d25ef-39c7-406e-ab62-2f50f5108366",
+        "name": "ohpm install",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433902882600,
+        "endTime": 19433915907600
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "e98ecdc0-70b8-4483-a972-4634320a1a81",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "ac9aeb4d-47c0-49f0-9f6c-ea8cacb8ccbc",
+        "name": "Start to initialize dependency information.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433916119600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "9e035bf0-939d-48cb-988e-d3e7582a2648",
+        "name": "Module AVCodecVideo Collected Dependency: ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433918803000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "844e332e-cc32-4b18-a789-1ef7da1adce4",
+        "name": "Module AVCodecVideo's total dependency: 0",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433918964700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0fe18ea8-9738-431e-9fea-526ea97b78c5",
+        "name": "Start to initialize dependency information.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433920680700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0e4c44fc-a7a4-49ac-aa56-a0b182a5c9c6",
+        "name": "Module entry Collected Dependency: D:\\AVCodecVideo\\entry\\src\\main\\cpp\\types\\libplayer,D:\\AVCodecVideo\\entry\\src\\main\\cpp\\types\\librecorder",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433927457700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "17d1166f-09ee-410c-a338-646a31068f70",
+        "name": "Module entry's total dependency: 2",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433927568700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "1c77de18-5f05-4a60-841b-8766be8da24a",
+        "name": "eval hook",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433915929600,
+        "endTime": 19433934712600
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "5288ab80-e5f8-44f3-9310-4871a5bef655",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "cebeceb2-617b-4bfd-b134-65afc1f087ac",
+        "name": "Configuration phase cost:2 s 341 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433934940200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "70dc38f4-389a-490d-b6c5-fd0c8d8c98a8",
+        "name": "fin configuration",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433934735900,
+        "endTime": 19433935048200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "8f52a456-6a9a-4783-bc2b-8d44a86af910",
+        "parent": "22afb4a1-a06b-4596-bb58-4779bfb20ae3"
+      }
+    },
+    {
+      "head": {
+        "id": "22afb4a1-a06b-4596-bb58-4779bfb20ae3",
+        "name": "configure hvigor plugin",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431588458700,
+        "endTime": 19433935060600
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "641e53a3-d7bc-457e-8cd0-15dda342fe22",
+          "889621da-e405-427f-942c-9db5ccf8edf2",
+          "48af9499-a639-4aa8-8c1e-1684358995f7",
+          "cf8efb25-12d7-472e-b911-e5b6c696ac39",
+          "dc540f1b-98f5-468d-aa45-9d766103377d",
+          "426d25ef-39c7-406e-ab62-2f50f5108366",
+          "1c77de18-5f05-4a60-841b-8766be8da24a",
+          "70dc38f4-389a-490d-b6c5-fd0c8d8c98a8",
+          "60e23756-d098-428a-8640-7dcdda19309e"
+        ],
+        "durationId": "34c45dcb-367b-4fad-95ac-5764ef434851",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "0d234c3c-2f5c-4643-aec7-1ceab4e89bdd",
+        "name": "\"taskGraphResolved\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433937354900,
+        "endTime": 19433937397400
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2",
+        "logId": "7de710f1-9650-4ffe-bfcc-8f596c06a75a"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "7de710f1-9650-4ffe-bfcc-8f596c06a75a",
+        "name": "\"taskGraphResolved\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433937354900,
+        "endTime": 19433937397400
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "0d234c3c-2f5c-4643-aec7-1ceab4e89bdd",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "6ce5e299-adec-4dfa-b8e0-193b427f3b53",
+        "name": "build task graph",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433935086300,
+        "endTime": 19433937410500
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "b7efe179-b48b-4687-a41b-a35947347204",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "9a768c4f-082d-4c1d-bdf9-6e660a5fcbd1",
+        "name": "init task execution option",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433937416300,
+        "endTime": 19433937432300
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "8fa74c23-d7a9-44d8-84b9-baca44ea34d7",
+        "parent": "9fa21f43-35e5-4acc-a490-caec658bc6e3"
+      }
+    },
+    {
+      "head": {
+        "id": "9fa21f43-35e5-4acc-a490-caec658bc6e3",
+        "name": "init",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431572739500,
+        "endTime": 19433937441000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "b762ad8f-7acc-4211-90bf-f9f3eb94ad91",
+          "22afb4a1-a06b-4596-bb58-4779bfb20ae3",
+          "6ce5e299-adec-4dfa-b8e0-193b427f3b53",
+          "9a768c4f-082d-4c1d-bdf9-6e660a5fcbd1",
+          "24ebd9bf-ee9b-4336-91d1-6e2bf66cf77c",
+          "7dcae05b-3cdc-425a-a603-896c3bf61f5e",
+          "7de710f1-9650-4ffe-bfcc-8f596c06a75a"
+        ],
+        "durationId": "94fdaf8f-28be-4b26-b3e5-f2a44eaa62a2"
+      }
+    },
+    {
+      "head": {
+        "id": "07886946-0158-404f-b1f0-bca2de41c703",
+        "name": "Configuration task cost before running: 2 s 370 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433938082400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0156311f-688b-4a43-8de0-9b2685878d79",
+        "name": "entry:default@PreBuild",
+        "description": "Pre-build in the stage model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433948952900,
+        "endTime": 19434142385800
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "default",
+        "moduleName": "entry",
+        "category": "Verification",
+        "taskRunReasons": [],
+        "detailId": "b1a690ca-1b0b-4ad0-9d81-0ceb0e4d54d6",
+        "logId": "30b1db9d-375d-4b32-81e6-55bc822efc8f"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "b1a690ca-1b0b-4ad0-9d81-0ceb0e4d54d6",
+        "name": "create entry:default@PreBuild task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433940290000
+      },
+      "additional": {
+        "logType": "detail",
+        "children": [],
+        "durationId": "0156311f-688b-4a43-8de0-9b2685878d79"
+      }
+    },
+    {
+      "head": {
+        "id": "51e2b7ad-a02d-4dc4-a7e5-ab0d276e2256",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433942706400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "14bc9152-da43-4817-a231-9eb7d56218a1",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433942833900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "fd72a915-3b3a-4393-a73a-b3c23ed3b958",
+        "name": "Executing task :entry:default@PreBuild",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433948999400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "906b5909-8623-49c0-a85c-e22428b0284e",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433955636900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d09725e5-3c4c-4c1e-b8be-0cb421892ef9",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433955756900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0d3b61d9-7a29-4c11-89f8-4b9202057e56",
+        "name": "current product is not Atomic service.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434140638100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "7756764a-5b83-4af2-838e-bd4d07fce23e",
+        "name": "Use tool [win32: JAVA_HOME, CLASSPATH]\n [\n  { JAVA_HOME: 'D:\\\\5.1.1.420\\\\DevEco Studio\\\\jbr' },\n  { CLASSPATH: undefined }\n]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434141160900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "64751bb3-385c-4f3d-986f-2369c22524ef",
+        "name": "Use tool [win32: NODE_HOME]\n [ { NODE_HOME: 'D:\\\\5.1.1.420\\\\DevEco Studio\\\\tools\\\\node' } ]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434141288900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0f00508d-4967-47b1-924f-8189f8be93a7",
+        "name": "entry : default@PreBuild cost memory 3.007598876953125",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434141918000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "ae83ff4f-675b-4653-a834-869360cce68c",
+        "name": "runTaskFromQueue task cost before running: 2 s 574 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434142227700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "30b1db9d-375d-4b32-81e6-55bc822efc8f",
+        "name": "Finished :entry:default@PreBuild",
+        "description": "Pre-build in the stage model.",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19433948952900,
+        "endTime": 19434142385800,
+        "totalTime": 193232200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "0156311f-688b-4a43-8de0-9b2685878d79"
+      }
+    },
+    {
+      "head": {
+        "id": "954727f2-74e6-4e4d-9b5f-47af0631e792",
+        "name": "entry:default@ConfigureCmake",
+        "description": "cache native strip .so fileInfo",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149574800,
+        "endTime": 19434155532900
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "default",
+        "moduleName": "entry",
+        "category": "Native",
+        "taskRunReasons": [],
+        "detailId": "1ae7cfad-6e66-48d7-aadd-1031e51d2253",
+        "logId": "06ba75d2-a5e8-4d37-a764-232b68d14a46"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "1ae7cfad-6e66-48d7-aadd-1031e51d2253",
+        "name": "create entry:default@ConfigureCmake task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434147012100
+      },
+      "additional": {
+        "logType": "detail",
+        "children": [],
+        "durationId": "954727f2-74e6-4e4d-9b5f-47af0631e792"
+      }
+    },
+    {
+      "head": {
+        "id": "a1f96af8-b6a5-4aab-8a83-d3524eda1beb",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434148994000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "5b361b31-573d-4efd-b4a4-5ebf1ba2a18c",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149203700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a4ea5f2e-ddc0-4d3e-b80a-75a838d445c9",
+        "name": "Executing task :entry:default@ConfigureCmake",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149585000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "9c866416-85d0-4bd0-b411-ce7836caf2db",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149744100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "956d7e04-d1b5-4492-991f-d1714a8a1646",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149820600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f8d0eb45-885d-4e3d-b820-03525d6a1911",
+        "name": "entry : default@ConfigureCmake cost memory 0.1403350830078125",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434155301000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "31377853-ac85-41fe-a2b3-ba4249e115b1",
+        "name": "runTaskFromQueue task cost before running: 2 s 587 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434155454700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "06ba75d2-a5e8-4d37-a764-232b68d14a46",
+        "name": "Finished :entry:default@ConfigureCmake",
+        "description": "cache native strip .so fileInfo",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434149574800,
+        "endTime": 19434155532900,
+        "totalTime": 5851200
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "954727f2-74e6-4e4d-9b5f-47af0631e792"
+      }
+    },
+    {
+      "head": {
+        "id": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "name": "entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434159375700,
+        "endTime": 19447159634400
+      },
+      "additional": {
+        "children": [
+          "a81e526d-3a1a-4b97-b332-33a3825063a1",
+          "eb2d5552-05a8-444a-a789-8f38d6d439bb",
+          "4ef45865-8466-4c0a-9ec7-87b4f514aa2a",
+          "e6dd35c0-d959-4d85-92e1-ebc0fe438d12",
+          "ba331f64-588c-4102-8df7-12563c496d78",
+          "97e119a5-11b5-4abd-afe9-004156526095"
+        ],
+        "state": "success",
+        "targetName": "default",
+        "moduleName": "entry",
+        "category": "Native",
+        "taskRunReasons": [],
+        "detailId": "5e8ab5f2-ec7a-424f-b20d-7b294c650d3f",
+        "logId": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "5e8ab5f2-ec7a-424f-b20d-7b294c650d3f",
+        "name": "create entry:default@BuildNativeWithCmake task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434157194100
+      },
+      "additional": {
+        "logType": "detail",
+        "children": [],
+        "durationId": "f6383e86-ea44-4ed5-85dc-b23465bc62fd"
+      }
+    },
+    {
+      "head": {
+        "id": "04ac9115-20f3-4e3a-bfad-16cb2660aeda",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434158593500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f76ac58c-b4a9-46d9-96ae-c3103f6e2cea",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434158705800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "5c5a8bd3-aa01-41b0-baa4-43e5a643a832",
+        "name": "Executing task :entry:default@BuildNativeWithCmake",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434159383700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d00266d9-039a-499b-93ac-d2b047e6f877",
+        "name": "jsonObjWithoutParam {\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434159511000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f01d921f-02f8-4c11-8b99-496811fc9364",
+        "name": "jsonObjWithoutParam {\"name\":\"entry\",\"version\":\"1.0.0\",\"description\":\"Please describe the basic information.\",\"main\":\"\",\"author\":\"\",\"license\":\"\",\"dependencies\":{\"libplayer.so\":\"file:./src/main/cpp/types/libplayer\",\"librecorder.so\":\"file:./src/main/cpp/types/librecorder\"}} at undefined",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434159581700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a81e526d-3a1a-4b97-b332-33a3825063a1",
+        "name": "generate CMake command with ABI of arm64-v8a",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434161093300,
+        "endTime": 19434166277100
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "2995a98c-e2ef-43fc-a2db-e87c63949b91"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "c28e9196-a5cb-4589-ab4f-f7800c5da0ac",
+        "name": "Use tool [Cmake]\n [\n  'D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native\\\\build-tools\\\\cmake\\\\bin\\\\cmake.exe',\n  '-HD:\\\\AVCodecVideo\\\\entry\\\\src\\\\main\\\\cpp',\n  '-BD:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\arm64-v8a',\n  '-DOHOS_ARCH=arm64-v8a',\n  '-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\\\AVCodecVideo\\\\entry\\\\build\\\\default\\\\intermediates\\\\cmake\\\\default\\\\obj\\\\arm64-v8a',\n  '-DCMAKE_BUILD_TYPE=Debug',\n  '-DOHOS_SDK_NATIVE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native',\n  '-DCMAKE_SYSTEM_NAME=OHOS',\n  '-DCMAKE_OHOS_ARCH_ABI=arm64-v8a',\n  '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',\n  '-DCMAKE_TOOLCHAIN_FILE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\hms\\\\native\\\\build\\\\cmake\\\\hmos.toolchain.cmake',\n  '-GNinja',\n  '-DCMAKE_MAKE_PROGRAM=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native\\\\build-tools\\\\cmake\\\\bin\\\\ninja.exe',\n  '-DCMAKE_FIND_ROOT_PATH=D:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\hvigor\\\\arm64-v8a',\n  '-DPACKAGE_FIND_FILE=D:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\hvigor\\\\arm64-v8a\\\\summary.cmake',\n  '--no-warn-unused-cli',\n  '-DHMOS_SDK_NATIVE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\hms\\\\native'\n]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434165199900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "2995a98c-e2ef-43fc-a2db-e87c63949b91",
+        "name": "generate CMake command with ABI of arm64-v8a",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434161093300,
+        "endTime": 19434166277100
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "a81e526d-3a1a-4b97-b332-33a3825063a1",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "eb2d5552-05a8-444a-a789-8f38d6d439bb",
+        "name": "submit CMake task to work pool with ABI of arm64-v8a",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434167030600,
+        "endTime": 19447158573400
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "b3c6e65a-f56b-4709-afc8-0d7cff5d54ff"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "e655fac6-a966-4abb-8163-e8e3e1dcab00",
+        "name": "Clean CMakeCache.txt due to outdated CMake configuration.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434169106500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b83add66-3fd3-455d-a655-31cfe6c0ccee",
+        "name": "- no fingerprint file, will remove stale cache CMakeCache.txt",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434169959400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "fb79d10f-68b4-42a6-917b-329509fe2402",
+        "name": "Since there is no instance or instance is terminated, create a new worker pool.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434171529700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "1f9190e8-9fd7-40e8-8d86-87a44f908055",
+        "name": "Worker pool is initialized with config:  {\n  minPoolNum: 2,\n  maxPoolNum: undefined,\n  maxCoreSize: undefined,\n  cacheCapacity: undefined,\n  cacheTtl: undefined\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434171723300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a0ee9241-2db3-4d6e-8c78-d24e7eebbe97",
+        "name": "Create  resident worker with id: 0.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434172930100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "6b10c6e9-ba8e-435e-a120-6fd768671786",
+        "name": "Create  resident worker with id: 1.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434175088800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "127a4112-1107-45fa-aef1-3f8e037afdb6",
+        "name": "default@BuildNativeWithCmake work[0] is submitted.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434177399700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "4ef45865-8466-4c0a-9ec7-87b4f514aa2a",
+        "name": "entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Worker14",
+        "startTime": 19435537242400,
+        "endTime": 19447077382000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "default",
+        "moduleName": "entry",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "04ebf63a-d447-42f5-855e-40505bd0fa42"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "7a91858b-d25a-43ef-92fb-183b50f17200",
+        "name": "default@BuildNativeWithCmake work[0] is pushed to ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434179737200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0498064a-69cf-45bc-ab03-9af5adedd279",
+        "name": "A work dispatched to worker[15] failed because unable to get work from ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434180212300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "0fdf9721-718b-49ec-aeee-78b2a0922a76",
+        "name": "Create  resident worker with id: 14.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434180483000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "63076ca8-6e4b-44c6-939b-b4181fd90391",
+        "name": "default@BuildNativeWithCmake work[0] has been dispatched to worker[14].",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434181842800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "c353b5f0-78c5-449a-8d44-6367e334086d",
+        "name": "default@BuildNativeWithCmake work[0] is dispatched.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434182046600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "e6dd35c0-d959-4d85-92e1-ebc0fe438d12",
+        "name": "generate CMake command with ABI of x86_64",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434182908900,
+        "endTime": 19434185825000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "d0b1a27d-9aae-4207-ba18-c9c275f24af6"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "cfbfa8c6-aa56-4a74-ab06-0bb1e3ad27aa",
+        "name": "Use tool [Cmake]\n [\n  'D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native\\\\build-tools\\\\cmake\\\\bin\\\\cmake.exe',\n  '-HD:\\\\AVCodecVideo\\\\entry\\\\src\\\\main\\\\cpp',\n  '-BD:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\x86_64',\n  '-DOHOS_ARCH=x86_64',\n  '-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\\\AVCodecVideo\\\\entry\\\\build\\\\default\\\\intermediates\\\\cmake\\\\default\\\\obj\\\\x86_64',\n  '-DCMAKE_BUILD_TYPE=Debug',\n  '-DOHOS_SDK_NATIVE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native',\n  '-DCMAKE_SYSTEM_NAME=OHOS',\n  '-DCMAKE_OHOS_ARCH_ABI=x86_64',\n  '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',\n  '-DCMAKE_TOOLCHAIN_FILE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\hms\\\\native\\\\build\\\\cmake\\\\hmos.toolchain.cmake',\n  '-GNinja',\n  '-DCMAKE_MAKE_PROGRAM=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\openharmony\\\\native\\\\build-tools\\\\cmake\\\\bin\\\\ninja.exe',\n  '-DCMAKE_FIND_ROOT_PATH=D:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\hvigor\\\\x86_64',\n  '-DPACKAGE_FIND_FILE=D:\\\\AVCodecVideo\\\\entry\\\\.cxx\\\\default\\\\default\\\\debug\\\\hvigor\\\\x86_64\\\\summary.cmake',\n  '--no-warn-unused-cli',\n  '-DHMOS_SDK_NATIVE=D:\\\\5.1.1.420\\\\DevEco Studio\\\\sdk\\\\default\\\\hms\\\\native'\n]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434184074300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "d0b1a27d-9aae-4207-ba18-c9c275f24af6",
+        "name": "generate CMake command with ABI of x86_64",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434182908900,
+        "endTime": 19434185825000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "e6dd35c0-d959-4d85-92e1-ebc0fe438d12",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "ba331f64-588c-4102-8df7-12563c496d78",
+        "name": "submit CMake task to work pool with ABI of x86_64",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434186570100,
+        "endTime": 19447159376000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "a0b2549e-0935-4cea-a567-150a8e7adde3"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "54821550-c99e-4c92-8db7-f9b953197a3b",
+        "name": "Clean CMakeCache.txt due to outdated CMake configuration.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434188040400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "3a8e1ef1-72c4-4ba0-a6e4-8ab06b65f9fc",
+        "name": "- no fingerprint file, will remove stale cache CMakeCache.txt",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434188370300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f48d548d-6713-416e-9d8a-4bcfa28c89be",
+        "name": "default@BuildNativeWithCmake work[1] is submitted.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434189669300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "97e119a5-11b5-4abd-afe9-004156526095",
+        "name": "entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Worker13",
+        "startTime": 19435544391900,
+        "endTime": 19447078482700
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "default",
+        "moduleName": "entry",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "f6383e86-ea44-4ed5-85dc-b23465bc62fd",
+        "logId": "76a3e4a5-20dc-486d-bee4-21e241b86aff"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "3c7f1fb8-7bff-49f5-8f48-02b39ccc9410",
+        "name": "default@BuildNativeWithCmake work[1] is pushed to ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434190569200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "1d22812d-a2dc-4677-8eaf-52ce13aa2a2a",
+        "name": "A work dispatched to worker[15] failed because unable to get work from ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434190704800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "6ece5301-49ea-4174-82b1-c0d6ea2b382f",
+        "name": "A work dispatched to worker[14] failed because of worker busy.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434190792700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "72fd3a48-7297-41e7-8fe5-14db212ef71e",
+        "name": "Create  resident worker with id: 13.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434190873500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "3d79447a-c07c-4c23-bf3f-0b05bc51fb70",
+        "name": "default@BuildNativeWithCmake work[1] has been dispatched to worker[13].",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434191613400
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "bf09e3ad-424d-4170-bf7e-f13eeb8072b9",
+        "name": "default@BuildNativeWithCmake work[1] is dispatched.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434191750000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f7a325ea-fe36-4b79-a653-b3d34dad645d",
+        "name": "entry : default@BuildNativeWithCmake cost memory 1.605316162109375",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434191906200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "494073b7-874f-45fa-95fa-c7fead8c7f2d",
+        "name": "worker[14] has one work done.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447077842100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "4b86bcfe-12b6-432b-834f-3c78c0f46769",
+        "name": "worker[13] has one work done.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447109949800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b3c6e65a-f56b-4709-afc8-0d7cff5d54ff",
+        "name": "submit CMake task to work pool with ABI of arm64-v8a",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434167030600,
+        "endTime": 19447158573400
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "eb2d5552-05a8-444a-a789-8f38d6d439bb",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "e5450fa2-c8df-4166-9c60-20c91e42d57c",
+        "name": "default@BuildNativeWithCmake work[0] done.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447158743200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "04ebf63a-d447-42f5-855e-40505bd0fa42",
+        "name": "entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Worker14",
+        "startTime": 19435537242400,
+        "endTime": 19447077382000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "4ef45865-8466-4c0a-9ec7-87b4f514aa2a",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "330af165-5817-493a-a825-6e6975ee4140",
+        "name": "A work dispatched to worker[14] failed because unable to get work from ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447159060600
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a0b2549e-0935-4cea-a567-150a8e7adde3",
+        "name": "submit CMake task to work pool with ABI of x86_64",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434186570100,
+        "endTime": 19447159376000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "ba331f64-588c-4102-8df7-12563c496d78",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "d3b53d48-ca1d-4bb4-a7b6-db3b9838195c",
+        "name": "default@BuildNativeWithCmake work[1] done.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447159407900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "76a3e4a5-20dc-486d-bee4-21e241b86aff",
+        "name": "entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Worker13",
+        "startTime": 19435544391900,
+        "endTime": 19447078482700
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "97e119a5-11b5-4abd-afe9-004156526095",
+        "parent": "2f063841-d7bd-4d11-869c-6e94b34a4da0"
+      }
+    },
+    {
+      "head": {
+        "id": "1e61429c-5ecc-4105-93f7-e425b893d8ea",
+        "name": "A work dispatched to worker[13] failed because unable to get work from ready queue.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447159525900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "2f063841-d7bd-4d11-869c-6e94b34a4da0",
+        "name": "Finished :entry:default@BuildNativeWithCmake",
+        "description": "Compile CPP source with CMake in the stage model.",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19434159375700,
+        "endTime": 19447159634400,
+        "totalTime": 11573913700
+      },
+      "additional": {
+        "logType": "info",
+        "children": [
+          "2995a98c-e2ef-43fc-a2db-e87c63949b91",
+          "b3c6e65a-f56b-4709-afc8-0d7cff5d54ff",
+          "04ebf63a-d447-42f5-855e-40505bd0fa42",
+          "d0b1a27d-9aae-4207-ba18-c9c275f24af6",
+          "a0b2549e-0935-4cea-a567-150a8e7adde3",
+          "76a3e4a5-20dc-486d-bee4-21e241b86aff"
+        ],
+        "durationId": "f6383e86-ea44-4ed5-85dc-b23465bc62fd"
+      }
+    },
+    {
+      "head": {
+        "id": "a91d33f3-5637-4a0a-9607-a14a33c76134",
+        "name": "entry:compileNative",
+        "description": "Compile the hook task for native resources.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447161609500,
+        "endTime": 19447162239900
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "entry",
+        "category": "Hook",
+        "taskRunReasons": [],
+        "detailId": "4db1c3ef-878b-477a-b1af-8f120b0a443d",
+        "logId": "7824953d-c67c-43af-be40-d2a792d9a9d4"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "4db1c3ef-878b-477a-b1af-8f120b0a443d",
+        "name": "create entry:compileNative task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447161538500
+      },
+      "additional": {
+        "logType": "detail",
+        "children": [],
+        "durationId": "a91d33f3-5637-4a0a-9607-a14a33c76134"
+      }
+    },
+    {
+      "head": {
+        "id": "696c571b-712c-4865-99c5-cdb66c61449c",
+        "name": "Executing task :entry:compileNative",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447161619300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "657abd60-cfc5-4f5f-b468-758135eae46e",
+        "name": "entry : compileNative cost memory 0.0157928466796875",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447161921800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "e6c86872-2de1-4eca-b1c0-8f465ed5778d",
+        "name": "runTaskFromQueue task cost before running: 15 s 594 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447162079700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "7824953d-c67c-43af-be40-d2a792d9a9d4",
+        "name": "Finished :entry:compileNative",
+        "description": "Compile the hook task for native resources.",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447161609500,
+        "endTime": 19447162239900,
+        "totalTime": 417400
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "a91d33f3-5637-4a0a-9607-a14a33c76134"
+      }
+    },
+    {
+      "head": {
+        "id": "7ad0dc64-515d-4e69-8df7-ff500827d6ee",
+        "name": "\"buildFinished\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447171746000,
+        "endTime": 19447171859000
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "679d45b9-13cf-4291-a5f2-352eee74767e",
+        "logId": "b3b9f000-0111-4c59-aee6-73bcf4c7262b"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "b3b9f000-0111-4c59-aee6-73bcf4c7262b",
+        "name": "\"buildFinished\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447171746000,
+        "endTime": 19447171859000
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "7ad0dc64-515d-4e69-8df7-ff500827d6ee"
+      }
+    },
+    {
+      "head": {
+        "id": "239abdd3-38a5-478e-87d0-b519ca86d2c9",
+        "name": "BUILD SUCCESSFUL in 15 s 604 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447171918400
+      },
+      "additional": {
+        "logType": "info",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "3d4a7bee-1cd4-4f60-8048-71444253017a",
+        "name": "compileNative",
+        "description": "",
+        "type": "mark"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19431568609100,
+        "endTime": 19447172428100
+      },
+      "additional": {
+        "time": {
+          "year": 2025,
+          "month": 6,
+          "day": 28,
+          "hour": 15,
+          "minute": 20,
+          "second": 49
+        },
+        "completeCommand": "{\"prop\":[\"module=entry\",\"product=default\"],\"mode\":\"module\",\"parallel\":true,\"incremental\":true,\"daemon\":true,\"_\":[\"compileNative\"],\"analyze\":\"normal\"};compileNative",
+        "hvigorVersion": "5.19.0",
+        "markType": "history",
+        "nodeVersion": "v18.20.1",
+        "category": "build",
+        "state": "success"
+      }
+    },
+    {
+      "head": {
+        "id": "c8615301-cdc1-457b-be79-6749f6f58a7d",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\AppScope\\app.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447173285700
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "3280e7ae-480b-4adf-b7b8-5fd8a640d3f4",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\entry\\src\\main\\module.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447174091900
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "e70cfd5b-1fb2-4d9c-815f-4667b2d3cf43",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\build-profile.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447174364200
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "2aebedc7-b852-4050-9788-7795eefa2b95",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\entry\\build-profile.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447174616500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "2ccb9156-831d-47a5-b6e3-8cde47efdbf1",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\entry\\src\\main\\resources\\base\\profile\\main_pages.json cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447174872100
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "fbc4b191-ceee-417e-a1b1-5ff889089a80",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\hvigor\\hvigor-config.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447175126800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "19c7abb1-c39c-4300-be80-4ba50aa2cae2",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\entry\\oh-package.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447175372800
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "ae7d48ab-b9fb-4e6b-9f02-6db1ef738e89",
+        "name": "Update task entry:default@PreBuild input file:D:\\AVCodecVideo\\oh-package.json5 cache by regenerate.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447175604300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "8b4c7768-82b0-4c56-8144-3b84648cdb96",
+        "name": "Incremental task entry:default@PreBuild post-execution cost:4 ms .",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 23996,
+        "tid": "Main Thread",
+        "startTime": 19447176020300
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    }
+  ],
+  "workLog": []
+}

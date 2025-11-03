@@ -1,0 +1,53 @@
+{
+  "lockVersion": "1.0",
+  "settings": {
+    "resolveConflict": true,
+    "resolveConflictStrict": false,
+    "installAll": true
+  },
+  "overrides": {},
+  "overrideDependencyMap": {},
+  "modules": {
+    ".": {
+      "name": "",
+      "dependencies": {},
+      "devDependencies": {},
+      "dynamicDependencies": {},
+      "maskedByOverrideDependencyMap": false
+    },
+    "entry": {
+      "name": "entry",
+      "dependencies": {
+        "libplayer.so": {
+          "specifier": "file:entry/src/main/cpp/types/libplayer",
+          "version": "file:entry/src/main/cpp/types/libplayer"
+        },
+        "librecorder.so": {
+          "specifier": "file:entry/src/main/cpp/types/librecorder",
+          "version": "file:entry/src/main/cpp/types/librecorder"
+        }
+      },
+      "devDependencies": {},
+      "dynamicDependencies": {},
+      "maskedByOverrideDependencyMap": false
+    }
+  },
+  "packages": {
+    "libplayer.so@file:entry/src/main/cpp/types/libplayer": {
+      "storePath": "entry/src/main/cpp/types/libplayer",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": false,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    },
+    "librecorder.so@file:entry/src/main/cpp/types/librecorder": {
+      "storePath": "entry/src/main/cpp/types/librecorder",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": false,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    }
+  }
+}
