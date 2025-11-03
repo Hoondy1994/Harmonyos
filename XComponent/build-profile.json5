@@ -1,0 +1,42 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\admin\\.ohos\\config\\default_XComponent_PKXiRCApH2GRi3FPhDXgQzCrkAwS0MIqErML3wPcWzs=.cer",
+          "storePassword": "0000001B144C69A47ABBA78E6FB8D4E6FA723248C0AA1949CF3C6C882A2648CB349B2C915C2D316EE951BB",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B826AF78B5C4DB6D5FF9AA9C9ECDB3214C144545FEE5F04C84BC3E15D8B02E783B7C4F2C7877A15",
+          "profile": "C:\\Users\\admin\\.ohos\\config\\default_XComponent_PKXiRCApH2GRi3FPhDXgQzCrkAwS0MIqErML3wPcWzs=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\admin\\.ohos\\config\\default_XComponent_PKXiRCApH2GRi3FPhDXgQzCrkAwS0MIqErML3wPcWzs=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": "5.0.0(12)",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

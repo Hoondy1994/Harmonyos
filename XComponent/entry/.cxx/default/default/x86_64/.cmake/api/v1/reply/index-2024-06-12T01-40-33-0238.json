@@ -1,0 +1,88 @@
+{
+	"cmake" : 
+	{
+		"generator" : 
+		{
+			"name" : "Ninja"
+		},
+		"paths" : 
+		{
+			"cmake" : "D:/sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/native/build-tools/cmake/bin/cmake.exe",
+			"cpack" : "D:/sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/native/build-tools/cmake/bin/cpack.exe",
+			"ctest" : "D:/sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/native/build-tools/cmake/bin/ctest.exe",
+			"root" : "D:/sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/native/build-tools/cmake/share/cmake-3.16"
+		},
+		"version" : 
+		{
+			"isDirty" : false,
+			"major" : 3,
+			"minor" : 16,
+			"patch" : 5,
+			"string" : "3.16.5",
+			"suffix" : ""
+		}
+	},
+	"objects" : 
+	[
+		{
+			"jsonFile" : "codemodel-v2-5374776e1e7fcd215975.json",
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "cache-v2-8badd2567574fc10638c.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "cmakeFiles-v1-09e0f8a57d2dc7f953fb.json",
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		}
+	],
+	"reply" : 
+	{
+		"cache-v2" : 
+		{
+			"jsonFile" : "cache-v2-8badd2567574fc10638c.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		"cmakeFiles-v1" : 
+		{
+			"jsonFile" : "cmakeFiles-v1-09e0f8a57d2dc7f953fb.json",
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		},
+		"codemodel-v2" : 
+		{
+			"jsonFile" : "codemodel-v2-5374776e1e7fcd215975.json",
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		}
+	}
+}

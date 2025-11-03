@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="EMPTY_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../..">
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../entry/oh_modules" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="Native-HarmonyOS-NEXT-DB1(base)" type="CPP_LIBRARY">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/native/sysroot" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="Native-HarmonyOS-NEXT-DB1(hms)" type="CPP_LIBRARY">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/hms/native/sysroot" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="ArkTS-HarmonyOS-NEXT-DB1(base)" type="ArkUI">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/ets/api" />
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/ets/component" />
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/ets/kits" />
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/base/ets/arkts" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="ArkTS-HarmonyOS-NEXT-DB1(hms)" type="ArkUI">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/hms/ets/api" />
+          <root url="file://$MODULE_DIR$/../../../../sdk5/devecostudio-windows-5.0.3.200SP1/devecostudio-windows-5.0.3.200/sdk/WinSDK/HarmonyOS-NEXT-DB1/hms/ets/kits" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

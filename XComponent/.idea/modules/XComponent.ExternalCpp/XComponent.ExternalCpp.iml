@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="EMPTY_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Hoondy/devecostudio-windows-4.1.3.600/devecostudio-windows-4.1.3.600/sdk/WinSDK/HarmonyOS-NEXT-DP2/hms/native/sysroot/usr/include" />
+    <content url="file://$MODULE_DIR$/../../../../../MoreWindow/XComponent/entry/src/main/cpp" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

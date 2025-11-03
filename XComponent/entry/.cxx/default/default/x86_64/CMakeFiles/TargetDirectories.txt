@@ -1,0 +1,3 @@
+D:/demoegl/XComponent/entry/.cxx/default/default/x86_64/CMakeFiles/nativerender.dir
+D:/demoegl/XComponent/entry/.cxx/default/default/x86_64/CMakeFiles/edit_cache.dir
+D:/demoegl/XComponent/entry/.cxx/default/default/x86_64/CMakeFiles/rebuild_cache.dir

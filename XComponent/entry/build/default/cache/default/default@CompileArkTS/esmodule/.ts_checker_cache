@@ -1,0 +1,367 @@
+{
+  "runtimeOS": "HarmonyOS",
+  "sdkInfo": "false:12:5.0.0.18:Canary2",
+  "fileList": {
+    "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\entryability\\EntryAbility.ts": {
+      "mtimeMs": 1704443626678.4185,
+      "children": [],
+      "parent": [
+        "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": true
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.UIAbility.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.Ability.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.Configuration.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\application\\UIAbilityContext.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\bundleManager\\AbilityInfo.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\bundleManager\\ApplicationInfo.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.bundle.bundleManager.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\bundleManager\\BundleInfo.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\bundleManager\\HapModuleInfo.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\bundleManager\\ExtensionAbilityInfo.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\ability\\abilityResult.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\ability\\connectOptions.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.rpc.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\application\\Context.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.resourceManager.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.arkui.drawableDescriptor.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.multimedia.image.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\application\\ApplicationContext.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.AbilityLifecycleCallback.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.window.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\component\\common.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.multimodalInput.pointer.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.data.unifiedDataChannel.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.arkui.observer.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.arkui.UIContext.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.mediaquery.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\component\\units.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.promptAction.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.router.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.arkui.dragController.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.EnvironmentCallback.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\application\\ProcessInformation.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.appManager.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.StartOptions.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.app.ability.dialogRequest.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\common\\CommonConstants.ets": {
+      "mtimeMs": 1704443626210.6401,
+      "children": [],
+      "parent": [
+        "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\pages\\Index.ets": {
+      "mtimeMs": 1704443628734.682,
+      "children": [
+        "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\entryability\\EntryAbility.ts",
+        "D:\\demoegl\\XComponent\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\folder_stack.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\image.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\nav_destination.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\navigation.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\node_container.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.arkui.node.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\BuilderNode.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\FrameNode.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\RenderNode.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\Graphics.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.graphics.drawing.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\NodeController.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\arkui\\XComponentNode.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\pattern_lock.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\units.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.web.webview.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.security.cert.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.security.cryptoFramework.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    },
+    "D:\\sdk5\\devecostudio-windows-5.0.3.200SP1\\devecostudio-windows-5.0.3.200\\sdk\\WinSDK\\HarmonyOS-NEXT-DB1\\base\\ets\\api\\@ohos.print.d.ts": {
+      "mtimeMs": 978278400000,
+      "children": [],
+      "parent": [],
+      "error": false
+    }
+  }
+}

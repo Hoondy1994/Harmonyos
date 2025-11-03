@@ -1,0 +1,10 @@
+{
+  "entry\\src\\main\\ets\\pages\\Index.ets": [
+    "Column",
+    "Row",
+    "Text",
+    "XComponent",
+    "Button",
+    "If"
+  ]
+}
