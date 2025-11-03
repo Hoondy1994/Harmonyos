@@ -1,0 +1,56 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/tplink/.ohos/config/default_harmony_dfbH-7UIp82PrqXDuGfGB6bnNVArsmkL1US1r6M9i8k=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B13C9AFB151FAF86D43367AD9C12EC9DF8E1DE453E36691E3BD2AB0E7555DF4447179F544654A93",
+          "profile": "/Users/tplink/.ohos/config/default_harmony_dfbH-7UIp82PrqXDuGfGB6bnNVArsmkL1US1r6M9i8k=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/tplink/.ohos/config/default_harmony_dfbH-7UIp82PrqXDuGfGB6bnNVArsmkL1US1r6M9i8k=.p12",
+          "storePassword": "0000001B8E58CE8D171E886D34E5EC448F8108A6826AB72D9754EAEE45C65DA4B293EB391D83467A3605ED"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "5.0.5(17)",
+        "compatibleSdkVersion": "5.0.5(17)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
