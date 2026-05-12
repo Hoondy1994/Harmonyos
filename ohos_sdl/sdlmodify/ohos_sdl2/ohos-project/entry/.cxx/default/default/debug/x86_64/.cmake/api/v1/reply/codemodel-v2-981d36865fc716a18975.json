@@ -1,0 +1,203 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "sdl2",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-sdl2-Debug-cce0f8794f9d469a4a1c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.11"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "D:/sdl2compare/sdlmodify/ohos_sdl2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "cjson",
+					"childIndexes" : 
+					[
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-cjson-Debug-767138b1bb8a5454e2f3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "D:/sdl2compare/sdlmodify/ohos_sdl2/ohos-project/entry/.cxx/default/default/debug/x86_64/cjson-source",
+					"targetIndexes" : 
+					[
+						3,
+						5
+					]
+				},
+				{
+					"build" : "cjson/tests",
+					"jsonFile" : "directory-cjson.tests-Debug-d3535ea4fff0eb6d49fd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "D:/sdl2compare/sdlmodify/ohos_sdl2/ohos-project/entry/.cxx/default/default/debug/x86_64/cjson-source/tests"
+				},
+				{
+					"build" : "cjson/fuzzing",
+					"jsonFile" : "directory-cjson.fuzzing-Debug-b894561469a2ab828fa3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.5"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "D:/sdl2compare/sdlmodify/ohos_sdl2/ohos-project/entry/.cxx/default/default/debug/x86_64/cjson-source/fuzzing"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "entry",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "SDL2",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"name" : "cJSON",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						3,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2::@5c348aa8f160714199f9",
+					"jsonFile" : "target-SDL2-Debug-6c85cd1c8e3d9723f484.json",
+					"name" : "SDL2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2-static::@5c348aa8f160714199f9",
+					"jsonFile" : "target-SDL2-static-Debug-491af8baabc22acd33c1.json",
+					"name" : "SDL2-static",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2main::@5c348aa8f160714199f9",
+					"jsonFile" : "target-SDL2main-Debug-3b0bcb210e54c2161298.json",
+					"name" : "SDL2main",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "cjson::@5229f3b4a20129d7edbc",
+					"jsonFile" : "target-cjson-Debug-47d405b9eeb8897de648.json",
+					"name" : "cjson",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "entry::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-entry-Debug-8b8ed7253ffeed2f83b5.json",
+					"name" : "entry",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "uninstall::@5229f3b4a20129d7edbc",
+					"jsonFile" : "target-uninstall-Debug-fd3a9a19cc4012d78dfb.json",
+					"name" : "uninstall",
+					"projectIndex" : 2
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/sdl2compare/sdlmodify/ohos_sdl2/ohos-project/entry/.cxx/default/default/debug/x86_64",
+		"source" : "D:/sdl2compare/sdlmodify/ohos_sdl2/ohos-project/entry/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

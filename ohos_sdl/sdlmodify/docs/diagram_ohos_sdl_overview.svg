@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1560" viewBox="0 0 1440 1560">
+  <title>ohos_sdl2 Full System Architecture</title>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#334155"/>
+    </marker>
+    <marker id="ar-p" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#7c3aed"/>
+    </marker>
+    <marker id="ar-b" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="ar-g" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#059669"/>
+    </marker>
+    <marker id="ar-o" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#d97706"/>
+    </marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#00000030"/>
+    </filter>
+  </defs>
+
+  <!-- ===== PAGE BACKGROUND ===== -->
+  <rect width="1440" height="1560" fill="#f1f5f9"/>
+
+  <!-- ===== TITLE ===== -->
+  <rect x="0" y="0" width="1440" height="68" fill="#0f172a"/>
+  <text x="720" y="28" text-anchor="middle" fill="#f8fafc" font-family="Arial,sans-serif"
+        font-size="18" font-weight="700">ohos_sdl2 Full System Architecture</text>
+  <text x="720" y="50" text-anchor="middle" fill="#94a3b8" font-family="Arial,sans-serif" font-size="12">
+    &#x5168;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x56FE;&#xFF1A;ArkTS + NAPI &#x6865;&#x63A5; + SDL &#x6838;&#x5FC3; + OHOS &#x9A71;&#x52A8; + ArkUI NDK + OpenHarmony &#x7CFB;&#x7EDF;
+  </text>
+
+  <!-- ===== THREAD LEGEND ===== -->
+  <rect x="10" y="72" width="1420" height="22" rx="4" fill="#e2e8f0"/>
+  <circle cx="130" cy="83" r="6" fill="#6d28d9"/>
+  <text x="140" y="87" font-family="Arial,sans-serif" font-size="11" fill="#1e293b">JS &#x4E3B;&#x7EBF;&#x7A0B; JS Main Thread</text>
+  <circle cx="390" cy="83" r="6" fill="#059669"/>
+  <text x="400" y="87" font-family="Arial,sans-serif" font-size="11" fill="#1e293b">SDL_main &#x7EBF;&#x7A0B; Game Thread</text>
+  <circle cx="660" cy="83" r="6" fill="#d97706"/>
+  <text x="670" y="87" font-family="Arial,sans-serif" font-size="11" fill="#1e293b">&#x97F3;&#x9891;&#x7EBF;&#x7A0B; Audio Thread</text>
+  <circle cx="890" cy="83" r="6" fill="#0891b2"/>
+  <text x="900" y="87" font-family="Arial,sans-serif" font-size="11" fill="#1e293b">&#x5171;&#x4EAB;/libuv &#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B; uv Worker</text>
+  <text x="1140" y="87" font-family="Arial,sans-serif" font-size="11" fill="#475569">&#x5F00;&#x673A;&#x5E8F;&#x53F7; Startup sequence: &#x2460;&#x2461;&#x2462;&#x2463;&#x2464;&#x2465;&#x2466;&#x2467;</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 1: ArkTS  (y=98 to 316)                                    -->
+  <!-- ================================================================ -->
+  <rect x="10" y="98" width="1420" height="218" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="22" y="116" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#5b21b6">
+    Layer 1 &#x2014; ArkTS &#x5C42; / ArkTS Layer
+    <tspan font-weight="400" font-size="10" fill="#7c3aed">  [JS &#x4E3B;&#x7EBF;&#x7A0B; JS Main Thread]</tspan>
+  </text>
+
+  <!-- Box A: Index.ets -->
+  <rect x="20" y="122" width="435" height="186" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="20" y="122" width="435" height="20" rx="6" fill="#7c3aed"/>
+  <text x="238" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Index.ets  &#x9875;&#x9762;&#x5165;&#x53E3; Page Entry</text>
+  <text x="30" y="155" font-family="Arial,sans-serif" font-size="9.5" fill="#3730a3">@Entry @Component struct Index</text>
+  <text x="30" y="170" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; XComponent(id=&#x27;RootXC&#x27;, type=NODE, libraryname=&#x27;SDL2&#x27;)</text>
+  <text x="30" y="183" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; aboutToAppear: &#x83B7;&#x53D6;&#x7A97;&#x53E3;&#x5C3A;&#x5BF8; get window size</text>
+  <text x="30" y="196" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; onAppear: sdl.setScaledDensity(density)</text>
+  <text x="30" y="209" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x2460; sdl.createNativeNode(&#x27;RootXC&#x27;, w, h, x, y)</text>
+  <text x="30" y="222" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x2461; notifySdlAboutToAppear(ctx, rootNode)</text>
+  <text x="30" y="235" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; aboutToDisappear: sdl.removeNode(&#x27;RootXC&#x27;)</text>
+  <text x="30" y="248" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; onPageShow/Hide: resume / pause</text>
+  <text x="30" y="261" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; display.on(&#x27;change&#x27;): DPI &#x53D8;&#x5316;&#x5904;&#x7406; DPI change handler</text>
+  <text x="30" y="274" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; Stack{ XComponent }.width(&#x27;100%&#x27;).height(&#x27;100%&#x27;)</text>
+  <!-- JS thread badge -->
+  <rect x="390" y="126" width="60" height="14" rx="7" fill="#6d28d9"/>
+  <text x="420" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS &#x7EBF;</text>
+
+  <!-- Box B: SdlModule.ets -->
+  <rect x="465" y="122" width="430" height="186" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="465" y="122" width="430" height="20" rx="6" fill="#7c3aed"/>
+  <text x="680" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">SdlModule.ets  &#x542F;&#x52A8;&#x63A7;&#x5236; Startup Control</text>
+  <text x="475" y="155" font-family="Arial,sans-serif" font-size="9.5" fill="#3730a3">import sdl from &#x27;libSDL2.so&#x27;</text>
+  <text x="475" y="169" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setResourceManager(ctx) &#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;</text>
+  <text x="475" y="182" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setScreenResolution() &#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;</text>
+  <text x="475" y="195" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x2462; sdl.init(callbackRef)  &#x6CE8;&#x518C; TSFN &#x548C;&#x56DE;&#x8C03;</text>
+  <text x="475" y="208" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x2463; sdl.sdlRootNode(rootNode)  &#x4F20;&#x5165;&#x6839;&#x8282;&#x70B9;</text>
+  <text x="475" y="221" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x2464; sdl.sdlAppEntry(&#x27;libentry.so&#x27;, &#x27;main&#x27;)  &#x542F;&#x52A8;SDL&#x7EBF;&#x7A0B;</text>
+  <text x="475" y="234" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; nativePause() / nativeResume()  &#x65AD;&#x7EED;&#x63A7;&#x5236;</text>
+  <text x="475" y="247" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; nativeSendQuit()  &#x9000;&#x51FA;&#x4FE1;&#x53F7;</text>
+  <text x="475" y="260" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; NativeState: INIT / RESUMED / PAUSED  &#x751F;&#x547D;&#x5468;&#x671F;</text>
+  <rect x="832" y="126" width="58" height="14" rx="7" fill="#6d28d9"/>
+  <text x="861" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS &#x7EBF;</text>
+
+  <!-- Box C: ArkNapiCallback -->
+  <rect x="905" y="122" width="515" height="186" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="905" y="122" width="515" height="20" rx="6" fill="#7c3aed"/>
+  <text x="1163" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">ArkNapiCallback  C++ &#x56DE;&#x8C03; ArkTS &#x63A5;&#x53E3;</text>
+  <text x="915" y="155" font-family="Arial,sans-serif" font-size="9.5" fill="#3730a3">class ArkNapiCallback implements NapiCallback</text>
+  <text x="915" y="169" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setPointer(cursorID)  &#x2192; pointer.setPointerStyle(windowId, style)</text>
+  <text x="915" y="182" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setCustomCursorandCreate(pixelmap, focusX, focusY)</text>
+  <text x="915" y="195" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">      &#x2192; pointer.setCustomCursor(windowId, pixelmap, ...)</text>
+  <text x="915" y="208" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setWindowStyle(fullscreen)  &#x2192; window API &#x5168;&#x5C4F;</text>
+  <text x="915" y="221" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setOrientation(w, h, resizable, hint)  &#x2192; &#x5C4F;&#x5E55;&#x65CB;&#x8F6C;</text>
+  <text x="915" y="234" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; requestPermission(permission)  &#x2192; abilityAccessCtrl</text>
+  <text x="915" y="247" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; setTitle(title) / setWindowResize(w, h)</text>
+  <text x="915" y="260" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">&#x2022; &#x7531; TSFN &#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x56DE;&#x8C03; Called from C++ via TSFN on JS thread</text>
+  <rect x="1355" y="126" width="58" height="14" rx="7" fill="#6d28d9"/>
+  <text x="1384" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS &#x7EBF;</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 2: NAPI Bridge  (y=322 to 512)                             -->
+  <!-- ================================================================ -->
+  <rect x="10" y="322" width="1420" height="190" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="22" y="339" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#9a3412">
+    Layer 2 &#x2014; NAPI &#x6865;&#x63A5;&#x5C42; / NAPI Bridge  (libSDL2.so &#x2014; SDLNapi::Init)
+    <tspan font-weight="400" font-size="10" fill="#c2410c">  [&#x6CE8;&#x518C;&#x5165;&#x53E3; Registered via napi_module_register]</tspan>
+  </text>
+
+  <!-- Box D: SDLNapi exported functions -->
+  <rect x="20" y="344" width="680" height="160" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="20" y="344" width="680" height="20" rx="6" fill="#ea580c"/>
+  <text x="360" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">SDLNapi::Init &#x5BFC;&#x51FA;&#x51FD;&#x6570;&#x8868; Exported NAPI Functions (21&#x4E2A;)</text>
+  <text x="30" y="378" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2460; init(callbackRef)  &#x2022; &#x2461; sdlRootNode(node)  &#x2022; &#x2462; sdlAppEntry(lib, entry)</text>
+  <text x="30" y="391" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; createNativeNode(id, w, h, x, y) &#x521B;&#x5EFA;&#x5B50;&#x8282;&#x70B9;  &#x2022; addChildNode(parentId, childId)</text>
+  <text x="30" y="404" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; removeNode(id) &#x2022; destroyNode(id) &#x2022; setScaledDensity(d)</text>
+  <text x="30" y="417" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; keyDown(keyCode,action) &#x2022; keyUp(keyCode,action) &#x952E;&#x76D8;&#x4E8B;&#x4EF6;</text>
+  <text x="30" y="430" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; textInput(text) &#x6587;&#x672C;&#x8F93;&#x5165;  &#x2022; syncKeyboardLockModifiers(caps,num) CapsLock&#x540C;&#x6B65;</text>
+  <text x="30" y="443" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; nativeSendQuit() &#x2022; nativeResume() &#x2022; nativePause() &#x751F;&#x547D;&#x5468;&#x671F;</text>
+  <text x="30" y="456" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; onNativeFocusChanged(f) &#x2022; onNativeOrientationChanged(o) &#x2022; setResourceManager(mgr)</text>
+  <text x="30" y="469" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; nativeSetScreenResolution(w,h,dpi) &#x2022; onNativeResize(w,h)  &#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;</text>
+  <text x="30" y="482" font-family="Arial,sans-serif" font-size="9" fill="#c2410c">OHOS_XcomponentExport: &#x6CE8;&#x518C;XComponent&#x89E6;&#x6478;/&#x9F20;&#x6807;&#x56DE;&#x8C03;  Register XComponent input callbacks</text>
+
+  <!-- Box E: g_napiCallback / TSFN -->
+  <rect x="716" y="344" width="704" height="160" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="716" y="344" width="704" height="20" rx="6" fill="#ea580c"/>
+  <text x="1068" y="358" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">g_napiCallback &#x5168;&#x5C40;&#x72B6;&#x6001; + TSFN &#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x56DE;&#x8C03;</text>
+  <text x="726" y="378" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">OHOS_NAPI_Init(env, info):  &#x2462; sdl.init(callbackRef) &#x89E6;&#x53D1;</text>
+  <text x="726" y="391" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; g_napiCallback = {env, tsfn, callbackRef, mainThreadId}  &#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;</text>
+  <text x="726" y="404" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; napi_create_reference(env, callbackRef) &#x4FDD;&#x6301;ArkTS&#x5BF9;&#x8C61;&#x5F15;&#x7528;</text>
+  <text x="726" y="417" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; napi_create_threadsafe_function(env, ..., OHOS_TS_Call, &amp;tsfn)  &#x521B;&#x5EFA;TSFN</text>
+  <text x="726" y="430" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; OHOS_TS_Call &#x5728;JS&#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5206;&#x53D1; Dispatches on JS main thread</text>
+  <text x="726" y="443" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; tsFuctions[type](data) &#x8868;&#x9A71;&#x52A8;18&#x79CD;&#x64CD;&#x4F5C; 18-entry table-driven dispatch</text>
+  <text x="726" y="456" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; SDL_thread &#x8C03;&#x7528; napi_call_threadsafe_function(tsfn, cJSON, non_blocking)</text>
+  <text x="726" y="469" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; libuv &#x5C06;&#x56DE;&#x8C03;&#x6392;&#x961F;&#x5230; JS &#x4E3B;&#x7EBF;&#x7A0B; libuv enqueues OHOS_TS_Call to JS thread</text>
+  <text x="726" y="482" font-family="Arial,sans-serif" font-size="9" fill="#7c2d12">&#x2022; cJSON &#x4F5C;&#x4E3A;&#x8DF3;&#x8F83;&#x7EBF;&#x7A0B;&#x6D88;&#x606F; cJSON payload passes data across threads</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 3: SDL Core  (y=518 to 804)                                -->
+  <!-- ================================================================ -->
+  <rect x="10" y="518" width="1420" height="286" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="22" y="535" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#065f46">
+    Layer 3 &#x2014; SDL &#x6838;&#x5FC3;&#x5C42; / SDL Core
+    <tspan font-weight="400" font-size="10" fill="#047857">  [SDL_main &#x7EBF;&#x7A0B; + &#x97F3;&#x9891;&#x7EBF;&#x7A0B; + &#x4E8B;&#x4EF6;&#x961F;&#x5217; SDL_main Thread + Audio Thread + Event Queue]</tspan>
+  </text>
+
+  <!-- Box F: SDL_main Thread -->
+  <rect x="20" y="540" width="655" height="256" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="20" y="540" width="655" height="20" rx="6" fill="#059669"/>
+  <text x="347" y="554" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">SDL_main &#x7EBF;&#x7A0B; Game Thread  (OHOS_RunThread -&gt; dlopen -&gt; main)</text>
+  <text x="30" y="574" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2465; OHOS_NAPI_SDLAppEntry: dlopen(&#x27;libentry.so&#x27;) + dlsym(&#x27;main&#x27;)</text>
+  <text x="30" y="587" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; SDL_CreateThread(OHOS_RunThread) &#x65B0;&#x5EFA;SDL&#x4E3B;&#x7EBF;&#x7A0B;</text>
+  <text x="30" y="600" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2466; SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)</text>
+  <text x="30" y="614" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; OHOS_VideoInit: &#x521D;&#x59CB;&#x5316;&#x89C6;&#x9891;&#x9A71;&#x52A8; + &#x952E;&#x76D8;&#x6A21;&#x5757;</text>
+  <text x="30" y="627" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; OHOS_InitKeyboard: &#x521D;&#x59CB;&#x5316;&#x4FEE;&#x9970;&#x952E;&#x72B6;&#x6001;</text>
+  <text x="30" y="641" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2467; SDL_CreateWindow(title, w, h, flags) &#x521B;&#x5EFA;SDL&#x7A97;&#x53E3;</text>
+  <text x="30" y="654" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; &#x2192; OHOS_CreateWindow &#x2192; TSFN &#x2192; EWAdapterC::AddChildNode</text>
+  <text x="30" y="667" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; &#x7B49;&#x5F85; XComponent surface &#x521B;&#x5EFA; Wait for XComponent surface</text>
+  <text x="30" y="681" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; EGL_GetDisplay -&gt; EGL_CreateContext -&gt; EGL_CreateWindowSurface</text>
+  <text x="30" y="694" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x6E38;&#x620F;&#x5FAA;&#x73AF; Game Loop:</text>
+  <text x="30" y="707" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; SDL_PollEvent(&amp;event) / SDL_WaitEvent  &#x8F6E;&#x8BE2; / &#x9635;&#x5217;&#x7B49;&#x5F85;</text>
+  <text x="30" y="720" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; &#x5904;&#x7406;&#x4E8B;&#x4EF6; Handle SDL_KEYDOWN / SDL_MOUSEMOTION / SDL_FINGERDOWN</text>
+  <text x="30" y="734" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; OpenGL ES &#x6E32;&#x67D3;&#x8C03;&#x7528; GL draw calls (glClear, glDraw...)</text>
+  <text x="30" y="747" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">  &#x2022; SDL_GL_SwapWindow &#x2192; eglSwapBuffers  &#x4EA4;&#x6362;&#x5E27;&#x7F13;&#x51B2;</text>
+  <text x="30" y="760" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_Quit: SDL_DestroyWindow -&gt; OHOS_DestroyWindow -&gt; removeNode</text>
+  <rect x="600" y="544" width="68" height="14" rx="7" fill="#059669"/>
+  <text x="634" y="554" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">SDL &#x7EBF;</text>
+
+  <!-- Box G: SDL Event Queue -->
+  <rect x="691" y="540" width="345" height="172" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="691" y="540" width="345" height="20" rx="6" fill="#059669"/>
+  <text x="863" y="554" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">SDL &#x4E8B;&#x4EF6;&#x961F;&#x5217; Event Queue</text>
+  <text x="701" y="574" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x4E8B;&#x4EF6;&#x7F13;&#x51B2;&#x533A; Thread-safe ring buffer</text>
+  <text x="701" y="587" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_SendTouchEvent &#x2192; SDL_FINGERDOWN/MOVE/UP</text>
+  <text x="701" y="600" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_SendMouseMotion &#x2192; SDL_MOUSEMOTION</text>
+  <text x="701" y="613" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_SendKeyboardKey &#x2192; SDL_KEYDOWN/KEYUP</text>
+  <text x="701" y="626" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_PushEvent &#x2192; SDL_QUIT / SDL_WINDOWEVENT</text>
+  <text x="701" y="639" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_PushEvent &#x2192; SDL_FOCUS / ORIENTATION</text>
+  <text x="701" y="652" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL_PollEvent &#x2190; SDL_main &#x6D88;&#x8D39; consumed by game</text>
+  <text x="701" y="665" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x4E0A;&#x8FF0;&#x63A8;&#x9001;&#x6765;&#x81EA; OHOS input callbacks</text>
+  <text x="701" y="695" font-family="Arial,sans-serif" font-size="9" fill="#047857">&#x2193; &#x4E8B;&#x4EF6;&#x6D88;&#x8D39;&#x65B9;: SDL_PollEvent</text>
+  <text x="701" y="708" font-family="Arial,sans-serif" font-size="9" fill="#047857">&#x2191; &#x4E8B;&#x4EF6;&#x751F;&#x4EA7;&#x65B9;: OHOS&#x56DE;&#x8C03;</text>
+
+  <!-- Box H: EGL/GLES Render -->
+  <rect x="1050" y="540" width="370" height="256" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="1050" y="540" width="370" height="20" rx="6" fill="#059669"/>
+  <text x="1235" y="554" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">EGL / OpenGL ES &#x6E32;&#x67D3; Render</text>
+  <text x="1060" y="574" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">EGL &#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587; EGL Render Context:</text>
+  <text x="1060" y="587" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; EGL_GetDisplay(EGL_DEFAULT_DISPLAY)</text>
+  <text x="1060" y="600" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; EGL_ChooseConfig (RGBA8888, depth24)</text>
+  <text x="1060" y="613" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; EGL_CreateContext (OpenGL ES 3.0)</text>
+  <text x="1060" y="626" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; EGL_CreateWindowSurface(nativeWindow)</text>
+  <text x="1060" y="639" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; nativeWindow &#x6765;&#x81EA; XComponent surface</text>
+  <text x="1060" y="654" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">SDL OpenGL ES &#x6E32;&#x67D3;&#x5FAA;&#x73AF; Render Loop:</text>
+  <text x="1060" y="667" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; SDL_GL_MakeCurrent(window, ctx)</text>
+  <text x="1060" y="680" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; glClearColor / glClear / glDraw*</text>
+  <text x="1060" y="693" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; SDL_GL_SwapWindow &#x2192; eglSwapBuffers</text>
+  <text x="1060" y="706" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; libGLESv3.so + libEGL.so (env vars)</text>
+  <text x="1060" y="720" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x6E32;&#x67D3;&#x7EBF;&#x7A0B;&#x5373; SDL_main &#x7EBF;&#x7A0B; Render on SDL thread</text>
+  <text x="1060" y="734" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">OHNativeWindow: &#x8868;&#x9762;&#x521B;&#x5EFA;&#x540E;&#x7EE7;&#x7EED;</text>
+  <text x="1060" y="747" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; OHOS_OnSurfaceChanged &#x2192; resize EGL</text>
+  <text x="1060" y="760" font-family="Arial,sans-serif" font-size="9" fill="#064e3b">&#x2022; OHOS_OnSurfaceDestroyed &#x2192; EGL_DestroySurface</text>
+  <rect x="1352" y="544" width="60" height="14" rx="7" fill="#059669"/>
+  <text x="1382" y="554" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">SDL &#x7EBF;</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 4: OHOS Backend Drivers  (y=810 to 1044)                   -->
+  <!-- ================================================================ -->
+  <rect x="10" y="810" width="1420" height="234" rx="8" fill="#f0fdfa" stroke="#0891b2" stroke-width="2"/>
+  <text x="22" y="827" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#164e63">
+    Layer 4 &#x2014; OHOS &#x9A71;&#x52A8;&#x5C42; / OHOS Backend Drivers
+    <tspan font-weight="400" font-size="10" fill="#0e7490">  [&#x89C6;&#x9891; Video + &#x8F93;&#x5165; Input + &#x97F3;&#x9891; Audio]</tspan>
+  </text>
+
+  <!-- Box I: Video Driver -->
+  <rect x="20" y="832" width="420" height="200" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="20" y="832" width="420" height="20" rx="6" fill="#0891b2"/>
+  <text x="230" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">&#x89C6;&#x9891;&#x9A71;&#x52A8; Video Driver (SDL_ohosvideo.c)</text>
+  <text x="30" y="866" font-family="Arial,sans-serif" font-size="9" fill="#083344">OHOS_VideoInit: &#x89C6;&#x9891;&#x9A71;&#x52A8;&#x521D;&#x59CB;&#x5316;</text>
+  <text x="30" y="879" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OHOS_InitKeyboard() &#x952E;&#x76D8;&#x521D;&#x59CB;&#x5316;</text>
+  <text x="30" y="892" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; &#x6CE8;&#x518C;&#x89E6;&#x6478;&#x8BBE;&#x5907; Register touch device</text>
+  <text x="30" y="905" font-family="Arial,sans-serif" font-size="9" fill="#083344">OHOS_CreateWindow: SDL_Window &#x521B;&#x5EFA;</text>
+  <text x="30" y="918" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; &#x2467; xcomponentId = SDL_window -&gt; id</text>
+  <text x="30" y="931" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; TSFN: NAPI_CALLBACK_ADD_CHILD_NODE</text>
+  <text x="30" y="944" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; EWAdapterC::AddChildNode(id, w, h)</text>
+  <text x="30" y="957" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; &#x7B49;&#x5F85; XComponent surface &#x521B;&#x5EFA;&#x5B8C;&#x6210;</text>
+  <text x="30" y="970" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; SDL_ohoswindow &#x2194; xcomponentId &#x54C8;&#x5E0C;&#x8868;</text>
+  <text x="30" y="983" font-family="Arial,sans-serif" font-size="9" fill="#083344">OHOS_SyncKeyboardLockModifiers(caps, num)</text>
+  <text x="30" y="996" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; SDL_ToggleModState &#x2192; SDL &#x4FEE;&#x9970;&#x952E;&#x540C;&#x6B65;</text>
+  <text x="30" y="1009" font-family="Arial,sans-serif" font-size="9" fill="#083344">SDL_ohostouch.h / SDL_ohosmouse.h / SDL_ohoskeyboard.h</text>
+  <rect x="360" y="836" width="74" height="14" rx="7" fill="#0891b2"/>
+  <text x="397" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">SDL &#x7EBF;</text>
+
+  <!-- Box J: Input Drivers + XC Callbacks -->
+  <rect x="452" y="832" width="560" height="200" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="452" y="832" width="560" height="20" rx="6" fill="#0891b2"/>
+  <text x="732" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">&#x8F93;&#x5165;&#x9A71;&#x52A8; + XComponent &#x56DE;&#x8C03; Input Drivers + XC Callbacks</text>
+  <text x="462" y="866" font-family="Arial,sans-serif" font-size="9" fill="#083344">OH_NativeXComponent_Callback (SDL_ohos_xcomponent.cpp):</text>
+  <text x="462" y="879" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnSurfaceCreated &#x2192; SDL_CondSignal &#x2192; &#x89E3;&#x9664;&#x7A97;&#x53E3;&#x521B;&#x5EFA;&#x963B;&#x585E;</text>
+  <text x="462" y="892" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnSurfaceChanged &#x2192; OHOS_OnSurfaceChanged(resize EGL)</text>
+  <text x="462" y="905" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnSurfaceDestroyed &#x2192; EGL_DestroySurface</text>
+  <text x="462" y="918" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnDispatchTouchEvent &#x2192; OHOS_OnTouch &#x2192; SDL_SendTouchEvent</text>
+  <text x="462" y="931" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnDispatchMouseEvent &#x2192; OHOS_OnMouse &#x2192; SDL_SendMouseMotion</text>
+  <text x="462" y="944" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OnDispatchKeyEvent &#x2192; OHOS_OnKeyDown/Up &#x2192; SDL_SendKeyboardKey</text>
+  <text x="462" y="958" font-family="Arial,sans-serif" font-size="9" fill="#083344">OH_NativeXComponent_MouseEvent_Callback:</text>
+  <text x="462" y="971" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; DispatchHoverEvent &#x2192; OHOS_OnMouseHover</text>
+  <text x="462" y="984" font-family="Arial,sans-serif" font-size="9" fill="#083344">TranslateKeycode[]: KEYCODE_* &#x2192; SDL_SCANCODE_*  &#x952E;&#x7801;&#x6620;&#x5C04;&#x8868;</text>
+  <text x="462" y="997" font-family="Arial,sans-serif" font-size="9" fill="#083344">OH_NativeXComponent_GetTouchEvent: &#x83B7;&#x53D6;&#x89E6;&#x6478;&#x5750;&#x6807;/&#x538B;&#x529B;</text>
+  <text x="462" y="1010" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x56DE;&#x8C03;&#x8FD0;&#x884C;&#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#xFF0C;&#x5FEB;&#x901F;&#x8F6C;&#x53D1;&#x5230;SDL&#x4E8B;&#x4EF6;&#x961F;&#x5217;</text>
+  <rect x="950" y="836" width="57" height="14" rx="7" fill="#6d28d9"/>
+  <text x="979" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS &#x7EBF;</text>
+
+  <!-- Box K: Audio Driver -->
+  <rect x="1024" y="832" width="396" height="200" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="1024" y="832" width="396" height="20" rx="6" fill="#0891b2"/>
+  <text x="1222" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">&#x97F3;&#x9891;&#x9A71;&#x52A8; Audio Driver (SDL_ohosaudio)</text>
+  <text x="1034" y="866" font-family="Arial,sans-serif" font-size="9" fill="#083344">SDL_ohosaudio.c / SDL_ohosaudio.h</text>
+  <text x="1034" y="879" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OHOS_OpenAudio: &#x8FDE;&#x63A5; OH_AudioRenderer</text>
+  <text x="1034" y="892" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OH_AudioRenderer_Create(config)</text>
+  <text x="1034" y="905" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OH_AudioStreamBuilder_SetSamplingRate</text>
+  <text x="1034" y="918" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; OH_AudioStreamBuilder_SetChannelCount</text>
+  <text x="1034" y="931" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; onWriteData callback &#x2192; SDL &#x97F3;&#x9891;&#x7F13;&#x51B2;&#x533A;</text>
+  <text x="1034" y="944" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x97F3;&#x9891;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF; Audio thread loop:</text>
+  <text x="1034" y="957" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; SDL_AudioCallback &#x786C;&#x4EF6;&#x8BF7;&#x6C42;&#x97F3;&#x9891;&#x6837;&#x672C;</text>
+  <text x="1034" y="970" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; &#x5199;&#x5165; OH_AudioRenderer &#x7F13;&#x51B2;&#x533A;</text>
+  <text x="1034" y="983" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2022; &#x56DE;&#x8C03;&#x7531; OH &#x97F3;&#x9891;&#x7CFB;&#x7EDF;&#x9A71;&#x52A8;</text>
+  <text x="1034" y="996" font-family="Arial,sans-serif" font-size="9" fill="#083344">OHOS_CloseAudio: OH_AudioRenderer_Stop</text>
+  <rect x="1352" y="836" width="60" height="14" rx="7" fill="#d97706"/>
+  <text x="1382" y="846" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">&#x97F3;&#x9891;&#x7EBF;</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 5: EWAdapterC + ArkUI NDK  (y=1050 to 1286)               -->
+  <!-- ================================================================ -->
+  <rect x="10" y="1050" width="1420" height="236" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="22" y="1067" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#1e3a8a">
+    Layer 5 &#x2014; EWAdapterC + ArkUI NDK &#x8282;&#x70B9;&#x7BA1;&#x7406; / ArkUI Node Management
+    <tspan font-weight="400" font-size="10" fill="#2563eb">  [JS &#x7EBF;&#x7A0B; + uv&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B; JS Thread + uv Worker]</tspan>
+  </text>
+
+  <!-- Box M: EWAdapterC -->
+  <rect x="20" y="1072" width="700" height="204" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="20" y="1072" width="700" height="20" rx="6" fill="#2563eb"/>
+  <text x="370" y="1086" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">EWAdapterC &#x8282;&#x70B9;&#x7BA1;&#x7406;&#x5668; Node Manager (SDL_AdapterC.cpp)</text>
+  <text x="30" y="1106" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">Init(env): &#x4FDD;&#x5B58;mainJsThreadId + nodeAPI + GetUVLoop</text>
+  <text x="30" y="1119" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">ewNodeMap: unordered_map&lt;string, EWNode*&gt;  xcompId &#x2192; &#x8282;&#x70B9;</text>
+  <text x="30" y="1132" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">CreateRootNode(id, w, h): &#x5224;&#x65AD; curThread == mainJsThread?</text>
+  <text x="30" y="1145" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; &#x662F; [same thread]: &#x76F4;&#x63A5;&#x8C03;&#x7528; CreateEWNode</text>
+  <text x="30" y="1158" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; &#x5426; [other thread]: WorkParam{attr, ThreadLockInfo} + uv_queue_work</text>
+  <text x="30" y="1171" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">  &#x2192; afterFunc &#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C; CreateEWNode</text>
+  <text x="30" y="1184" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">  &#x2192; SDL&#x7EBF;&#x7A0B;&#x7528; condition_variable::wait &#x9635;&#x5217;&#x7B49;&#x5F85;</text>
+  <text x="30" y="1197" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">AddChildNode / RemoveNode / ResizeNode / MoveNode / ShowNode / HideNode / RaiseNode</text>
+  <text x="30" y="1210" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; &#x5747;&#x901A;&#x8FC7; TSFN &#x8DF3;&#x8F6C;&#x5230; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C; via TSFN on JS main thread</text>
+  <text x="30" y="1223" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; NAPI_CALLBACK_ADD_CHILD_NODE -&gt; OHOS_TS_AddChildNode</text>
+  <text x="30" y="1236" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; NAPI_CALLBACK_RESIZE_NODE -&gt; OHOS_TS_ResizeNode</text>
+  <text x="30" y="1249" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">CreateEWNode: 9&#x6B65;&#x9AA4;&#x521B;&#x5EFA; STACK + XCOMPONENT &#x8282;&#x70B9;&#x5E76;&#x6302;&#x6811;</text>
+  <text x="30" y="1262" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">  z-index &#x2192; createNode(STACK) &#x2192; createNode(XCOMPONENT) &#x2192; addChild &#x2192; ewNodeMap</text>
+  <rect x="622" y="1076" width="90" height="14" rx="7" fill="#0891b2"/>
+  <text x="667" y="1086" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS/uv &#x7EBF;</text>
+
+  <!-- Box N: ArkUI NDK APIs -->
+  <rect x="736" y="1072" width="684" height="204" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="736" y="1072" width="684" height="20" rx="6" fill="#2563eb"/>
+  <text x="1078" y="1086" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">ArkUI NDK + OH_NativeXComponent APIs</text>
+  <text x="746" y="1106" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">ArkUI_NativeNodeAPI_1 (nodeAPI &#x6307;&#x9488;&#x4ECE; OH_ArkUI_QueryModuleInterfaceByName &#x83B7;&#x53D6;):</text>
+  <text x="746" y="1119" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;createNode(ARKUI_NODE_STACK)  &#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x8282;&#x70B9;</text>
+  <text x="746" y="1132" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;createNode(ARKUI_NODE_XCOMPONENT)  &#x521B;&#x5EFA;XC&#x8282;&#x70B9;</text>
+  <text x="746" y="1145" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;setAttribute(node, ARKUI_NODE_XCOMPONENT_ID, ...)</text>
+  <text x="746" y="1158" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;setAttribute(node, ARKUI_NODE_WIDTH/HEIGHT/POSITION...)</text>
+  <text x="746" y="1171" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;addChild(parentNode, childNode)  &#x6302;&#x8F7D;&#x5B50;&#x8282;&#x70B9;</text>
+  <text x="746" y="1184" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; nodeAPI-&gt;removeChild(parentNode, childNode)  &#x79FB;&#x9664;&#x8282;&#x70B9;</text>
+  <text x="746" y="1197" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">OH_NativeXComponent (xcomponent_key_event.h):</text>
+  <text x="746" y="1210" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; OH_NativeXComponent_GetXComponentId  &#x83B7;&#x53D6;ID</text>
+  <text x="746" y="1223" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; OH_NativeXComponent_GetNativeWindow  &#x83B7;&#x53D6;&#x539F;&#x751F;window&#x5E95;&#x5C42;&#x7ED9;EGL</text>
+  <text x="746" y="1236" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; OH_NativeXComponent_GetKeyEvent &#x83B7;&#x53D6;&#x952E;&#x76D8;&#x4E8B;&#x4EF6;</text>
+  <text x="746" y="1249" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">&#x2022; OH_NativeXComponent_RegisterCallback &#x2192; &#x63A5;&#x53D7;touch/surface&#x56DE;&#x8C03;</text>
+  <text x="746" y="1262" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">XComponentModel: &#x53C2;&#x6570;&#x5305;&#x88C5;&#x7ED3;&#x6784; {id, type} &#x7528;&#x4E8E;&#x914D;&#x7F6E;XC&#x5C5E;&#x6027;</text>
+  <rect x="1348" y="1076" width="64" height="14" rx="7" fill="#6d28d9"/>
+  <text x="1380" y="1086" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#fff">JS &#x7EBF;</text>
+
+  <!-- ================================================================ -->
+  <!-- LAYER 6: OpenHarmony OS System  (y=1292 to 1440)                 -->
+  <!-- ================================================================ -->
+  <rect x="10" y="1292" width="1420" height="148" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="22" y="1310" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#f8fafc">
+    Layer 6 &#x2014; OpenHarmony &#x7CFB;&#x7EDF;&#x5C42; / OpenHarmony OS System
+  </text>
+
+  <!-- P1: GPU/GLES -->
+  <rect x="20" y="1316" width="320" height="112" rx="6" fill="#334155" stroke="#64748b" stroke-width="1"/>
+  <text x="180" y="1332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">GPU / GLES3 / EGL</text>
+  <text x="30" y="1348" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; libGLESv3.so: OpenGL ES 3.0 &#x5B9E;&#x73B0;</text>
+  <text x="30" y="1362" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; libEGL.so: EGL &#x4E0A;&#x4E0B;&#x6587;&#x548C;&#x8868;&#x9762;&#x7BA1;&#x7406;</text>
+  <text x="30" y="1376" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; OHNativeWindow: GPU &#x6E32;&#x67D3;&#x76EE;&#x6807;</text>
+  <text x="30" y="1390" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x663E;&#x793A;&#x5C4F;: HDF Display HAL</text>
+  <text x="30" y="1404" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; VSync: &#x5782;&#x76F4;&#x540C;&#x6B65; eglSwapBuffers</text>
+
+  <!-- P2: Input HAL -->
+  <rect x="352" y="1316" width="330" height="112" rx="6" fill="#334155" stroke="#64748b" stroke-width="1"/>
+  <text x="517" y="1332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">&#x8F93;&#x5165;&#x786C;&#x4EF6;&#x5C42; Input HAL</text>
+  <text x="362" y="1348" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x89E6;&#x6478;&#x5C4F;: multimodalInput touch events</text>
+  <text x="362" y="1362" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x952E;&#x76D8;: OH_NativeXComponent key event</text>
+  <text x="362" y="1376" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x9F20;&#x6807;: multimodalInput mouse events</text>
+  <text x="362" y="1390" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x6307;&#x9488;&#x6837;&#x5F0F;: pointer.setPointerStyle</text>
+  <text x="362" y="1404" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x6307;&#x9488;&#x56FE;&#x6807;: pointer.setCustomCursor</text>
+
+  <!-- P3: Audio HAL -->
+  <rect x="694" y="1316" width="310" height="112" rx="6" fill="#334155" stroke="#64748b" stroke-width="1"/>
+  <text x="849" y="1332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">&#x97F3;&#x9891;&#x786C;&#x4EF6;&#x5C42; Audio HAL</text>
+  <text x="704" y="1348" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; OH_AudioRenderer: &#x8F93;&#x51FA;&#x6D41;</text>
+  <text x="704" y="1362" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; OH_AudioStreamBuilder: &#x914D;&#x7F6E;&#x91C7;&#x6837;&#x7387;/&#x901A;&#x9053;</text>
+  <text x="704" y="1376" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; HDF Audio HAL &#x786C;&#x4EF6;&#x9A71;&#x52A8;</text>
+  <text x="704" y="1390" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; &#x97F3;&#x9891;&#x7ECF;&#x7531; OH &#x97F3;&#x9891;&#x7CFB;&#x7EDF;&#x6DF7;&#x97F3;</text>
+
+  <!-- P4: libuv event loop -->
+  <rect x="1016" y="1316" width="404" height="112" rx="6" fill="#334155" stroke="#64748b" stroke-width="1"/>
+  <text x="1218" y="1332" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#e2e8f0">libuv &#x4E8B;&#x4EF6;&#x5FAA;&#x73AF; + ArkUI &#x6E32;&#x67D3;&#x7EBF;&#x7A0B;</text>
+  <text x="1026" y="1348" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; libuv &#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;: JS &#x4E3B;&#x7EBF;&#x7A0B;&#x5E95;&#x5C42;</text>
+  <text x="1026" y="1362" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; uv_queue_work: &#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B; &#x2192; JS&#x7EBF;&#x7A0B;&#x8DF3;&#x8F6C;</text>
+  <text x="1026" y="1376" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; napi_call_threadsafe_function &#x5185;&#x90E8;&#x8C03;&#x7528; uv</text>
+  <text x="1026" y="1390" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; ArkUI &#x6E32;&#x67D3;&#x7EBF;&#x7A0B;: &#x8282;&#x70B9;&#x6811;&#x5E03;&#x5C40;/&#x7ED8;&#x5236;</text>
+  <text x="1026" y="1404" font-family="Arial,sans-serif" font-size="8.5" fill="#94a3b8">&#x2022; JS &#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#x6C60;: uv_thread_t workers</text>
+
+  <!-- ================================================================ -->
+  <!-- INTER-LAYER ARROWS                                                -->
+  <!-- ================================================================ -->
+
+  <!-- Arrow 1: ArkTS Box B -> NAPI Box D (startup: init callbackRef) -->
+  <line x1="680" y1="296" x2="360" y2="342" stroke="#ea580c" stroke-width="2" marker-end="url(#ar-o)" stroke-dasharray="5,3"/>
+  <rect x="440" y="308" width="170" height="22" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="525" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#9a3412">&#x2462; sdl.init(callbackRef)</text>
+  <text x="525" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#c2410c">&#x521D;&#x59CB;&#x5316;NAPI&#x548C;TSFN</text>
+
+  <!-- Arrow 2: ArkTS Box B -> NAPI Box D (sdlAppEntry) -->
+  <line x1="690" y1="296" x2="480" y2="342" stroke="#ea580c" stroke-width="2" marker-end="url(#ar-o)" stroke-dasharray="5,3"/>
+
+  <!-- Arrow 3: NAPI Box D -> SDL Core Box F (start SDL_main) -->
+  <line x1="340" y1="504" x2="340" y2="540" stroke="#059669" stroke-width="2.5" marker-end="url(#ar-g)"/>
+  <rect x="220" y="508" width="188" height="22" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="314" y="518" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#065f46">&#x2464; sdlAppEntry &#x542F;&#x52A8;</text>
+  <text x="314" y="529" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#047857">OHOS_RunThread: SDL_main&#x7EBF;&#x7A0B;</text>
+
+  <!-- Arrow 4: ArkTS Box A -> NAPI createNativeNode -->
+  <line x1="230" y1="296" x2="460" y2="342" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ar-p)" stroke-dasharray="4,3"/>
+  <text x="280" y="318" font-family="Arial,sans-serif" font-size="8" fill="#6d28d9">&#x2460; createNativeNode</text>
+
+  <!-- Arrow 5: SDL_main Box F -> OHOS Video Box I (SDL_CreateWindow) -->
+  <line x1="340" y1="796" x2="230" y2="832" stroke="#0891b2" stroke-width="2" marker-end="url(#ar-b)"/>
+  <rect x="200" y="800" width="170" height="22" rx="4" fill="#f0fdfa" stroke="#0891b2" stroke-width="1"/>
+  <text x="285" y="810" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#083344">&#x2467; SDL_CreateWindow</text>
+  <text x="285" y="821" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#0e7490">OHOS_CreateWindow &#x521B;&#x5EFA;&#x7A97;&#x53E3;</text>
+
+  <!-- Arrow 6: OHOS Video Box I -> EWAdapterC Box M (AddChildNode) -->
+  <line x1="230" y1="1032" x2="370" y2="1072" stroke="#2563eb" stroke-width="2" marker-end="url(#ar-b)"/>
+  <rect x="200" y="1042" width="175" height="22" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+  <text x="287" y="1052" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1e3a8a">TSFN &#x2192; AddChildNode</text>
+  <text x="287" y="1063" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#2563eb">&#x901A;&#x8FC7;TSFN&#x8DF3;JS&#x7EBF;&#x7A0B;</text>
+
+  <!-- Arrow 7: EWAdapterC Box M -> ArkUI NDK Box N -->
+  <line x1="720" y1="1174" x2="736" y2="1174" stroke="#2563eb" stroke-width="2" marker-end="url(#ar-b)"/>
+  <text x="718" y="1168" text-anchor="end" font-family="Arial,sans-serif" font-size="8" fill="#1e3a8a">nodeAPI-&gt;createNode</text>
+
+  <!-- Arrow 8: ArkUI NDK Box N -> Layer 6 (node rendered) -->
+  <line x1="1078" y1="1276" x2="1078" y2="1316" stroke="#475569" stroke-width="1.5" marker-end="url(#ar)" stroke-dasharray="4,3"/>
+  <text x="1080" y="1298" font-family="Arial,sans-serif" font-size="8" fill="#475569">&#x8282;&#x70B9;&#x6811;&#x6E32;&#x67D3;</text>
+
+  <!-- Arrow 9: XC Callbacks Box J -> SDL Event Queue Box G (events UP) -->
+  <line x1="730" y1="832" x2="863" y2="712" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+  <rect x="740" y="762" width="156" height="34" rx="4" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="818" y="775" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#065f46">&#x8F93;&#x5165;&#x4E8B;&#x4EF6;&#x4E0A;&#x62A5;</text>
+  <text x="818" y="787" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#047857">touch/key/mouse</text>
+  <text x="818" y="799" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#047857">-&gt; SDL_Send*Event</text>
+
+  <!-- Arrow 10: SDL Event Queue Box G -> SDL_main Box F -->
+  <line x1="691" y1="626" x2="675" y2="626" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+  <text x="642" y="621" text-anchor="end" font-family="Arial,sans-serif" font-size="8" fill="#065f46">SDL_PollEvent</text>
+
+  <!-- Arrow 11: TSFN back to ArkTS (OHOS_TS_Call -> ArkNapiCallback) -->
+  <line x1="1068" y1="322" x2="1163" y2="308" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ar-p)" stroke-dasharray="5,3"/>
+  <rect x="1060" y="294" width="152" height="22" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="1136" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4c1d95">TSFN &#x2192; callbackRef</text>
+  <text x="1136" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#6d28d9">OHOS_TS_Call &#x2192; ArkTS</text>
+
+  <!-- Arrow 12: EGL render -> Layer 6 GPU -->
+  <line x1="1235" y1="796" x2="1235" y2="810" stroke="#059669" stroke-width="1.5" marker-end="url(#ar-g)" stroke-dasharray="4,3"/>
+  <!-- through layer 4 -->
+  <line x1="1235" y1="1044" x2="1235" y2="1072" stroke="#059669" stroke-width="1.5" marker-end="url(#ar-g)" stroke-dasharray="4,3"/>
+  <line x1="1235" y1="1276" x2="1235" y2="1316" stroke="#059669" stroke-width="1.5" marker-end="url(#ar-g)" stroke-dasharray="4,3"/>
+
+  <!-- Arrow 13: napi_call_threadsafe_function -> libuv -->
+  <line x1="1100" y1="504" x2="1218" y2="1316" stroke="#0891b2" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#ar-b)"/>
+
+  <!-- ================================================================ -->
+  <!-- STARTUP SEQUENCE CALLOUT BOX (top right)                         -->
+  <!-- ================================================================ -->
+  <rect x="1060" y="730" width="358" height="102" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="1072" y="747" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#f8fafc">&#x542F;&#x52A8;&#x5E8F;&#x5217; Startup Sequence:</text>
+  <text x="1072" y="761" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2460; sdl.createNativeNode(&#x27;RootXC&#x27;) &#x2192; EWAdapterC::CreateRootNode</text>
+  <text x="1072" y="774" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2461; notifySdlAboutToAppear(ctx, rootNode) &#x4F20;&#x5165;&#x6839;&#x8282;&#x70B9;</text>
+  <text x="1072" y="787" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2462; sdl.init(callbackRef) &#x521B;&#x5EFA; TSFN &#x548C;&#x5168;&#x5C40;&#x73AF;&#x5883;</text>
+  <text x="1072" y="800" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2463; sdl.sdlRootNode(rootNode) &#x4FDD;&#x5B58;ArkUI&#x6839;&#x8282;&#x70B9;</text>
+  <text x="1072" y="813" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2464; sdl.sdlAppEntry(&#x27;lib&#x27;, &#x27;main&#x27;) &#x521B;&#x5EFA;SDL_main&#x7EBF;&#x7A0B;</text>
+  <text x="1072" y="826" font-family="Arial,sans-serif" font-size="9" fill="#94a3b8">&#x2465; SDL_Init(VIDEO|AUDIO|EVENTS)  &#x2466; SDL_CreateWindow</text>
+
+  <!-- Footer -->
+  <rect x="0" y="1454" width="1440" height="26" fill="#0f172a"/>
+  <text x="720" y="1471" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">
+    ohos_sdl2 | ArkTS &#x5C42; + NAPI &#x6865;&#x63A5; + SDL &#x6838;&#x5FC3; + OHOS &#x9A71;&#x52A8; + ArkUI NDK + &#x7CFB;&#x7EDF;&#x5C42; | &#x5168;&#x7EBF;&#x7A0B;&#x67B6;&#x6784;&#x56FE; Full Thread Architecture
+  </text>
+</svg>

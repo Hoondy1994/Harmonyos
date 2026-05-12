@@ -1,0 +1,4 @@
+ninja: Entering directory `D:\sdl2compare\sdlmodify\ohos_sdl2\ohos-project\entry\.cxx\default\default\debug\x86_64'
+[1/2] Building CXX object CMakeFiles/entry.dir/application/napi_init.cpp.o
+clang++: warning: argument unused during compilation: '--gcc-toolchain=D:/601/DevEco Studio/sdk/default/openharmony/native/llvm' [-Wunused-command-line-argument]
+[2/2] Linking CXX shared library D:\sdl2compare\sdlmodify\ohos_sdl2\ohos-project\entry\build\default\intermediates\cmake\default\obj\x86_64\libentry.so

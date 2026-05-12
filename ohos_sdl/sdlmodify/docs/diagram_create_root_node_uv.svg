@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1480" viewBox="0 0 1100 1480">
+  <title>CreateRootNode Full Detail</title>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#1e293b"/>
+    </marker>
+    <marker id="ar-r" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#dc2626"/>
+    </marker>
+    <marker id="ar-g" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="1480" fill="#f8fafc"/>
+
+  <!-- TITLE -->
+  <text x="550" y="30" text-anchor="middle" fill="#0f172a" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="17" font-weight="700">EWAdapterC::CreateRootNode  Full Flow</text>
+  <text x="550" y="52" text-anchor="middle" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11">&#x5728;&#x9E3F;&#x8499;&#x521B;&#x5EFA;&#x6839; ArkUI &#x8282;&#x70B9;&#xFF08;Stack + XComponent&#xFF09;&#x5E76;&#x4E0E; SDL &#x7A97;&#x53E3;&#x7ED1;&#x5B9A; | SDL_AdapterC.cpp</text>
+
+  <!-- START terminal -->
+  <rect x="330" y="68" width="440" height="36" rx="18" fill="#0f172a"/>
+  <text x="550" y="91" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="13" font-weight="600">CreateRootNode(NodeAttribute *nodeParams, bool scale)</text>
+  <line x1="550" y1="104" x2="550" y2="126" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Init box -->
+  <rect x="180" y="126" width="740" height="52" rx="5" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+  <rect x="180" y="126" width="740" height="20" rx="4" fill="#cffafe" stroke="none"/>
+  <text x="550" y="141" text-anchor="middle" fill="#155e75" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">Init() &#x65F6;&#x5DF2;&#x8BB0;&#x5F55;&#x4E3B;&#x7EBF;&#x7A0B; / mainJsThreadId was saved at Init()</text>
+  <text x="188" y="160" fill="#0e7490" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">EWAdapterC::Init: mainJsThreadId = std::this_thread::get_id()  // &#x8BB0;&#x5F55;&#x6CE8;&#x518C; NAPI &#x65F6;&#x6240;&#x5728;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x5373; JS &#x4E3B;&#x7EBF;&#x7A0B;</text>
+  <line x1="550" y1="178" x2="550" y2="200" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Decision diamond: same thread? center y=230 -->
+  <polygon points="550,200 700,230 550,260 400,230" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="550" y="226" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">curThreadId ==</text>
+  <text x="550" y="241" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">mainJsThreadId ?</text>
+
+  <!-- Y (left): same JS thread -->
+  <path d="M400 230 L220 230 L220 280" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#ar-g)"/>
+  <text x="310" y="222" text-anchor="middle" fill="#16a34a" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Y / &#x662F;</text>
+  <!-- N (right): other thread -->
+  <path d="M700 230 L880 230 L880 280" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+  <text x="790" y="222" text-anchor="middle" fill="#b45309" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">N / &#x5426;</text>
+
+  <!-- ===== LEFT BRANCH (same JS thread) x:50-440 ===== -->
+  <rect x="50" y="280" width="390" height="82" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <rect x="50" y="280" width="390" height="20" rx="4" fill="#bbf7d0" stroke="none"/>
+  <text x="245" y="295" text-anchor="middle" fill="#14532d" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x5728;&#x4E3B;&#x7EBF;&#x7A0B; / On JS main thread</text>
+  <text x="58" y="316" fill="#166534" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5C31;&#x662F; JS &#x4E3B;&#x7EBF;&#x7A0B;</text>
+  <text x="58" y="331" fill="#166534" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x65E0;&#x9700;&#x8DE8;&#x7EBF;&#x7A0B;&#xFF0C;&#x53EF;&#x76F4;&#x63A5;&#x64CD;&#x4F5C; ArkUI nodeAPI</text>
+  <text x="58" y="350" fill="#15803d" font-family="Consolas,monospace" font-size="10">res = CreateEWNode(nullptr, nodeParams, scale);</text>
+
+  <!-- left branch down arrow to merge -->
+  <line x1="245" y1="362" x2="245" y2="580" stroke="#16a34a" stroke-width="2"/>
+  <line x1="245" y1="580" x2="534" y2="580" stroke="#16a34a" stroke-width="2" marker-end="url(#ar-g)"/>
+
+  <!-- ===== RIGHT BRANCH (other thread) x:660-1050 ===== -->
+
+  <!-- R1: new WorkParam -->
+  <rect x="660" y="280" width="412" height="68" rx="5" fill="#fef9c3" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="660" y="280" width="412" height="20" rx="4" fill="#fef08a" stroke="none"/>
+  <text x="866" y="295" text-anchor="middle" fill="#713f12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x51C6;&#x5907;&#x53C2;&#x6570; + &#x540C;&#x6B65;&#x9501; / Prepare params + sync lock</text>
+  <text x="668" y="316" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">auto lockInfo = std::make_shared&lt;ThreadLockInfo&gt;();</text>
+  <text x="668" y="331" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">WorkParam *workParam = new WorkParam(nullptr, nullptr, nodeParams, scale, lockInfo);</text>
+  <text x="668" y="346" fill="#78350f" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// ThreadLockInfo: mutex + condition_variable + bool ready</text>
+  <line x1="866" y1="348" x2="866" y2="368" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- R2: define afterFunc -->
+  <rect x="660" y="368" width="412" height="80" rx="5" fill="#fef9c3" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="660" y="368" width="412" height="20" rx="4" fill="#fef08a" stroke="none"/>
+  <text x="866" y="383" text-anchor="middle" fill="#713f12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x5B9A;&#x4E49;&#x5F02;&#x6B65;&#x56DE;&#x8C03; / Define after-work callback</text>
+  <text x="668" y="404" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">uv_after_work_cb afterFunc = [](uv_work_t *work, int _status) {</text>
+  <text x="668" y="419" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">    WorkParam *p = (WorkParam*)(work-&gt;data);</text>
+  <text x="668" y="434" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">    p-&gt;replyNode = CreateEWNode(nullptr, p-&gt;nodeParams, p-&gt;boolStatus);</text>
+  <text x="668" y="449" fill="#d97706" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">    // &#x5728; JS &#x7EBF;&#x7A0B;&#x4E0A;&#x6267;&#x884C;; p-&gt;lockInfo-&gt;ready=true; notify_all(); }</text>
+  <line x1="866" y1="448" x2="866" y2="468" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- R3: GetThreadWorkResult -->
+  <rect x="660" y="468" width="412" height="84" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <rect x="660" y="468" width="412" height="20" rx="4" fill="#fed7aa" stroke="none"/>
+  <text x="866" y="483" text-anchor="middle" fill="#7c2d12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">GetThreadWorkResult  (SDL_AdapterC.cpp:67)</text>
+  <text x="668" y="504" fill="#c2410c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">napi_get_uv_event_loop(EWAdapterC::MainEnv, &amp;loop);</text>
+  <text x="668" y="519" fill="#c2410c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">uv_work_t *work = new uv_work_t; work-&gt;data = workParam;</text>
+  <text x="668" y="534" fill="#c2410c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">uv_work_cb uvWork = [](uv_work_t*){};  // &#x7EBF;&#x7A0B;&#x6C60; worker &#x4E3A;&#x7A7A;</text>
+  <text x="668" y="549" fill="#c2410c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">uv_queue_work(loop, work, uvWork, afterFunc);  // &#x5C06; afterFunc &#x6392;&#x8FDB; JS/uv loop</text>
+  <line x1="866" y1="552" x2="866" y2="572" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- R4: SDL caller BLOCKS -->
+  <rect x="660" y="572" width="412" height="72" rx="5" fill="#ffe4e6" stroke="#e11d48" stroke-width="1.5"/>
+  <rect x="660" y="572" width="412" height="20" rx="4" fill="#fecdd3" stroke="none"/>
+  <text x="866" y="587" text-anchor="middle" fill="#9f1239" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">SDL &#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x7B49;&#x5F85; / SDL Thread BLOCKS</text>
+  <text x="668" y="608" fill="#be123c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">std::unique_lock&lt;std::mutex&gt; lock(workParam-&gt;lockInfo-&gt;mutex);</text>
+  <text x="668" y="623" fill="#be123c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">workParam-&gt;lockInfo-&gt;condition.wait(lock, [&amp;]{return lockInfo-&gt;ready;});</text>
+  <text x="668" y="636" fill="#9f1239" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">// &#x963B;&#x585E;&#x76F4;&#x5230; afterFunc &#x8BBE;&#x7F6E; ready=true &#x5E76;&#x8C03;&#x7528; notify_all()</text>
+  <line x1="866" y1="644" x2="866" y2="664" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- R5: SDL unblocks + get result -->
+  <rect x="660" y="664" width="412" height="58" rx="5" fill="#fef9c3" stroke="#d97706" stroke-width="1.5"/>
+  <text x="866" y="685" text-anchor="middle" fill="#713f12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="600">SDL &#x7EBF;&#x7A0B;&#x5524;&#x9192; + &#x83B7;&#x53D6;&#x7ED3;&#x679C; / Unblocks + get result</text>
+  <text x="668" y="706" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">res = workParam-&gt;replyNode;   delete workParam;</text>
+
+  <!-- right branch arrow to merge -->
+  <line x1="866" y1="722" x2="866" y2="745" stroke="#d97706" stroke-width="2"/>
+  <line x1="866" y1="745" x2="572" y2="745" stroke="#d97706" stroke-width="2"/>
+  <line x1="572" y1="745" x2="572" y2="730" stroke="#d97706" stroke-width="2"/>
+  <line x1="572" y1="730" x2="564" y2="600" stroke="#d97706" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- MERGE / converge marker -->
+  <text x="550" y="592" text-anchor="middle" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="600">&#x4E24;&#x8DEF;&#x6C47;&#x5E76; / Both paths converge: return res</text>
+  <line x1="550" y1="600" x2="550" y2="622" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- ===== CreateEWNode DETAIL BOX ===== -->
+  <rect x="20" y="622" width="1060" height="808" rx="8" fill="#f0f4ff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="20" y="622" width="1060" height="28" rx="6" fill="#4f46e5"/>
+  <text x="550" y="641" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="13" font-weight="700">CreateEWNode(parentNode, nodeParams, scale)  ---  SDL_AdapterC.cpp:284</text>
+  <text x="36" y="660" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// &#x4E24;&#x4E2A;&#x8DEF;&#x5F84;&#x6700;&#x7EC8;&#x90FD;&#x4F1A;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#xFF0C;&#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x4E0A;&#x6267;&#x884C;</text>
+
+  <!-- EW S1: zIndex -->
+  <rect x="36" y="672" width="1028" height="38" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="688" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 1  &#x8BA1;&#x7B97; Z &#x5C42;&#x6B21; / Compute Z-index</text>
+  <text x="44" y="703" fill="#4338ca" font-family="Consolas,monospace" font-size="10">int32_t curZIndex = GetNodeZIndex(parentNode) + 1;  // parentNode==nullptr -&gt; GetNodeZIndex returns 0</text>
+  <line x1="550" y1="710" x2="550" y2="726" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S2: create STACK -->
+  <rect x="36" y="726" width="1028" height="58" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="742" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 2  &#x521B;&#x5EFA; STACK &#x5BB9;&#x5668; / Create STACK container</text>
+  <text x="44" y="757" fill="#4338ca" font-family="Consolas,monospace" font-size="10">ArkUI_NodeHandle stack = nodeAPI-&gt;createNode(ARKUI_NODE_STACK);</text>
+  <text x="44" y="772" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// &#x5982;&#x679C; stack==nullptr -&gt; return nullptr</text>
+  <!-- inline error note -->
+  <rect x="760" y="744" width="298" height="24" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="909" y="760" text-anchor="middle" fill="#b91c1c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">stack == nullptr  -->  return nullptr</text>
+  <line x1="550" y1="784" x2="550" y2="800" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S3: config stack -->
+  <rect x="36" y="800" width="1028" height="72" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="816" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 3  &#x914D;&#x7F6E; STACK &#x5C5E;&#x6027; / Configure STACK attributes</text>
+  <text x="44" y="831" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SetStackSize(stack, nodeParams, scale);   // NODE_WIDTH + NODE_HEIGHT  (&#x5982;&#x6709; scale &#x5219;&#x6309; vp &#x8F6C;&#x6362;)</text>
+  <text x="44" y="846" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SetStackAlignContent(stack);              // NODE_ALIGN_CONTENT = ARKUI_ALIGNMENT_TOP_START</text>
+  <text x="44" y="861" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SetStackZIndex(stack, curZIndex);  SetStackPosition(stack, x, y);  SetStackHitTestMode(stack);</text>
+  <line x1="550" y1="872" x2="550" y2="888" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S4: create XComponent -->
+  <rect x="36" y="888" width="1028" height="56" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="904" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 4  &#x521B;&#x5EFA; XComponent &#x8282;&#x70B9; / Create XComponent node</text>
+  <text x="44" y="919" fill="#4338ca" font-family="Consolas,monospace" font-size="10">ArkUI_NodeHandle xc = nodeAPI-&gt;createNode(ARKUI_NODE_XCOMPONENT);</text>
+  <text x="44" y="934" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// xc==nullptr -&gt; disposeNode(stack); return nullptr</text>
+  <rect x="700" y="906" width="358" height="24" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="879" y="922" text-anchor="middle" fill="#b91c1c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">xc==nullptr  -->  disposeNode(stack); return nullptr</text>
+  <line x1="550" y1="944" x2="550" y2="960" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S5: config XComponent -->
+  <rect x="36" y="960" width="1028" height="58" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="976" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 5  &#x914D;&#x7F6E; XComponent &#x5C5E;&#x6027; / Configure XComponent attributes</text>
+  <text x="44" y="991" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SetXCompontId(xc, nodeParams-&gt;componentModel-&gt;id.c_str());  // &#x7EC4;&#x4EF6; ID &#x7528;&#x4E8E; ewNodeMap &#x5BF9;&#x5E94;</text>
+  <text x="44" y="1006" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SetXCompontType(xc, componentModel-&gt;type);  SetXCompontFocusable(xc);  // &#x53EF;&#x83B7;&#x7126;&#x70B9;</text>
+  <line x1="550" y1="1018" x2="550" y2="1034" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S6: build Node struct -->
+  <rect x="36" y="1034" width="1028" height="72" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="1050" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 6  &#x6784;&#x5EFA; Node &#x7ED3;&#x6784; / Build Node struct</text>
+  <text x="44" y="1065" fill="#4338ca" font-family="Consolas,monospace" font-size="10">std::shared_ptr&lt;Node&gt; node = std::make_shared&lt;Node&gt;();</text>
+  <text x="44" y="1080" fill="#4338ca" font-family="Consolas,monospace" font-size="10">node-&gt;nodeType = ARKUI_NODE_XCOMPONENT;  node-&gt;node = xc;  node-&gt;container = stack;</text>
+  <text x="44" y="1095" fill="#4338ca" font-family="Consolas,monospace" font-size="10">SDL_snprintf(node-&gt;nodeOwner, sizeof(nodeOwner), "SDL2");  // &#x6807;&#x8BB0;&#x5F52;&#x5C5E;</text>
+  <line x1="550" y1="1106" x2="550" y2="1122" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S7: new EWNode -->
+  <rect x="36" y="1122" width="1028" height="56" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="1138" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 7  &#x521B;&#x5EFA; EWNode &#x5305;&#x88C5;&#x5668; / Create EWNode wrapper</text>
+  <text x="44" y="1153" fill="#4338ca" font-family="Consolas,monospace" font-size="10">EWNode *ewNode = new EWNode(node, nodeAPI, nodeParams);  // &#x6301;&#x6709; Node&#x3001;nodeAPI&#x3001;NodeAttribute</text>
+  <text x="44" y="1168" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// ewNode==nullptr -&gt; disposeNode(stack, xc); node=nullptr; return nullptr</text>
+  <rect x="700" y="1144" width="358" height="24" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="879" y="1160" text-anchor="middle" fill="#b91c1c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">ewNode==nullptr  -->  disposeNode(stack,xc); return nullptr</text>
+  <line x1="550" y1="1178" x2="550" y2="1194" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S8: addChild stack<-xc -->
+  <rect x="36" y="1194" width="1028" height="54" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="1210" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 8  &#x5C06; XComponent &#x6302;&#x8F7D;&#x5230; STACK / Mount XComponent onto STACK</text>
+  <text x="44" y="1225" fill="#4338ca" font-family="Consolas,monospace" font-size="10">ewNode-&gt;SetZIndex(curZIndex);</text>
+  <text x="44" y="1240" fill="#4338ca" font-family="Consolas,monospace" font-size="10">nodeAPI-&gt;addChild(stack, xc);   // STACK &#x5185;&#x5D4C; XComponent</text>
+  <line x1="550" y1="1248" x2="550" y2="1264" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EW S9: diamond parentNode!=null? center y=1292 -->
+  <polygon points="550,1264 674,1292 550,1320 426,1292" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="550" y="1288" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="600">parentNode</text>
+  <text x="550" y="1303" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">!= nullptr ?</text>
+  <!-- Y: right branch -->
+  <path d="M674 1292 L760 1292 L760 1330" stroke="#16a34a" stroke-width="1.5" fill="none" marker-end="url(#ar-g)"/>
+  <text x="717" y="1284" text-anchor="middle" fill="#16a34a" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">Y/&#x662F;</text>
+  <rect x="660" y="1330" width="380" height="52" rx="4" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="850" y="1348" text-anchor="middle" fill="#14532d" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">&#x6302;&#x8F7D;&#x5230;&#x7236;&#x8282;&#x70B9; / Mount onto parent node</text>
+  <text x="668" y="1366" fill="#166534" font-family="Consolas,monospace" font-size="9">nodeAPI-&gt;addChild(parentNode-&gt;container, stack);</text>
+  <text x="668" y="1378" fill="#166534" font-family="Consolas,monospace" font-size="9">ewNode-&gt;SetParent(parentNode);</text>
+  <!-- Y branch merges back -->
+  <path d="M660 1356 L628 1356 L628 1406 L548 1406" stroke="#16a34a" stroke-width="1.5" fill="none" marker-end="url(#ar-g)"/>
+  <!-- N: down -->
+  <line x1="550" y1="1320" x2="550" y2="1406" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="432" y="1364" text-anchor="middle" fill="#b45309" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">N/&#x5426; (&#x6839;&#x8282;&#x70B9;&#x65E0;&#x9700;&#x6302;&#x8F7D;)</text>
+
+  <!-- EW S10: register + return -->
+  <rect x="36" y="1406" width="1028" height="52" rx="4" fill="#ffffff" stroke="#6366f1" stroke-width="1"/>
+  <text x="44" y="1422" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10" font-weight="700">Step 9  &#x6CE8;&#x518C;&#x5230;&#x54C8;&#x5E0C;&#x8868; / Register to ewNodeMap</text>
+  <text x="44" y="1437" fill="#4338ca" font-family="Consolas,monospace" font-size="10">ewNodeMap[nodeParams-&gt;componentModel-&gt;id] = ewNode;  // &#x4EE5; XComponent ID &#x4E3A;&#x952E;&#x7BA1;&#x7406;&#x6240;&#x6709;&#x8282;&#x70B9;</text>
+  <text x="44" y="1452" fill="#4338ca" font-family="Consolas,monospace" font-size="10">return node;  // shared_ptr&lt;Node&gt; &#x8FD4;&#x56DE;&#x5C01;&#x88C5;&#x7ED3;&#x679C;</text>
+
+  <!-- END terminal -->
+  <line x1="550" y1="1458" x2="550" y2="1448" stroke="#1e293b" stroke-width="2"/>
+  <line x1="550" y1="1458" x2="550" y2="1455" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="330" y="1458" width="440" height="0" rx="0" fill="none"/>
+
+  <rect x="332" y="1455" width="436" height="0" fill="none"/>
+
+  <!-- FOOTER -->
+  <text x="36" y="1472" fill="#94a3b8" font-family="Segoe UI,Arial,sans-serif" font-size="10">&#x8FD4;&#x56DE;&#x7684; shared_ptr&lt;Node&gt; &#x5305;&#x542B; {node=xc, container=stack}&#xFF0C;&#x5373; SDL &#x7A97;&#x53E3;&#x5BF9;&#x5E94;&#x7684; ArkUI &#x8282;&#x70B9;&#x5BF9;&#x3002; ewNodeMap &#x7528;&#x4E8E;&#x540E;&#x7EED;&#x6240;&#x6709; Resize/Move/Show/Hide/Raise/Remove &#x64CD;&#x4F5C;&#x3002;</text>
+</svg>

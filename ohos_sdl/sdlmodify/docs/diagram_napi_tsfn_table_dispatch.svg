@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1200" viewBox="0 0 1160 1200">
+  <title>NAPI TSFN Dispatch Full Detail</title>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#1e293b"/>
+    </marker>
+    <marker id="ar-r" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#dc2626"/>
+    </marker>
+    <marker id="ar-y" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <rect width="1160" height="1200" fill="#f8fafc"/>
+
+  <!-- TITLE -->
+  <text x="580" y="30" text-anchor="middle" fill="#0f172a" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="17" font-weight="700">NAPI Thread-Safe Function: Full Dispatch Flow</text>
+  <text x="580" y="50" text-anchor="middle" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11">&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x51FD;&#x6570;&#x5165;&#x961F; + &#x8868;&#x9A71;&#x52A8;&#x5206;&#x53D1;&#x8BE6;&#x7EC6;&#x6D41;&#x7A0B; | SDL_ohos.cpp + SDL_ohosthreadsafe.cpp</text>
+
+  <!-- REGISTRATION BAND -->
+  <rect x="20" y="58" width="1120" height="62" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="30" y="76" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">[&#x6CE8;&#x518C;&#x9636;&#x6BB5; / Registration] SDL_ohos.cpp :: OHOS_NAPI_Init  (once on app start)</text>
+  <text x="30" y="93" fill="#713f12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">napi_create_threadsafe_function(env, args[0], nullptr, resourceName, 0, 1, nullptr, nullptr, nullptr, OHOS_TS_Call, &amp;g_napiCallback-&gt;tsfn)</text>
+  <text x="30" y="110" fill="#78350f" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x5C06; OHOS_TS_Call &#x7ED1;&#x5B9A;&#x4E3A;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x56DE;&#x8C03;&#xFF0C;&#x5B58;&#x5165; g_napiCallback-&gt;tsfn&#x3002;&#x540E;&#x7EED;&#x6240;&#x6709;&#x8C03;&#x7528;&#x5747;&#x901A;&#x8FC7;&#x6B64; tsfn &#x6295;&#x9012;&#x5230; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x3002;</text>
+
+  <!-- LANE BACKGROUNDS -->
+  <rect x="20" y="130" width="528" height="1048" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <rect x="562" y="130" width="578" height="1048" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+
+  <!-- LANE HEADERS -->
+  <rect x="20" y="130" width="528" height="34" rx="6" fill="#047857"/>
+  <text x="284" y="153" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="13" font-weight="700">&#x975E; JS &#x7EBF;&#x7A0B;  /  Non-JS Thread  (SDL_main / worker)</text>
+  <rect x="562" y="130" width="578" height="34" rx="6" fill="#1d4ed8"/>
+  <text x="851" y="153" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="13" font-weight="700">JS &#x4E3B;&#x7EBF;&#x7A0B;  /  JS Main Thread  (libuv event loop / NAPI env)</text>
+
+  <!-- ===== SDL LANE ===== -->
+
+  <!-- START terminal -->
+  <rect x="92" y="180" width="384" height="36" rx="18" fill="#0f172a"/>
+  <text x="284" y="203" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="13" font-weight="600">&#x5F00;&#x59CB; / START  (SDL API &#x88AB;&#x89E6;&#x53D1;)</text>
+  <line x1="284" y1="216" x2="284" y2="238" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- SDL Box 1: trigger -->
+  <rect x="36" y="238" width="496" height="64" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <rect x="36" y="238" width="496" height="20" rx="4" fill="#dcfce7" stroke="none"/>
+  <text x="284" y="253" text-anchor="middle" fill="#065f46" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">SDL &#x4E1A;&#x52A1;&#x64CD;&#x4F5C;&#x89E6;&#x53D1; / Business Operation Triggered</text>
+  <text x="44" y="274" fill="#166534" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">e.g. SDL_SetWindowTitle / SDL_CreateCursor / SDL_ShowWindow / ...</text>
+  <text x="44" y="290" fill="#166534" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x9700;&#x8981;&#x64CD;&#x4F5C; ArkUI &#x8282;&#x70B9;&#x6216;&#x8C03;&#x7528; ArkTS &#x65B9;&#x6CD5;&#xFF0C;&#x5FC5;&#x987B;&#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;</text>
+  <line x1="284" y1="302" x2="284" y2="322" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- SDL Box 2: build cJSON -->
+  <rect x="36" y="322" width="496" height="82" rx="5" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <rect x="36" y="322" width="496" height="20" rx="4" fill="#e0f2fe" stroke="none"/>
+  <text x="284" y="337" text-anchor="middle" fill="#075985" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x5EFA;&#x7ACB; cJSON &#x8F7D;&#x8377; / Build cJSON payload</text>
+  <text x="44" y="358" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">cJSON *root = cJSON_CreateObject();   // &#x5185;&#x90E8; malloc &#x5206;&#x914D;&#x5185;&#x5B58;</text>
+  <text x="44" y="373" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">cJSON_AddNumberToObject(root, "OHOS_TS_CALLBACK_TYPE", type);</text>
+  <text x="44" y="388" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">cJSON_AddNumberToObject / AddStringToObject ...   // &#x586B;&#x5145;&#x5177;&#x4F53;&#x53C2;&#x6570;</text>
+  <line x1="284" y1="404" x2="284" y2="424" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- SDL Box 3: napi_call_threadsafe_function (key step) -->
+  <rect x="36" y="424" width="496" height="76" rx="5" fill="#fefce8" stroke="#d97706" stroke-width="2"/>
+  <rect x="36" y="424" width="496" height="20" rx="4" fill="#fef08a" stroke="none"/>
+  <text x="284" y="440" text-anchor="middle" fill="#713f12" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x6295;&#x9012;&#x5230; TSFN &#x961F;&#x5217; / Post to Thread-Safe Queue</text>
+  <text x="44" y="461" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">napi_status s = napi_call_threadsafe_function(</text>
+  <text x="44" y="475" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">    g_napiCallback-&gt;tsfn, (void*)root, napi_tsfn_nonblocking);</text>
+  <text x="44" y="490" fill="#b45309" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x5F02;&#x6B65;&#x5165;&#x961F;&#xFF0C;SDL &#x7EBF;&#x7A0B;&#x4E0D;&#x963B;&#x585E;&#xFF08;&#x5927;&#x591A;&#x6570;&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;libuv &#x5F02;&#x6B65;&#x5C06;&#x56DE;&#x8C03;&#x8C03;&#x5EA6;&#x5230; JS &#x7EBF;&#x7A0B;</text>
+  <line x1="284" y1="500" x2="284" y2="522" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- SDL note: continues -->
+  <rect x="70" y="522" width="428" height="42" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="5 3"/>
+  <text x="284" y="539" text-anchor="middle" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11">SDL &#x7EBF;&#x7A0B;&#x7EE7;&#x7EED;&#x8FD0;&#x884C; / SDL thread continues execution</text>
+  <text x="284" y="556" text-anchor="middle" fill="#64748b" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#xFF08;&#x975E;&#x963B;&#x585E;&#xFF1B;&#x5185;&#x5B58;&#x6240;&#x6709;&#x6743;&#x5DF2;&#x79FB;&#x4EA4;&#x7ED9; NAPI&#xFF09;</text>
+  <line x1="284" y1="564" x2="284" y2="585" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- SDL END terminal -->
+  <rect x="118" y="585" width="332" height="34" rx="17" fill="#0f172a"/>
+  <text x="284" y="607" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="12">&#x7ED3;&#x675F; / END  (SDL side)</text>
+
+  <!-- HANDOFF ARROW: SDL box3 -> JS entry -->
+  <path d="M532 462 L548 462 L548 240 L558 240" stroke="#b45309" stroke-width="2" stroke-dasharray="7 3" fill="none" marker-end="url(#ar-y)"/>
+  <text x="540" y="342" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9" font-weight="700">&#x5165;&#x961F;</text>
+  <text x="540" y="355" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">enqueue</text>
+
+  <!-- ===== JS LANE ===== -->
+
+  <!-- JS Box 1: libuv dequeues -->
+  <rect x="576" y="184" width="550" height="68" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+  <rect x="576" y="184" width="550" height="20" rx="4" fill="#dbeafe" stroke="none"/>
+  <text x="851" y="199" text-anchor="middle" fill="#1e40af" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">libuv &#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#x51FA;&#x961F; / libuv event loop dequeues TSFN</text>
+  <text x="584" y="220" fill="#1d4ed8" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">N-API &#x5C06; TSFN &#x5165;&#x961F;&#x9879;&#x5206;&#x53D1;&#x5230; JS &#x4E3B;&#x7EBF;&#x7A0B;&#xFF0C;&#x89E6;&#x53D1;&#x5DF2;&#x6CE8;&#x518C;&#x7684; call_js_cb</text>
+  <text x="584" y="236" fill="#1d4ed8" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">call_js_cb = OHOS_TS_Call  (&#x7531; napi_create_threadsafe_function &#x7ED1;&#x5B9A;)</text>
+  <line x1="851" y1="252" x2="851" y2="274" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JS Box 2: OHOS_TS_Call entry -->
+  <rect x="576" y="274" width="550" height="76" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="576" y="274" width="550" height="20" rx="4" fill="#ede9fe" stroke="none"/>
+  <text x="851" y="289" text-anchor="middle" fill="#5b21b6" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x51FD;&#x6570;&#x5165;&#x53E3; / Function Entry  OHOS_TS_Call  (SDL_ohosthreadsafe.cpp:448)</text>
+  <text x="584" y="310" fill="#6d28d9" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">void OHOS_TS_Call(napi_env env, napi_value jsCb, void *context, void *data)</text>
+  <text x="584" y="325" fill="#6d28d9" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// data &#x5373;&#x4E4B;&#x524D; SDL &#x7EBF;&#x7A0B;&#x4F20;&#x5165;&#x7684; cJSON * &#x6307;&#x9488;</text>
+  <text x="584" y="340" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">&#x6240;&#x6709; TSFN &#x56DE;&#x8C03;&#x5747;&#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#xFF0C;&#x53EF;&#x5B89;&#x5168;&#x4F7F;&#x7528; napi_env</text>
+  <line x1="851" y1="350" x2="851" y2="374" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Diamond 1: data == nullptr? center y=400 -->
+  <polygon points="851,374 966,400 851,426 736,400" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="851" y="396" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="600">data == nullptr ?</text>
+  <text x="851" y="411" text-anchor="middle" fill="#78350f" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">&#x6570;&#x636E;&#x6307;&#x9488;&#x662F;&#x5426;&#x4E3A;&#x7A7A;</text>
+  <!-- Y: right exit -->
+  <line x1="966" y1="400" x2="1010" y2="400" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ar-r)"/>
+  <text x="988" y="393" text-anchor="middle" fill="#dc2626" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">Y/&#x662F;</text>
+  <rect x="1011" y="387" width="94" height="26" rx="4" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="1058" y="404" text-anchor="middle" fill="#b91c1c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">return / &#x4E22;&#x5F03;</text>
+  <!-- N: down -->
+  <line x1="851" y1="426" x2="851" y2="448" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="860" y="440" fill="#15803d" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">N/&#x5426;</text>
+
+  <!-- JS Box 3: cast + getObjectItem -->
+  <rect x="600" y="448" width="502" height="62" rx="5" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <rect x="600" y="448" width="502" height="20" rx="4" fill="#e0f2fe" stroke="none"/>
+  <text x="851" y="463" text-anchor="middle" fill="#075985" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x8F6C;&#x578B; + &#x83B7;&#x53D6;&#x7C7B;&#x578B;&#x5B57;&#x6BB5; / Cast + Get type field</text>
+  <text x="608" y="484" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">cJSON *root = (cJSON*)data;</text>
+  <text x="608" y="499" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">cJSON *json = cJSON_GetObjectItem(root, OHOS_TS_CALLBACK_TYPE);  // &#x83B7;&#x53D6;&#x56DE;&#x8C03;&#x7C7B;&#x578B;&#x5B57;&#x6BB5;</text>
+  <line x1="851" y1="510" x2="851" y2="532" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Diamond 2: json==nullptr? center y=558 -->
+  <polygon points="851,532 966,558 851,584 736,558" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="851" y="554" text-anchor="middle" fill="#92400e" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="600">json == nullptr ?</text>
+  <text x="851" y="569" text-anchor="middle" fill="#78350f" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">&#x7C7B;&#x578B;&#x5B57;&#x6BB5;&#x662F;&#x5426;&#x4E3A;&#x7A7A;</text>
+  <!-- Y: right exit -->
+  <line x1="966" y1="558" x2="1010" y2="558" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ar-r)"/>
+  <text x="988" y="551" text-anchor="middle" fill="#dc2626" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">Y/&#x662F;</text>
+  <rect x="1011" y="545" width="94" height="26" rx="4" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="1058" y="562" text-anchor="middle" fill="#b91c1c" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">return / &#x4E22;&#x5F03;</text>
+  <!-- N: down -->
+  <line x1="851" y1="584" x2="851" y2="606" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="860" y="598" fill="#15803d" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9">N/&#x5426;</text>
+
+  <!-- JS Box 4: get type + lookup -->
+  <rect x="600" y="606" width="502" height="56" rx="5" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <rect x="600" y="606" width="502" height="20" rx="4" fill="#e0f2fe" stroke="none"/>
+  <text x="851" y="621" text-anchor="middle" fill="#075985" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x8BFB;&#x53D6;&#x7C7B;&#x578B; + &#x8868;&#x67E5;&#x627E; / Read type + map lookup</text>
+  <text x="608" y="642" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">NapiCallBackType type = static_cast&lt;NapiCallBackType&gt;(json-&gt;valueint);</text>
+  <text x="608" y="656" fill="#0369a1" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">OHOS_TS_Fuction fuc = tsFuctions[type];   // &#x5728; unordered_map &#x4E2D;&#x67E5;&#x8868;</text>
+  <line x1="851" y1="662" x2="851" y2="682" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JS Table: tsFuctions map -->
+  <rect x="569" y="682" width="566" height="248" rx="5" fill="#eef2ff" stroke="#818cf8" stroke-width="2"/>
+  <rect x="569" y="682" width="566" height="22" rx="4" fill="#c7d2fe" stroke="none"/>
+  <text x="852" y="698" text-anchor="middle" fill="#3730a3" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">unordered_map&lt;NapiCallBackType, OHOS_TS_Fuction&gt; tsFuctions  (&#x5171;18&#x6761;)</text>
+  <!-- Header row -->
+  <line x1="569" y1="704" x2="1135" y2="704" stroke="#818cf8"/>
+  <rect x="570" y="704" width="282" height="16" fill="#ddd6fe"/>
+  <rect x="852" y="704" width="283" height="16" fill="#ddd6fe"/>
+  <text x="711" y="716" text-anchor="middle" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9" font-weight="700">NapiCallBackType (&#x952E; / Key)</text>
+  <text x="993" y="716" text-anchor="middle" fill="#4338ca" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="9" font-weight="700">OHOS_TS_Fuction (&#x5904;&#x7406;&#x5668; / Handler)</text>
+  <!-- divider -->
+  <line x1="851" y1="704" x2="851" y2="930" stroke="#818cf8" stroke-width="0.5"/>
+  <line x1="569" y1="720" x2="1135" y2="720" stroke="#818cf8" stroke-width="0.5"/>
+  <!-- 9 data rows (2 entries each), row height=25px starting y=720 -->
+  <!-- Row 1  y=720 -->
+  <line x1="569" y1="745" x2="1135" y2="745" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="736" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SET_SYSTEMCURSOR</text>
+  <text x="574" y="747" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_SetSystemCursor</text>
+  <text x="856" y="736" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SHOW_TEXTINPUT</text>
+  <text x="856" y="747" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_ShowTextInput</text>
+  <!-- Row 2  y=745 -->
+  <line x1="569" y1="770" x2="1135" y2="770" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="760" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_HIDE_TEXTINPUT</text>
+  <text x="574" y="771" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_HideTextInput</text>
+  <text x="856" y="760" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SHOULD_MIN_FOCUSLOSS</text>
+  <text x="856" y="771" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_ShouldMinimizeOnFocusLoss</text>
+  <!-- Row 3  y=770 -->
+  <line x1="569" y1="795" x2="1135" y2="795" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="785" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SET_TITLE</text>
+  <text x="574" y="796" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_SetTitle</text>
+  <text x="856" y="785" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SET_WINDOWSTYLE</text>
+  <text x="856" y="796" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_SetWindowStyle</text>
+  <!-- Row 4  y=795 -->
+  <line x1="569" y1="820" x2="1135" y2="820" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="810" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SET_ORIENTATION</text>
+  <text x="574" y="821" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_SetOrientation</text>
+  <text x="856" y="810" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SHOW_TEXTINPKEYBOARD</text>
+  <text x="856" y="821" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_ShowTextInputKeyboard</text>
+  <!-- Row 5  y=820 -->
+  <line x1="569" y1="845" x2="1135" y2="845" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="835" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SET_WINDOWRESIZE</text>
+  <text x="574" y="846" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_SetWindowResize</text>
+  <text x="856" y="835" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_CREATE_CUSTOMCURSOR</text>
+  <text x="856" y="846" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_CreateCustomCursor</text>
+  <!-- Row 6  y=845 -->
+  <line x1="569" y1="870" x2="1135" y2="870" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="860" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_REQUEST_PERMISSION</text>
+  <text x="574" y="871" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_RequestPermission</text>
+  <text x="856" y="860" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_ADD_CHILD_NODE</text>
+  <text x="856" y="871" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_AddChildNode</text>
+  <!-- Row 7  y=870 -->
+  <line x1="569" y1="895" x2="1135" y2="895" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="885" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_REMOVE_CHILD_NODE</text>
+  <text x="574" y="896" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_RemoveChildNode</text>
+  <text x="856" y="885" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_RESIZE_NODE</text>
+  <text x="856" y="896" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_ResizeNode</text>
+  <!-- Row 8  y=895 -->
+  <line x1="569" y1="920" x2="1135" y2="920" stroke="#818cf8" stroke-width="0.3"/>
+  <text x="574" y="910" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_MOVE_NODE</text>
+  <text x="574" y="921" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_MoveNode</text>
+  <text x="856" y="910" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_SHOW_NODE</text>
+  <text x="856" y="921" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_ShowNode</text>
+  <!-- Row 9  y=920 -->
+  <text x="574" y="935" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_HIDE_NODE</text>
+  <text x="856" y="935" fill="#1e1b4b" font-family="Consolas,monospace" font-size="8.5">NAPI_CALLBACK_RAISE_NODE</text>
+  <text x="574" y="924" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_HideNode</text>
+  <text x="856" y="924" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="8">OHOS_TS_RaiseNode</text>
+
+  <line x1="851" y1="930" x2="851" y2="952" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JS Box 5: execute handler + ArkTS -->
+  <rect x="576" y="952" width="550" height="86" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <rect x="576" y="952" width="550" height="20" rx="4" fill="#faf5ff" stroke="none"/>
+  <text x="851" y="967" text-anchor="middle" fill="#6d28d9" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">fuc(root) + &#x8C03;&#x7528; ArkTS &#x5C01;&#x88C5; / Execute Handler + Call ArkTS</text>
+  <text x="584" y="988" fill="#7c3aed" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">fuc(root);  // &#x6267;&#x884C;&#x5BF9;&#x5E94;&#x5904;&#x7406;&#x5668;</text>
+  <text x="584" y="1003" fill="#7c3aed" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">// &#x5904;&#x7406;&#x5668;&#x5185;&#x90E8;&#xFF1A;</text>
+  <text x="584" y="1018" fill="#7c3aed" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">napi_get_named_property(g_napiCallback-&gt;env, callbackRef, "methodName", &amp;jsMethod);</text>
+  <text x="584" y="1030" fill="#7c3aed" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">napi_call_function(env, nullptr, jsMethod, argc, argv, nullptr);  // -&gt; ArkTS</text>
+  <line x1="851" y1="1038" x2="851" y2="1060" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JS Box 6: free -->
+  <rect x="626" y="1060" width="450" height="50" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="626" y="1060" width="450" height="20" rx="4" fill="#f1f5f9" stroke="none"/>
+  <text x="851" y="1075" text-anchor="middle" fill="#1e293b" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="11" font-weight="700">&#x91CA;&#x653E;&#x7F13;&#x51B2; / Release buffer</text>
+  <text x="851" y="1092" text-anchor="middle" fill="#475569" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="10">free(data);  root = nullptr;  json = nullptr;   // cJSON &#x5185;&#x5B58;&#x5F52;&#x8FD8;</text>
+  <line x1="851" y1="1110" x2="851" y2="1130" stroke="#1e293b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JS END terminal -->
+  <rect x="694" y="1130" width="314" height="34" rx="17" fill="#0f172a"/>
+  <text x="851" y="1152" text-anchor="middle" fill="#ffffff" font-family="Segoe UI,Microsoft YaHei,Arial,sans-serif" font-size="12">&#x7ED3;&#x675F; / END  (JS side)</text>
+
+  <!-- FOOTER -->
+  <text x="24" y="1186" fill="#94a3b8" font-family="Segoe UI,Arial,sans-serif" font-size="10">&#x6CE8;: &#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x5982;SetTitle&#x7B49;&#x5747;&#x975E;&#x963B;&#x585E;; &#x9700;&#x8981;&#x540C;&#x6B65;&#x7ED3;&#x679C;&#x7684;&#x64CD;&#x4F5C;(&#x5982;CreateCustomCursor)&#x4F1A;&#x5728;&#x5185;&#x90E8;&#x5229;&#x7528;condition_variable&#x7B49;&#x5F85; | SDL_ohosthreadsafe.cpp</text>
+</svg>

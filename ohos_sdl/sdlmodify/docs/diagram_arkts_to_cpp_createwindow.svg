@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1680" viewBox="0 0 1160 1680">
+  <title>ArkTS to C++ Execution Flow including SDL_CreateWindow</title>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#334155"/>
+    </marker>
+    <marker id="ar-p" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#7c3aed"/>
+    </marker>
+    <marker id="ar-g" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#059669"/>
+    </marker>
+    <marker id="ar-o" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#d97706"/>
+    </marker>
+    <marker id="ar-b" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="ar-r" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#dc2626"/>
+    </marker>
+    <filter id="sh">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#00000025"/>
+    </filter>
+  </defs>
+
+  <!-- PAGE BACKGROUND -->
+  <rect width="1160" height="1680" fill="#f8fafc"/>
+
+  <!-- TITLE BAR -->
+  <rect x="0" y="0" width="1160" height="62" fill="#0f172a"/>
+  <text x="580" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#f8fafc">ArkTS &#x5230; C++ &#x6267;&#x884C;&#x6D41;&#x7A0B; / ArkTS to C++ Execution Flow</text>
+  <text x="580" y="46" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">&#x5305;&#x542B; SDL_CreateWindow &#x5B8C;&#x6574;&#x94FE;&#x8DEF; | Including SDL_CreateWindow Full Call Chain</text>
+
+  <!-- SWIMLANE HEADERS -->
+  <rect x="0" y="62" width="580" height="36" fill="#6d28d9"/>
+  <text x="290" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">JS &#x4E3B;&#x7EBF;&#x7A0B; / JS Main Thread</text>
+  <rect x="580" y="62" width="580" height="36" fill="#059669"/>
+  <text x="870" y="85" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">SDL_main &#x7EBF;&#x7A0B; / SDL_main Thread</text>
+
+  <!-- SWIMLANE BACKGROUNDS -->
+  <rect x="0" y="98" width="579" height="1556" fill="#faf5ff" opacity="0.5"/>
+  <rect x="581" y="98" width="579" height="1556" fill="#f0fdf4" opacity="0.5"/>
+  <!-- DIVIDER -->
+  <line x1="580" y1="98" x2="580" y2="1654" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8,5"/>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 1: ArkTS Startup (JS Main Thread)                          -->
+  <!-- ================================================================ -->
+  <rect x="30" y="104" width="519" height="24" rx="4" fill="#7c3aed"/>
+  <text x="289" y="120" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Phase 1: ArkTS &#x542F;&#x52A8;&#x9636;&#x6BB5; / ArkTS Startup</text>
+
+  <!-- Step 1: XComponent.onAppear -->
+  <rect x="40" y="134" width="500" height="66" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4c1d95">&#x2460; Index.ets: XComponent.onAppear() &#x89E6;&#x53D1;</text>
+  <text x="290" y="168" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">&#x83B7;&#x53D6;&#x7A97;&#x53E3;&#x5C3A;&#x5BF8;  Get window size: windowRect.width / windowRect.height</text>
+  <text x="290" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">sdl.setScaledDensity(display.scaledDensity)  &#x8BBE;&#x7F6E;DPI&#x7F29;&#x653E;&#x56E0;&#x5B50;</text>
+  <!-- arrow down -->
+  <line x1="290" y1="200" x2="290" y2="214" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar-p)"/>
+
+  <!-- Step 2: sdl.createNativeNode -->
+  <rect x="40" y="218" width="500" height="66" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="237" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4c1d95">&#x2461; sdl.createNativeNode(&#x27;RootXC&#x27;, w, h, x, y)</text>
+  <text x="290" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">NAPI: OHOS_NAPI_CreateNativeNode(env, info)</text>
+  <text x="290" y="267" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">&#x2192; EWAdapterC::CreateRootNode(&#x27;RootXC&#x27;, w, h)  &#x521B;&#x5EFA;&#x6839;&#x8282;&#x70B9;&#x5E76;&#x6302;&#x5230;ArkUI&#x6811;</text>
+  <!-- arrow down -->
+  <line x1="290" y1="284" x2="290" y2="298" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar-p)"/>
+
+  <!-- Step 2a: CreateRootNode result -->
+  <rect x="40" y="302" width="500" height="54" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="290" y="319" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#1e3a8a">EWAdapterC::CreateRootNode &#x8FD4;&#x56DE; rootNode (ArkUI_NodeHandle)</text>
+  <text x="290" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">nodeAPI-&gt;createNode(STACK)+createNode(XCOMPONENT)+addChild &#x5B8C;&#x6210;&#x6839;&#x8282;&#x70B9;&#x6302;&#x8F7D;</text>
+  <text x="290" y="347" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1e40af">&#x8FD4;&#x56DE;: rootNode &#x4F5C;&#x4E3A; ArkTS object &#x4F20;&#x7ED9; notifySdlAboutToAppear</text>
+  <!-- arrow down -->
+  <line x1="290" y1="356" x2="290" y2="370" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar-p)"/>
+
+  <!-- Step 3: sdl.init(callbackRef) -->
+  <rect x="40" y="374" width="500" height="66" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="393" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4c1d95">&#x2462; sdl.init(callbackRef)  &#x521D;&#x59CB;&#x5316;NAPI&#x73AF;&#x5883;</text>
+  <text x="290" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">OHOS_NAPI_Init: g_napiCallback-&gt;env = env</text>
+  <text x="290" y="423" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">napi_create_threadsafe_function(..., OHOS_TS_Call, &amp;tsfn)  &#x521B;&#x5EFA;TSFN</text>
+  <!-- arrow down -->
+  <line x1="290" y1="440" x2="290" y2="454" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar-p)"/>
+
+  <!-- Step 4: sdl.sdlRootNode -->
+  <rect x="40" y="458" width="500" height="52" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4c1d95">&#x2463; sdl.sdlRootNode(rootNode)  &#x4FDD;&#x5B58;&#x6839;&#x8282;&#x70B9;</text>
+  <text x="290" y="493" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">OHOS_NAPI_SDLRootNode: &#x5C06; ArkUI rootNode &#x5B58;&#x5165;&#x5168;&#x5C40;&#x53D8;&#x91CF; Store root ArkUI node</text>
+  <!-- arrow down -->
+  <line x1="290" y1="510" x2="290" y2="524" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar-p)"/>
+
+  <!-- Step 5: sdl.sdlAppEntry -->
+  <rect x="40" y="528" width="500" height="66" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="547" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#4c1d95">&#x2464; sdl.sdlAppEntry(&#x27;libentry.so&#x27;, &#x27;main&#x27;)  &#x542F;&#x52A8;SDL&#x7EBF;&#x7A0B;</text>
+  <text x="290" y="562" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">OHOS_NAPI_SDLAppEntry: &#x89E3;&#x6790;&#x5E93;&#x540D;&#x548C;&#x5165;&#x53E3;&#x51FD;&#x6570;&#x540D;</text>
+  <text x="290" y="577" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#5b21b6">SDL_CreateThread(OHOS_RunThread, ...)  &#x521B;&#x5EFA;SDL&#x4E3B;&#x7EBF;&#x7A0B;</text>
+
+  <!-- CROSS-LANE ARROW: JS -> SDL (start SDL thread) -->
+  <line x1="540" y1="561" x2="620" y2="561" stroke="#059669" stroke-width="2.5" marker-end="url(#ar-g)"/>
+  <rect x="541" y="546" width="78" height="30" rx="4" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+  <text x="580" y="559" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#065f46">&#x65B0;&#x5EFA;&#x7EBF;&#x7A0B;</text>
+  <text x="580" y="570" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#065f46">new thread</text>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 2: SDL Init (SDL_main Thread)                              -->
+  <!-- ================================================================ -->
+  <rect x="612" y="520" width="508" height="24" rx="4" fill="#059669"/>
+  <text x="866" y="536" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Phase 2: SDL &#x521D;&#x59CB;&#x5316; / SDL Initialization</text>
+
+  <!-- Step 6: OHOS_RunThread -->
+  <rect x="621" y="548" width="499" height="66" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="567" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#065f46">&#x2465; OHOS_RunThread(arg)</text>
+  <text x="870" y="582" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#047857">dlopen(&#x27;libentry.so&#x27;) &#x52A0;&#x8F7D;&#x5E94;&#x7528;&#x52A8;&#x6001;&#x5E93;</text>
+  <text x="870" y="597" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#047857">dlsym(handle, &#x27;main&#x27;) &#x83B7;&#x53D6;&#x5165;&#x53E3;&#x51FD;&#x6570; &#x2192; &#x8C03;&#x7528; main(argc, argv)</text>
+  <!-- arrow down -->
+  <line x1="870" y1="614" x2="870" y2="628" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+
+  <!-- Step 7: SDL_Init -->
+  <rect x="621" y="632" width="499" height="66" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="651" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#065f46">&#x2466; SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)</text>
+  <text x="870" y="666" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#047857">&#x2192; OHOS_VideoInit: &#x6CE8;&#x518C;&#x89C6;&#x9891;&#x9A71;&#x52A8;, &#x89E6;&#x6478;&#x8BBE;&#x5907;, OHOS_InitKeyboard</text>
+  <text x="870" y="681" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#047857">&#x2192; SDL_AudioInit: &#x521D;&#x59CB;&#x5316;&#x97F3;&#x9891;&#x9A71;&#x52A8; (OH_AudioStreamBuilder)</text>
+  <!-- arrow down -->
+  <line x1="870" y1="698" x2="870" y2="712" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 3: SDL_CreateWindow (SDL_main Thread)                      -->
+  <!-- ================================================================ -->
+  <rect x="612" y="716" width="508" height="24" rx="4" fill="#0891b2"/>
+  <text x="866" y="732" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Phase 3: SDL_CreateWindow &#x5168;&#x94FE;&#x8DEF; / SDL_CreateWindow Full Chain</text>
+
+  <!-- Step 8: SDL_CreateWindow call -->
+  <rect x="621" y="744" width="499" height="66" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="763" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#083344">&#x2467; SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, w, h, flags)</text>
+  <text x="870" y="778" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">SDL &#x6838;&#x5FC3;&#x5206;&#x914D; SDL_Window &#x7ED3;&#x6784;&#x4F53;</text>
+  <text x="870" y="793" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">SDL_VideoDevice-&gt;CreateWindow = OHOS_CreateWindow  &#x8C03;&#x7528;OHOS&#x5B9E;&#x73B0;</text>
+  <!-- arrow down -->
+  <line x1="870" y1="810" x2="870" y2="824" stroke="#0891b2" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 9: OHOS_CreateWindow -->
+  <rect x="621" y="828" width="499" height="80" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="847" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#083344">OHOS_CreateWindow(device, window, data)</text>
+  <text x="870" y="862" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">xcompId = &#x751F;&#x6210;&#x552F;&#x4E00;XComponent ID  Generate unique XComponent ID</text>
+  <text x="870" y="876" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">cJSON *payload = { type:ADD_CHILD_NODE, id, w, h, x, y }  &#x6784;&#x5EFA;&#x6D88;&#x606F;</text>
+  <text x="870" y="890" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">napi_call_threadsafe_function(tsfn, payload, napi_tsfn_nonblocking)</text>
+  <!-- arrow down -->
+  <line x1="870" y1="908" x2="870" y2="922" stroke="#dc2626" stroke-width="2" marker-end="url(#ar-r)"/>
+
+  <!-- Step 10: SDL Thread BLOCKS -->
+  <rect x="621" y="926" width="499" height="52" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="870" y="945" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#78350f">&#x23F8; SDL &#x7EBF;&#x7A0B;&#x9633;&#x5851;: condition_variable.wait(lock) [BLOCKS]</text>
+  <text x="870" y="961" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#92400e">&#x7B49;&#x5F85; JS &#x7EBF;&#x7A0B;&#x5B8C;&#x6210;&#x8282;&#x70B9;&#x521B;&#x5EFA;  Waiting for JS thread to complete node creation</text>
+
+  <!-- CROSS-LANE ARROW: SDL -> JS (TSFN call) -->
+  <line x1="621" y1="952" x2="543" y2="952" stroke="#dc2626" stroke-width="2.5" marker-end="url(#ar-r)"/>
+  <rect x="490" y="938" width="132" height="30" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="556" y="951" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#991b1b">TSFN &#x8F6C;&#x53D1;</text>
+  <text x="556" y="963" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#b91c1c">libuv enqueues</text>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 3 (cont.): JS Thread handles TSFN callback                 -->
+  <!-- ================================================================ -->
+  <rect x="30" y="980" width="519" height="24" rx="4" fill="#2563eb"/>
+  <text x="289" y="996" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Phase 3 (JS &#x5904;&#x7406;): TSFN &#x56DE;&#x8C03; + &#x8282;&#x70B9;&#x521B;&#x5EFA;</text>
+
+  <!-- Step 11: OHOS_TS_Call -->
+  <rect x="40" y="1008" width="500" height="66" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="1027" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">OHOS_TS_Call(env, js_cb, ctx, data)</text>
+  <text x="290" y="1042" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">libuv &#x4ECE;&#x961F;&#x5217;&#x53D6;&#x51FA;&#x5E76;&#x5728; JS &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;</text>
+  <text x="290" y="1057" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">data != null &#x2192; json = cJSON_Parse(data) &#x2192; &#x83B7;&#x53D6;&#x7C7B;&#x578B;&#x5B57;&#x6BB5;</text>
+  <!-- arrow down -->
+  <line x1="290" y1="1074" x2="290" y2="1088" stroke="#2563eb" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 12: tsFuctions dispatch -->
+  <rect x="40" y="1092" width="500" height="66" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="1111" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">tsFuctions[NAPI_CALLBACK_ADD_CHILD_NODE]</text>
+  <text x="290" y="1126" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">= OHOS_TS_AddChildNode(root)  &#x8868;&#x9A71;&#x52A8;&#x5206;&#x53D1; Table-driven dispatch</text>
+  <text x="290" y="1141" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">&#x4ECE; cJSON &#x8BFB;&#x53D6; id, w, h, x, y, zIndex &#x53C2;&#x6570;</text>
+  <!-- arrow down -->
+  <line x1="290" y1="1158" x2="290" y2="1172" stroke="#2563eb" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 13: EWAdapterC::AddChildNode -->
+  <rect x="40" y="1176" width="500" height="54" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#sh)"/>
+  <text x="290" y="1195" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">EWAdapterC::AddChildNode(id, w, h, x, y)</text>
+  <text x="290" y="1213" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#1e40af">curThreadId == mainJsThreadId &#x2192; true &#x2192; &#x76F4;&#x63A5;&#x8C03;&#x7528; CreateEWNode  Same thread: direct call</text>
+  <!-- arrow down -->
+  <line x1="290" y1="1230" x2="290" y2="1244" stroke="#2563eb" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 14: CreateEWNode - BIG BOX -->
+  <rect x="40" y="1248" width="500" height="246" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" filter="url(#sh)"/>
+  <rect x="40" y="1248" width="500" height="22" rx="6" fill="#2563eb"/>
+  <text x="290" y="1263" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">CreateEWNode(attr)  &#x2014; 9 &#x6B65;&#x9AA4;&#x5B8C;&#x6210;&#x8282;&#x70B9;&#x6302;&#x8F7D;</text>
+  <text x="55" y="1284" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2460; z-index &#x8BA1;&#x7B97;  Compute z-index from ewNodeMap.size()</text>
+  <text x="55" y="1299" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2461; nodeAPI-&gt;createNode(ARKUI_NODE_STACK)  &#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x8282;&#x70B9;</text>
+  <text x="55" y="1314" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2462; setAttribute(stack): WIDTH/HEIGHT/POSITION/ZINDEX</text>
+  <text x="55" y="1329" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2463; nodeAPI-&gt;createNode(ARKUI_NODE_XCOMPONENT)  &#x521B;&#x5EFA;XC&#x8282;&#x70B9;</text>
+  <text x="55" y="1344" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2464; setAttribute(xc): ID=xcompId / TYPE=SURFACE / WIDTH / HEIGHT</text>
+  <text x="55" y="1359" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2465; nodeAPI-&gt;addChild(stack, xcomponent)  XC&#x6302;&#x8F7D;&#x5230;STACK</text>
+  <text x="55" y="1374" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2466; nodeAPI-&gt;addChild(parentRootNode, stack)  &#x6302;&#x8F7D;&#x5230;ArkUI&#x6811;</text>
+  <text x="55" y="1389" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2467; new EWNode; ewNodeMap[xcompId] = ewNode  &#x8FDB;&#x5165;&#x54C8;&#x5E0C;&#x8868;</text>
+  <text x="55" y="1404" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2468; replyNode = ewNode  &#x8BBE;&#x7F6E;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</text>
+  <text x="55" y="1419" font-family="Arial,sans-serif" font-size="9.5" fill="#1e3a8a">&#x2469; ThreadLockInfo.ready=true; condition.notify_one()  &#x5524;&#x9192;SDL&#x7EBF;&#x7A0B;</text>
+  <!-- sub-box for ArkUI trigger -->
+  <rect x="55" y="1428" width="470" height="52" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="290" y="1444" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" font-weight="700" fill="#1e3a8a">ArkUI &#x6E32;&#x67D3;&#x8282;&#x70B9;&#x6811; &#x2192; OnSurfaceCreated &#x56DE;&#x8C03;</text>
+  <text x="290" y="1459" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1e40af">OH_NativeXComponent &#x8868;&#x9762;&#x5C31;&#x7EEA; &#x2192; OHOS_OnSurfaceCreated(component, window)</text>
+  <text x="290" y="1474" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1e40af">&#x8868;&#x9762;&#x53E5;&#x67C4;&#x548C;nativeWindow&#x5B58;&#x5165;ewNode &#x2192; SDL_CondSignal</text>
+
+  <!-- CROSS-LANE ARROW: JS -> SDL (condition notify) -->
+  <line x1="540" y1="1452" x2="621" y2="1452" stroke="#dc2626" stroke-width="2.5" marker-end="url(#ar-r)"/>
+  <rect x="499" y="1436" width="122" height="32" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="560" y="1449" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#991b1b">notify_one()</text>
+  <text x="560" y="1461" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#b91c1c">&#x5524;&#x9192;SDL&#x7EBF;&#x7A0B;</text>
+
+  <!-- ================================================================ -->
+  <!-- PHASE 3 (cont.): SDL Thread UNBLOCKS, EGL binding                -->
+  <!-- ================================================================ -->
+  <rect x="612" y="978" width="508" height="24" rx="4" fill="#0891b2"/>
+  <text x="866" y="994" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff">Phase 3 (SDL &#x7EE7;&#x7EED;): EGL &#x7ED1;&#x5B9A; + &#x521B;&#x5EFA;&#x5B8C;&#x6210; / EGL Binding</text>
+
+  <!-- Gap fill with waiting indicator -->
+  <rect x="621" y="1006" width="499" height="400" rx="4" fill="#fef9c3" stroke="#d97706" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="870" y="1060" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#d97706">&#x23F3;</text>
+  <text x="870" y="1100" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#78350f">SDL &#x7EBF;&#x7A0B;&#x9631;&#x585E;&#x4E2D;&#x2026;</text>
+  <text x="870" y="1122" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#92400e">condition_variable.wait(lock,</text>
+  <text x="870" y="1138" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#92400e">  [] { return ready; })</text>
+  <text x="870" y="1170" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#92400e">&#x7B49;&#x5F85; JS &#x7EBF;&#x7A0B;&#x5B8C;&#x6210;</text>
+  <text x="870" y="1185" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#92400e">CreateEWNode &#x5E76;&#x89E6;&#x53D1;</text>
+  <text x="870" y="1200" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#92400e">notify_one()</text>
+  <text x="870" y="1360" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#78350f">SDL_main Thread Blocked</text>
+  <text x="870" y="1378" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#92400e">Waiting for JS thread...</text>
+
+  <!-- Step 16: SDL UNBLOCKS -->
+  <rect x="621" y="1416" width="499" height="54" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="1435" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#083344">&#x2728; SDL &#x7EBF;&#x7A0B;&#x6062;&#x590D; / SDL Thread UNBLOCKED</text>
+  <text x="870" y="1450" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">condition.wait() &#x8FD4;&#x56DE;, ready == true  &#x53D6;&#x5F97; ewNode &#x7ED3;&#x679C;</text>
+  <!-- arrow down -->
+  <line x1="870" y1="1470" x2="870" y2="1484" stroke="#0891b2" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 17: GetNativeWindow + EGL -->
+  <rect x="621" y="1488" width="499" height="66" rx="6" fill="#cffafe" stroke="#0891b2" stroke-width="2" filter="url(#sh)"/>
+  <text x="870" y="1507" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#083344">&#x2468; OH_NativeXComponent_GetNativeWindow &#x2192; nativeWindow</text>
+  <text x="870" y="1522" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">SDL_EGL_CreateSurface(device, window, nativeWindow)</text>
+  <text x="870" y="1537" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0e7490">eglCreateWindowSurface(display, config, nativeWindow) &#x2192; EGLSurface</text>
+  <!-- arrow down -->
+  <line x1="870" y1="1554" x2="870" y2="1568" stroke="#0891b2" stroke-width="2" marker-end="url(#ar-b)"/>
+
+  <!-- Step 18: SDL_CreateWindow returns -->
+  <rect x="621" y="1572" width="499" height="52" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="870" y="1591" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#065f46">&#x2469; SDL_CreateWindow &#x8FD4;&#x56DE; SDL_Window*</text>
+  <text x="870" y="1609" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#047857">SDL_Window &#x2194; xcomponentId &#x54C8;&#x5E0C;&#x8868;&#x5EFA;&#x7ACB;  Hash table: window &lt;-&gt; xcompId</text>
+  <!-- arrow down -->
+  <line x1="870" y1="1624" x2="870" y2="1638" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+
+  <!-- Step 19: Game Loop -->
+  <rect x="621" y="1642" width="499" height="26" rx="6" fill="#059669" filter="url(#sh)"/>
+  <text x="870" y="1659" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#fff">&#x2192; &#x6E38;&#x620F;&#x5FAA;&#x73AF; Game Loop: SDL_PollEvent / render / SDL_GL_SwapWindow</text>
+
+  <!-- ================================================================ -->
+  <!-- LEGEND (JS lane bottom area)                                      -->
+  <!-- ================================================================ -->
+  <rect x="40" y="1510" width="500" height="154" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="290" y="1528" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#334155">&#x56FE;&#x4F8B; Legend</text>
+  <rect x="55" y="1536" width="14" height="10" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="75" y="1546" font-family="Arial,sans-serif" font-size="9" fill="#334155">ArkTS &#x8C03;&#x7528; ArkTS Call</text>
+  <rect x="55" y="1554" width="14" height="10" rx="2" fill="#d1fae5" stroke="#059669" stroke-width="1.5"/>
+  <text x="75" y="1564" font-family="Arial,sans-serif" font-size="9" fill="#334155">SDL &#x6838;&#x5FC3;&#x903B;&#x8F91; SDL Core Logic</text>
+  <rect x="55" y="1572" width="14" height="10" rx="2" fill="#cffafe" stroke="#0891b2" stroke-width="1.5"/>
+  <text x="75" y="1582" font-family="Arial,sans-serif" font-size="9" fill="#334155">SDL_CreateWindow &#x94FE;&#x8DEF; Window Creation Chain</text>
+  <rect x="55" y="1590" width="14" height="10" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="75" y="1600" font-family="Arial,sans-serif" font-size="9" fill="#334155">TSFN &#x56DE;&#x8C03; + &#x8282;&#x70B9;&#x521B;&#x5EFA; TSFN callback + Node Creation</text>
+  <rect x="55" y="1608" width="14" height="10" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="75" y="1618" font-family="Arial,sans-serif" font-size="9" fill="#334155">&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x7B49;&#x5F85; Thread Block / Wait</text>
+  <line x1="55" y1="1634" x2="85" y2="1634" stroke="#dc2626" stroke-width="2" marker-end="url(#ar-r)"/>
+  <text x="95" y="1638" font-family="Arial,sans-serif" font-size="9" fill="#334155">&#x8DE8;&#x7EBF;&#x7A0B;&#x4FE1;&#x53F7; Cross-thread Signal (TSFN / condition_variable)</text>
+  <line x1="220" y1="1634" x2="250" y2="1634" stroke="#059669" stroke-width="2" marker-end="url(#ar-g)"/>
+  <text x="260" y="1638" font-family="Arial,sans-serif" font-size="9" fill="#334155">&#x542F;&#x52A8;&#x65B0;&#x7EBF;&#x7A0B; Start new thread</text>
+
+  <!-- FOOTER -->
+  <rect x="0" y="1656" width="1160" height="24" fill="#0f172a"/>
+  <text x="580" y="1672" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#64748b">
+    ohos_sdl2 | ArkTS &#x2192; NAPI &#x2192; SDL_main &#x7EBF;&#x7A0B; &#x2192; SDL_CreateWindow &#x2192; TSFN &#x2192; EWAdapterC::CreateEWNode &#x2192; ArkUI XComponent &#x2192; EGL &#x7ED1;&#x5B9A;
+  </text>
+</svg>
