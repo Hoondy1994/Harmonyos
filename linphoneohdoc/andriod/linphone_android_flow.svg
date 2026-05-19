@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- linphone-android flow diagram. CJK text uses XML numeric character references &#xHHHH; -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 3100" width="1600" height="3100">
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <polygon points="0 0,8 4,0 8" fill="#334155"/>
+  </marker>
+  <style>
+    text { font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC","SimHei","WenQuanYi Micro Hei","Segoe UI",sans-serif; }
+    .t-title { font-size:20px; font-weight:700; fill:#0f172a; }
+    .t-lane  { font-size:13px; font-weight:700; fill:#1e3a5f; }
+    .t-head  { font-size:12px; font-weight:700; fill:#1e293b; }
+    .t-body  { font-size:11px; fill:#1e293b; }
+    .t-note  { font-size:10px; fill:#64748b; }
+    .lane-bg { fill:#f0f4f8; stroke:#cbd5e1; stroke-width:1; }
+    .box     { fill:#ffffff; stroke:#64748b; stroke-width:1.4; }
+    .box-bl  { fill:#eff6ff; stroke:#2563eb; stroke-width:1.6; }
+    .box-gr  { fill:#f0fdf4; stroke:#16a34a; stroke-width:1.6; }
+    .box-yl  { fill:#fefce8; stroke:#ca8a04; stroke-width:1.4; }
+    .box-re  { fill:#fff1f2; stroke:#e11d48; stroke-width:1.4; }
+    .box-pu  { fill:#faf5ff; stroke:#7c3aed; stroke-width:1.4; }
+    .arr     { stroke:#334155; stroke-width:1.3; fill:none; marker-end:url(#arr); }
+  </style>
+</defs>
+<rect width="1600" height="3100" fill="#f8fafc"/>
+
+<!-- TITLE -->
+<text x="800" y="38" text-anchor="middle" class="t-title">linphone-android &#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x56FE;</text>
+<text x="800" y="58" text-anchor="middle" class="t-note">Kotlin UI &#x2192; CoreContext (HandlerThread) &#x2192; Linphone SDK (JNI) &#x2192; liblinphone / mediastreamer2</text>
+
+<!-- ===== LANE 1: Application ===== -->
+<rect x="12" y="70" width="1576" height="200" rx="6" class="lane-bg"/>
+<text x="24" y="90" class="t-lane">&#x2460; LinphoneApplication.onCreate() &#x2014; &#x5E94;&#x7528;&#x542F;&#x52A8;</text>
+
+<rect x="30" y="98" width="340" height="155" rx="6" class="box-bl"/>
+<text x="200" y="118" text-anchor="middle" class="t-head">LinphoneApplication.onCreate</text>
+<text x="42" y="138" class="t-body">Factory.instance() &#x2014; &#x65E5;&#x5FD7;&#x76EE;&#x5F55;</text>
+<text x="42" y="154" class="t-body">CorePreferences + copyAssetsFromPackage()</text>
+<text x="42" y="170" class="t-body">createConfigWithFactory(configPath, factoryPath)</text>
+<text x="42" y="186" class="t-body">loggingService / enableLogcatLogs</text>
+<text x="42" y="202" class="t-body">coreContext = CoreContext(context)</text>
+<text x="42" y="218" class="t-note">coreContext.start() &#x2192; HandlerThread &#x542F;&#x52A8;</text>
+<text x="42" y="232" class="t-note">VFS.setup (&#x53EF;&#x9009;&#x52A0;&#x5BC6;)</text>
+<line x1="370" y1="175" x2="420" y2="175" class="arr"/>
+
+<rect x="420" y="98" width="440" height="155" rx="6" class="box-bl"/>
+<text x="640" y="118" text-anchor="middle" class="t-head">CoreContext.run() [HandlerThread]</text>
+<text x="432" y="138" class="t-body">Looper.prepare()</text>
+<text x="432" y="154" class="t-body">Factory.createCoreWithConfig(config, ctx) &#x2192; core</text>
+<text x="432" y="170" class="t-body">core.isAutoIterateEnabled = true</text>
+<text x="432" y="186" class="t-body">core.addListener(coreListener)</text>
+<text x="432" y="202" class="t-body">postDelayed&#xFF08;50ms&#xFF09; &#x2192; startCore()</text>
+<text x="432" y="218" class="t-body">Looper.loop()</text>
+<text x="432" y="232" class="t-note">&#x6240;&#x6709; SDK &#x64CD;&#x4F5C;&#x901A;&#x8FC7; postOnCoreThread &#x6D3E;&#x5230;&#x6B64;&#x7EBF;&#x7A0B;</text>
+<line x1="860" y1="175" x2="910" y2="175" class="arr"/>
+
+<rect x="910" y="98" width="660" height="155" rx="6" class="box-gr"/>
+<text x="1240" y="118" text-anchor="middle" class="t-head">startCore() &#x2192; core.start() &#x2192; GlobalState.On &#x2192; onCoreStarted()</text>
+<text x="922" y="138" class="t-body">&#x6CE8;&#x518C; AudioDeviceCallback &#x2192; &#x8BBE;&#x5907;&#x53D8;&#x5316;&#x65F6; core.reloadSoundDevices()</text>
+<text x="922" y="154" class="t-body">computeUserAgent()</text>
+<text x="922" y="170" class="t-body">core.start() &#x2192; &#x5E95;&#x5C42; SIP &#x6808;&#x6FC0;&#x6D3B;</text>
+<text x="922" y="186" class="t-body">onCoreStarted: contactsManager / telecomManager / notificationsManager</text>
+<text x="922" y="202" class="t-note">&#x6309;&#x9700; startKeepAliveService()&#xFF08;&#x65E0;&#x63A8;&#x9001;&#x65F6;&#xFF09;</text>
+<text x="922" y="218" class="t-note">CorePushService &#x2014; &#x63A8;&#x9001;&#x5524;&#x9192;&#x524D;&#x53F0;&#xFF08;&#x7EE7;&#x627F; SDK PushService&#xFF09;</text>
+<text x="922" y="232" class="t-note">FCM: org.linphone.core.tools.firebase.FirebaseMessaging (SDK AAR &#x5185;)</text>
+
+<!-- ===== LANE 2: Activity ===== -->
+<rect x="12" y="284" width="1576" height="210" rx="6" class="lane-bg"/>
+<text x="24" y="304" class="t-lane">&#x2461; Activity / Fragment / ViewModel &#x5C42;</text>
+
+<rect x="30" y="312" width="280" height="168" rx="6" class="box-yl"/>
+<text x="170" y="332" text-anchor="middle" class="t-head">&#x9996;&#x6B21;&#x5F15;&#x5BFC; / &#x5411;&#x5BFC;</text>
+<text x="42" y="352" class="t-body">WelcomeActivity</text>
+<text x="42" y="368" class="t-body">AssistantActivity</text>
+<text x="42" y="384" class="t-note">AccountLoginViewModel</text>
+<text x="42" y="400" class="t-note">ThirdPartySipAccountLoginViewModel</text>
+<text x="42" y="416" class="t-note">core.addAuthInfo + &#x81EA;&#x52A8;&#x6CE8;&#x518C;</text>
+<text x="42" y="432" class="t-note">AccountCreationViewModel</text>
+<text x="42" y="448" class="t-note">SingleSignOnViewModel &#x2192; refreshRegisters()</text>
+<text x="42" y="464" class="t-note">SSO / OAuth &#x652F;&#x6301;</text>
+<line x1="310" y1="396" x2="360" y2="396" class="arr"/>
+
+<rect x="360" y="312" width="340" height="168" rx="6" class="box-bl"/>
+<text x="530" y="332" text-anchor="middle" class="t-head">MainActivity</text>
+<text x="372" y="352" class="t-body">NavController + BottomNavigationView</text>
+<text x="372" y="368" class="t-body">Tab: &#x901A;&#x8BDD;&#x5386;&#x53F2; / &#x8054;&#x7CFB;&#x4EBA; / &#x805A;&#x5C45; / &#x4F1A;&#x8BAE; / &#x8BBE;&#x7F6E;</text>
+<text x="372" y="384" class="t-body">Intent: sip: / tel: &#x2192; &#x62E8;&#x53F7;</text>
+<text x="372" y="400" class="t-body">coreContext.startAudioCall / startVideoCall</text>
+<text x="372" y="420" class="t-note">MainViewModel &#x2014; &#x6CE8;&#x518C;&#x72B6;&#x6001;&#x544A;&#x8B66;</text>
+<text x="372" y="436" class="t-note">onAccountRegistrationStateChanged</text>
+<text x="372" y="452" class="t-note">&#x6CE8;&#x518C;&#x5931;&#x8D25; &#x2192; &#x9876;&#x90E8; Banner &#x544A;&#x8B66;</text>
+<line x1="700" y1="396" x2="760" y2="396" class="arr"/>
+
+<rect x="760" y="312" width="380" height="168" rx="6" class="box-re"/>
+<text x="950" y="332" text-anchor="middle" class="t-head">CallActivity &#x2014; &#x901A;&#x8BDD;&#x5168;&#x5C4F;</text>
+<text x="772" y="352" class="t-body">Navigation: IncomingCallFragment</text>
+<text x="772" y="368" class="t-body">OutgoingCallFragment / ActiveCallFragment</text>
+<text x="772" y="384" class="t-body">CallsListFragment / ConferenceFragment</text>
+<text x="772" y="400" class="t-note">CurrentCallViewModel.answer() &#x2192; answerCall</text>
+<text x="772" y="416" class="t-note">hangUp() &#x2192; terminateCall</text>
+<text x="772" y="432" class="t-note">toggleVideo / switchCamera / toggleMuteMic</text>
+<text x="772" y="448" class="t-note">&#x753B;&#x4E2D;&#x753B; (PiP) &#x652F;&#x6301;</text>
+<text x="772" y="464" class="t-note">CallsViewModel &#x2192; showIncomingCallEvent</text>
+<line x1="1140" y1="396" x2="1200" y2="396" class="arr"/>
+
+<rect x="1200" y="312" width="370" height="168" rx="6" class="box"/>
+<text x="1385" y="332" text-anchor="middle" class="t-head">&#x8BBE;&#x7F6E; / &#x8D26;&#x53F7;&#x7BA1;&#x7406;</text>
+<text x="1212" y="352" class="t-body">AccountSettingsViewModel</text>
+<text x="1212" y="368" class="t-body">AccountProfileViewModel</text>
+<text x="1212" y="384" class="t-body">account.refreshRegister()</text>
+<text x="1212" y="400" class="t-body">core.refreshRegisters()</text>
+<text x="1212" y="420" class="t-note">AccountModel &#x2014; &#x5B9E;&#x65F6;&#x76D1;&#x542C; registrationState</text>
+<text x="1212" y="436" class="t-note">ContactViewModel / HistoryViewModel</text>
+<text x="1212" y="452" class="t-note">&#x62E8;&#x53F7;&#x5165;&#x53E3;: startAudioCall / startVideoCall</text>
+
+<!-- ===== LANE 3: SIP Registration ===== -->
+<rect x="12" y="508" width="1576" height="220" rx="6" class="lane-bg"/>
+<text x="24" y="528" class="t-lane">&#x2462; SIP &#x6CE8;&#x518C;&#x6D41;&#x7A0B;</text>
+
+<rect x="30" y="536" width="330" height="180" rx="6" class="box-yl"/>
+<text x="195" y="556" text-anchor="middle" class="t-head">&#x914D;&#x7F6E;&#x8D26;&#x53F7;&#xFF08;&#x5411;&#x5BFC; / &#x8BBE;&#x7F6E;&#xFF09;</text>
+<text x="42" y="576" class="t-body">createAddress(sip:user@domain)</text>
+<text x="42" y="592" class="t-body">createAuthInfo(user, pwd, domain)</text>
+<text x="42" y="608" class="t-body">core.addAuthInfo(authInfo)</text>
+<text x="42" y="624" class="t-body">createAccountParams &#x2192; setIdentityAddress</text>
+<text x="42" y="640" class="t-body">setServerAddress / setRegisterEnabled</text>
+<text x="42" y="656" class="t-body">core.createAccount(params) &#x2192; addAccount</text>
+<text x="42" y="676" class="t-note">&#x81EA;&#x52A8;&#x89E6;&#x53D1; SIP REGISTER &#x53D1;&#x9001;</text>
+<text x="42" y="692" class="t-note">account.refreshRegister() / core.refreshRegisters()</text>
+<text x="42" y="704" class="t-note">&#x63A8;&#x9001;&#x4E0D;&#x53EF;&#x7528;&#x65F6;&#x542F; keepAliveService</text>
+<line x1="360" y1="626" x2="420" y2="626" class="arr"/>
+
+<rect x="420" y="536" width="500" height="180" rx="6" class="box-gr"/>
+<text x="670" y="556" text-anchor="middle" class="t-head">CoreListenerStub.onAccountRegistrationStateChanged</text>
+<text x="432" y="576" class="t-body">RegistrationState.Ok &#x2192; &#x9ED8;&#x8BA4;&#x8D26;&#x53F7;&#x5C31;&#x7EEA; / &#x8DF3;&#x8F6C;&#x4E3B;&#x754C;</text>
+<text x="432" y="592" class="t-body">RegistrationState.Failed &#x2192; Banner &#x544A;&#x8B66;</text>
+<text x="432" y="608" class="t-body">RegistrationState.Cleared &#x2192; &#x6CE8;&#x9500;&#x6CE8;&#x518C;</text>
+<text x="432" y="628" class="t-note">AccountModel.registrationState &#x2192; UI &#x5BFC;&#x822A;&#x680F;&#x5C0F;&#x5706;</text>
+<text x="432" y="644" class="t-note">MainViewModel &#x2192; &#x9876;&#x90E8;&#x544A;&#x8B66; / core.setDefaultAccount</text>
+<text x="432" y="660" class="t-note">NotificationsManager &#x2192; &#x6CE8;&#x518C;&#x5931;&#x8D25;&#x901A;&#x77E5;</text>
+<text x="432" y="676" class="t-note">onAccountAdded: &#x65E0;&#x63A8;&#x9001;&#x5219; startKeepAliveService()</text>
+<line x1="920" y1="626" x2="980" y2="626" class="arr"/>
+
+<rect x="980" y="536" width="580" height="180" rx="6" class="box-pu"/>
+<text x="1270" y="556" text-anchor="middle" class="t-head">&#x63A8;&#x9001;&#x901A;&#x77E5; / &#x4FDD;&#x6D3B;</text>
+<text x="992" y="576" class="t-body">Firebase FCM &#x2192; SDK FirebaseMessaging&#xFF08;SDK AAR &#x5185;&#xFF09;</text>
+<text x="992" y="592" class="t-body">&#x63A8;&#x9001;&#x5524;&#x9192; &#x2192; CorePushService&#xFF08;&#x524D;&#x53F0; dataSync&#xFF09;</text>
+<text x="992" y="608" class="t-body">CorePushReceiver &#x2192; &#x6253;&#x65E5;&#x5FD7;&#xFF08;&#x4E1A;&#x52A1;&#x7531; SDK &#x5904;&#x7406;&#xFF09;</text>
+<text x="992" y="624" class="t-body">NotificationsManager.showCallNotification &#x2192; &#x6765;&#x7535; UI</text>
+<text x="992" y="640" class="t-body">NotificationBroadcastReceiver &#x2192; &#x63A5;&#x542C;/&#x6302;&#x65AD;</text>
+<text x="992" y="660" class="t-note">google-services.json + libs.google.firebase.messaging</text>
+<text x="992" y="676" class="t-note">&#x65E0;&#x63A8;&#x9001;&#x65F6; KeepAliveService &#x7EF4;&#x6301; SIP &#x957F;&#x8FDE;&#x63A5;</text>
+
+<!-- ===== LANE 4: Outgoing Call ===== -->
+<rect x="12" y="742" width="1576" height="280" rx="6" class="lane-bg"/>
+<text x="24" y="762" class="t-lane">&#x2463; &#x53D1;&#x8D77;&#x901A;&#x8BDD;&#xFF08;&#x53BB;&#x7535;&#xFF09;</text>
+
+<rect x="30" y="770" width="330" height="240" rx="6" class="box"/>
+<text x="195" y="790" text-anchor="middle" class="t-head">UI &#x62E8;&#x53F7;&#x5165;&#x53E3;</text>
+<text x="42" y="810" class="t-body">NewCallFragment &#x2192; startAudioCall</text>
+<text x="42" y="826" class="t-body">HistoryListFragment &#x91CD;&#x62E8;</text>
+<text x="42" y="842" class="t-body">ContactFragment &#x2192; startVideoCall</text>
+<text x="42" y="858" class="t-body">ConversationFragment &#x2192; &#x804A;&#x5929;&#x62E8;&#x53F7;</text>
+<text x="42" y="874" class="t-body">AddressSelectionViewModel</text>
+<text x="42" y="890" class="t-body">MeetingWaitingRoomViewModel &#x4F1A;&#x8BAE;</text>
+<text x="42" y="906" class="t-body">MainActivity sip:/tel: Intent</text>
+<text x="42" y="926" class="t-note">&#x6240;&#x6709;&#x5165;&#x53E3;&#x6700;&#x7EC8;&#x8C03; CoreContext.startAudioCall</text>
+<text x="42" y="942" class="t-note">/ startVideoCall / startCall</text>
+<text x="42" y="958" class="t-note">forceZRTP=true &#x8054;&#x7CFB;&#x4EBA;&#x5E26; ZRTP</text>
+<text x="42" y="974" class="t-note">&#x5728; postOnCoreThread &#x5185;&#x6267;&#x884C;</text>
+<line x1="360" y1="890" x2="420" y2="890" class="arr"/>
+
+<rect x="420" y="770" width="530" height="240" rx="6" class="box-bl"/>
+<text x="685" y="790" text-anchor="middle" class="t-head">CoreContext.startAudioCall / startVideoCall</text>
+<text x="432" y="810" class="t-body">postOnCoreThread &#xFF5B; &#x2026; &#xFF5D;</text>
+<text x="432" y="826" class="t-body">core.createCallParams(null)</text>
+<text x="432" y="842" class="t-body">params.audioEnabled = true / videoEnabled</text>
+<text x="432" y="858" class="t-body">&#x82E5;&#x89C6;&#x9891;: core.videoDevice = &#x524D;&#x7F6E;&#x6444;&#x50CF;&#x5934;</text>
+<text x="432" y="874" class="t-body">&#x82E5;&#x6709;&#x8FDB;&#x884C;&#x4E2D;&#x901A;&#x8BDD;: currentCall.pause()</text>
+<text x="432" y="890" class="t-body">core.inviteAddressWithParams(address, params)</text>
+<text x="432" y="910" class="t-note">&#x2192; SDK &#x5185;&#x90E8;&#x53D1; SIP INVITE</text>
+<text x="432" y="926" class="t-note">onCallStateChanged: OutgoingInit &#x2192; showCallActivity()</text>
+<text x="432" y="942" class="t-note">OutgoingProgress &#x2192; TelecomManager.onCallCreated</text>
+<text x="432" y="958" class="t-note">Connected / StreamsRunning &#x2192; &#x5A92;&#x4F53;&#x94FE;&#x8DEF;&#x5EFA;&#x7ACB;</text>
+<text x="432" y="974" class="t-note">StreamsRunning &#x65F6;&#x53EF; call.startRecording()</text>
+<line x1="950" y1="890" x2="1010" y2="890" class="arr"/>
+
+<rect x="1010" y="770" width="560" height="240" rx="6" class="box-gr"/>
+<text x="1290" y="790" text-anchor="middle" class="t-head">&#x53BB;&#x7535;&#x72B6;&#x6001;&#x673A;: OutgoingInit &#x2192; &#x2026; &#x2192; StreamsRunning</text>
+<text x="1022" y="810" class="t-body">OutgoingInit &#x2192; showCallActivity() + TelecomManager</text>
+<text x="1022" y="826" class="t-body">OutgoingProgress &#x2192; &#x62E8;&#x51FA; UI</text>
+<text x="1022" y="842" class="t-body">OutgoingRinging &#x2192; &#x5BF9;&#x7AEF;&#x632F;&#x9234;</text>
+<text x="1022" y="858" class="t-body">Connected &#x2192; Active UI / TelecomManager.onSetActive</text>
+<text x="1022" y="874" class="t-body">StreamsRunning &#x2192; &#x5A92;&#x4F53;&#x94FE;&#x8DEF;&#x5EFA;&#x7ACB;</text>
+<text x="1022" y="890" class="t-body">UpdatedByRemote &#x2192; acceptUpdate(params) &#x89C6;&#x9891;&#x534F;&#x5546;</text>
+<text x="1022" y="906" class="t-body">Paused / Resuming &#x2192; call.pause() / resume()</text>
+<text x="1022" y="922" class="t-body">End &#x2192; NotificationsManager / TelecomManager.disconnect</text>
+<text x="1022" y="938" class="t-body">Released &#x2192; currentCall = null</text>
+<text x="1022" y="958" class="t-note">CallsViewModel &#x89C2;&#x5BDF;&#x72B6;&#x6001; &#x2192; goToActiveCallEvent</text>
+<text x="1022" y="974" class="t-note">CurrentCallViewModel &#x5904;&#x7406;&#x5177;&#x4F53; UI &#x5207;&#x6362;</text>
+
+<!-- ===== LANE 5: Incoming Call ===== -->
+<rect x="12" y="1036" width="1576" height="270" rx="6" class="lane-bg"/>
+<text x="24" y="1056" class="t-lane">&#x2464; &#x6765;&#x7535;&#x63A5;&#x542C;&#x6D41;&#x7A0B;</text>
+
+<rect x="30" y="1064" width="380" height="230" rx="6" class="box-yl"/>
+<text x="220" y="1084" text-anchor="middle" class="t-head">IncomingReceived &#x4E09;&#x8DEF;&#x5165;&#x53E3;</text>
+<text x="42" y="1104" class="t-body">1. &#x901A;&#x77E5;&#x680F;&#x6309;&#x9215;</text>
+<text x="58" y="1120" class="t-note">NotificationBroadcastReceiver.handleCallIntent</text>
+<text x="58" y="1136" class="t-note">&#x2192; coreContext.answerCall</text>
+<text x="42" y="1156" class="t-body">2. &#x7CFB;&#x7EDF; Telecom&#xFF08;&#x8033;&#x673A;/&#x9501;&#x5C4F;&#xFF09;</text>
+<text x="58" y="1172" class="t-note">TelecomManager.onAnswer</text>
+<text x="58" y="1188" class="t-note">&#x2192; CallsManager.onAnswer &#x2192; answerCall</text>
+<text x="42" y="1208" class="t-body">3. &#x901A;&#x8BDD;&#x754C;&#x9762;&#x6309;&#x9215;</text>
+<text x="58" y="1224" class="t-note">IncomingCallFragment</text>
+<text x="58" y="1240" class="t-note">CurrentCallViewModel.answer()</text>
+<text x="42" y="1260" class="t-note">&#x81EA;&#x52A8;&#x63A5;&#x542C;: autoAnswerEnabled &#x5EF6;&#x8FDF;&#x8C03;&#x7528;</text>
+<text x="42" y="1276" class="t-note">IncomingEarlyMedia &#x2192; &#x6269;&#x97F3;&#x5668;&#x8DEF;&#x7531;</text>
+<line x1="410" y1="1179" x2="470" y2="1179" class="arr"/>
+
+<rect x="470" y="1064" width="500" height="230" rx="6" class="box-bl"/>
+<text x="720" y="1084" text-anchor="middle" class="t-head">CoreContext.answerCall(call)</text>
+<text x="482" y="1104" class="t-body">postOnCoreThread &#xFF5B; &#x2026; &#xFF5D;</text>
+<text x="482" y="1120" class="t-body">core.createCallParams(call)</text>
+<text x="482" y="1136" class="t-body">&#x82E5;&#x5BF9;&#x7AEF;&#x6709;&#x89C6;&#x9891;: videoEnabled=true, direction=SendRecv</text>
+<text x="482" y="1152" class="t-body">call.acceptWithParams(params) / call.accept()</text>
+<text x="482" y="1172" class="t-note">&#x89E6;&#x53D1; Connected &#x2192; StreamsRunning &#x2192; &#x5A92;&#x4F53;&#x94FE;&#x8DEF;&#x542F;&#x52A8;</text>
+<text x="482" y="1192" class="t-head">terminateCall(call)</text>
+<text x="482" y="1210" class="t-body">&#x6765;&#x7535;&#x65E9;&#x671F;: call.decline(LinphoneReason.Declined)</text>
+<text x="482" y="1226" class="t-body">&#x5176;&#x4ED6;: call.terminate()</text>
+<text x="482" y="1246" class="t-note">TelecomManager.onDisconnect &#x2192; terminateCall</text>
+<text x="482" y="1262" class="t-note">&#x62D2;&#x7EDD;&#x6765;&#x7535;: NotificationBroadcastReceiver &#x2192; terminateCall</text>
+<line x1="970" y1="1179" x2="1030" y2="1179" class="arr"/>
+
+<rect x="1030" y="1064" width="540" height="230" rx="6" class="box-pu"/>
+<text x="1300" y="1084" text-anchor="middle" class="t-head">TelecomManager &#x2014; &#x7CFB;&#x7EDF; Telecom &#x6846;&#x67B6;&#x5BF9;&#x63A5;</text>
+<text x="1042" y="1104" class="t-body">onCallStateChanged(IncomingReceived) &#x2192; onCallCreated</text>
+<text x="1042" y="1120" class="t-body">addOutgoingCall / addIncomingCall &#x2192; CallsManager</text>
+<text x="1042" y="1136" class="t-body">TelecomConnectionService &#x2192; &#x7CFB;&#x7EDF;&#x901A;&#x8BDD; UI / &#x8033;&#x673A;</text>
+<text x="1042" y="1152" class="t-body">onAnswer / onDisconnect / onSetActive / onSetHeld</text>
+<text x="1042" y="1168" class="t-body">onSetActive &#x2192; call.resume(); onSetHeld &#x2192; call.pause()</text>
+<text x="1042" y="1188" class="t-note">AudioUtils.routeAudioToSpeaker / Earpiece / Headset</text>
+<text x="1042" y="1204" class="t-note">NotificationsManager.showCallNotification &#x2192; &#x6765;&#x7535;&#x901A;&#x77E5;</text>
+<text x="1042" y="1220" class="t-note">CoreInCallService &#x524D;&#x53F0;&#x670D;&#x52A1; &#x2014; &#x901A;&#x8BDD;&#x4E2D;&#x4FDD;&#x6D3B;</text>
+<text x="1042" y="1236" class="t-note">ndk &#xFF5B; abiFilters armeabi-v7a, arm64-v8a &#xFF5D;</text>
+<text x="1042" y="1256" class="t-note">app &#x5185;&#x65E0; native fun / System.loadLibrary&#xFF0C;&#x5747;&#x5728; SDK AAR &#x5185;</text>
+
+<!-- ===== LANE 6: Video/Audio controls ===== -->
+<rect x="12" y="1320" width="1576" height="180" rx="6" class="lane-bg"/>
+<text x="24" y="1340" class="t-lane">&#x2465; &#x89C6;&#x9891; / &#x6444;&#x50CF;&#x5934; / &#x97F3;&#x9891;&#x63A7;&#x5236;</text>
+
+<rect x="30" y="1348" width="310" height="140" rx="6" class="box-bl"/>
+<text x="185" y="1368" text-anchor="middle" class="t-head">toggleVideo()</text>
+<text x="42" y="1388" class="t-body">CurrentCallViewModel.toggleVideo()</text>
+<text x="42" y="1404" class="t-body">core.createCallParams + videoEnabled &#x5207;&#x6362;</text>
+<text x="42" y="1420" class="t-body">currentCall.update(params) &#x2192; SIP re-INVITE</text>
+<text x="42" y="1436" class="t-note">&#x4F1A;&#x8BAE;: ConferenceViewModel &#x5206;&#x652F;</text>
+<text x="42" y="1452" class="t-note">core.nativeVideoWindowId = &#x6E32;&#x67D3; Surface</text>
+<text x="42" y="1468" class="t-note">XVideoView / SurfaceTexture</text>
+<line x1="340" y1="1418" x2="400" y2="1418" class="arr"/>
+
+<rect x="400" y="1348" width="310" height="140" rx="6" class="box"/>
+<text x="555" y="1368" text-anchor="middle" class="t-head">switchCamera()</text>
+<text x="412" y="1388" class="t-body">CurrentCallViewModel.switchCamera()</text>
+<text x="412" y="1404" class="t-body">coreContext.switchCamera()</text>
+<text x="412" y="1420" class="t-body">core.videoDevice = &#x524D;/&#x540E;&#x7F6E;</text>
+<text x="412" y="1436" class="t-body">call.update(null) &#x2192; SDK &#x5207;&#x6362;</text>
+<text x="412" y="1452" class="t-note">&#x5E95;&#x5C42; configure_video_source &#x91CD;&#x65B0;&#x6267;&#x884C;</text>
+<line x1="710" y1="1418" x2="770" y2="1418" class="arr"/>
+
+<rect x="770" y="1348" width="310" height="140" rx="6" class="box-yl"/>
+<text x="925" y="1368" text-anchor="middle" class="t-head">&#x9759;&#x97F3; / &#x97F3;&#x9891;&#x8DEF;&#x7531;</text>
+<text x="782" y="1388" class="t-body">toggleMuteMicrophone &#x2192; call.microphoneMuted</text>
+<text x="782" y="1404" class="t-body">&#x4F1A;&#x8BAE;: conference.microphoneMuted</text>
+<text x="782" y="1420" class="t-body">AudioUtils &#x2192; speaker / earpiece / headset</text>
+<text x="782" y="1436" class="t-note">AudioDeviceCallback &#x2192; reloadSoundDevices()</text>
+<text x="782" y="1452" class="t-note">msandroid_sound_read / msandroid_sound_write</text>
+<line x1="1080" y1="1418" x2="1140" y2="1418" class="arr"/>
+
+<rect x="1140" y="1348" width="420" height="140" rx="6" class="box-gr"/>
+<text x="1350" y="1368" text-anchor="middle" class="t-head">&#x901A;&#x8BDD;&#x5F55;&#x97F3; / &#x9519;&#x8BEF;&#x5904;&#x7406;</text>
+<text x="1152" y="1388" class="t-body">StreamsRunning &#x2192; call.startRecording()</text>
+<text x="1152" y="1404" class="t-body">End &#x2192; call.stopRecording()</text>
+<text x="1152" y="1420" class="t-note">params.recordFile &#x8BBE;&#x5B9A;&#x5F55;&#x5236;&#x8DEF;&#x5F84;</text>
+<text x="1152" y="1436" class="t-note">ms2: MSSmffRecorder / MKV &#x5F55;&#x5236; Filter</text>
+<text x="1152" y="1452" class="t-note">SDK JNI: &#x5168;&#x90E8;&#x5728; libs.linphone AAR</text>
+<text x="1152" y="1468" class="t-note">app &#x5185;&#x65E0; .so &#x76F4;&#x63A5;&#x8C03;&#x7528;</text>
+
+<!-- ===== LANE 7: mediastreamer2 ===== -->
+<rect x="12" y="1514" width="1576" height="590" rx="6" class="lane-bg"/>
+<text x="24" y="1534" class="t-lane">&#x2466; mediastreamer2 &#x97F3;&#x89C6;&#x9891;&#x94FE;&#x8DEF;&#xFF08;Android C++ &#x5728; SDK AAR &#x5185;&#xFF09;</text>
+
+<rect x="30" y="1542" width="1540" height="50" rx="4" class="box-bl"/>
+<text x="800" y="1562" text-anchor="middle" class="t-head">&#x53D1;&#x9001;&#x5074;&#xFF08;&#x672C;&#x7AEF; &#x2192; &#x5BF9;&#x7AEF;&#xFF09;&#x2014; MSTicker &#x5B9A;&#x65F6;&#x9A71;&#x52A8;&#x6BCF;&#x4E2A; Filter.process()</text>
+<text x="800" y="1579" text-anchor="middle" class="t-note">video_stream_start() &#x2192; configure_video_source() &#x2192; ms_web_cam_create_reader(AndroidVideoCapture)</text>
+
+<rect x="30" y="1600" width="175" height="100" rx="6" class="box-gr"/>
+<text x="117" y="1620" text-anchor="middle" class="t-head">AndroidVideoCapture</text>
+<text x="42" y="1638" class="t-note">Camera2 API</text>
+<text x="42" y="1654" class="t-note">SurfaceTexture</text>
+<text x="42" y="1670" class="t-note">NV21&#x2192;YUV420P</text>
+<text x="42" y="1686" class="t-note">MSWebCam</text>
+<line x1="205" y1="1650" x2="245" y2="1650" class="arr"/>
+
+<rect x="245" y="1600" width="120" height="100" rx="6" class="box"/>
+<text x="305" y="1620" text-anchor="middle" class="t-head">pixconv</text>
+<text x="257" y="1638" class="t-note">&#x683C;&#x5F0F;&#x8F6C;&#x6362;</text>
+<text x="257" y="1654" class="t-note">&#x53EF;&#x9009;</text>
+<text x="257" y="1670" class="t-note">sizeconv</text>
+<line x1="365" y1="1650" x2="405" y2="1650" class="arr"/>
+
+<rect x="405" y="1600" width="100" height="100" rx="6" class="box"/>
+<text x="455" y="1620" text-anchor="middle" class="t-head">tee</text>
+<text x="417" y="1638" class="t-note">&#x5206;&#x6D41;</text>
+<text x="417" y="1654" class="t-note">0:&#x7F16;&#x7801;</text>
+<text x="417" y="1670" class="t-note">1:&#x9884;&#x89C8;</text>
+<line x1="505" y1="1630" x2="545" y2="1630" class="arr"/>
+
+<rect x="545" y="1600" width="195" height="100" rx="6" class="box-bl"/>
+<text x="642" y="1620" text-anchor="middle" class="t-head">MediaCodecH264Enc</text>
+<text x="557" y="1638" class="t-note">Android MediaCodec</text>
+<text x="557" y="1654" class="t-note">&#x786C;&#x4EF6;&#x52A0;&#x901F;</text>
+<text x="557" y="1670" class="t-note">ms_MediaCodecH264Encoder_desc</text>
+<text x="557" y="1686" class="t-note">H265 &#x540C;&#x7406;</text>
+<line x1="740" y1="1650" x2="780" y2="1650" class="arr"/>
+
+<rect x="780" y="1600" width="140" height="100" rx="6" class="box"/>
+<text x="850" y="1620" text-anchor="middle" class="t-head">MSRtpSend</text>
+<text x="792" y="1638" class="t-note">RTP &#x5C01;&#x5305;</text>
+<text x="792" y="1654" class="t-note">SRTP &#x53EF;&#x9009;</text>
+<text x="792" y="1670" class="t-note">AVPF</text>
+<line x1="920" y1="1650" x2="960" y2="1650" class="arr"/>
+
+<rect x="960" y="1600" width="130" height="100" rx="6" class="box-re"/>
+<text x="1025" y="1620" text-anchor="middle" class="t-head">UDP/STUN/ICE</text>
+<text x="972" y="1638" class="t-note">&#x7F51;&#x7EDC;&#x53D1;&#x9001;</text>
+<text x="972" y="1654" class="t-note">TURN &#x7EE7;&#x8F6C;</text>
+
+<line x1="455" y1="1700" x2="455" y2="1746" class="arr"/>
+<rect x="375" y="1746" width="160" height="56" rx="6" class="box-yl"/>
+<text x="455" y="1766" text-anchor="middle" class="t-head">&#x672C;&#x5730;&#x9884;&#x89C8;</text>
+<text x="455" y="1782" text-anchor="middle" class="t-note">SurfaceTexture / XVideoView</text>
+<text x="455" y="1794" text-anchor="middle" class="t-note">core.nativePreviewWindowId</text>
+
+<rect x="1140" y="1600" width="165" height="100" rx="6" class="box-gr"/>
+<text x="1222" y="1620" text-anchor="middle" class="t-head">OpenSLES/AAudio</text>
+<text x="1152" y="1638" class="t-note">&#x97F3;&#x9891;&#x91C7;&#x96C6;</text>
+<text x="1152" y="1654" class="t-note">S16LE PCM</text>
+<text x="1152" y="1670" class="t-note">msandroid_sound_read</text>
+<line x1="1305" y1="1650" x2="1345" y2="1650" class="arr"/>
+
+<rect x="1345" y="1600" width="155" height="100" rx="6" class="box-bl"/>
+<text x="1422" y="1620" text-anchor="middle" class="t-head">Opus/G711 Enc</text>
+<text x="1357" y="1638" class="t-note">&#x901A;&#x7528;&#x7F16;&#x7801;&#x5668;</text>
+<text x="1357" y="1654" class="t-note">ms2 standard</text>
+<text x="1357" y="1670" class="t-note">MSRtpSend &#x2192; UDP</text>
+
+<rect x="30" y="1820" width="1540" height="48" rx="4" class="box"/>
+<text x="800" y="1840" text-anchor="middle" class="t-head">&#x63A5;&#x6536;&#x5074;&#xFF08;&#x5BF9;&#x7AEF; &#x2192; &#x672C;&#x7AEF;&#xFF09; &#x2014; UDP &#x2192; RTP &#x89E3;&#x5305; &#x2192; Jitter &#x2192; &#x89E3;&#x7801; &#x2192; &#x663E;&#x793A;/&#x64AD;&#x653E;</text>
+<text x="800" y="1856" text-anchor="middle" class="t-note">ZRTP/SRTP &#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#xFF08;&#x6309;&#x914D;&#x7F6E;&#xFF09;&#xFF0C;AVPF PLI/FIR &#x8BF7;&#x5173;&#x952E;&#x5E27;</text>
+
+<rect x="30" y="1876" width="130" height="60" rx="6" class="box-re"/>
+<text x="95" y="1896" text-anchor="middle" class="t-head">UDP/ICE</text>
+<text x="42" y="1912" text-anchor="middle" class="t-note">&#x7F51;&#x7EDC;&#x63A5;&#x6536;</text>
+<line x1="160" y1="1906" x2="200" y2="1906" class="arr"/>
+
+<rect x="200" y="1876" width="145" height="60" rx="6" class="box"/>
+<text x="272" y="1896" text-anchor="middle" class="t-head">MSRtpRecv</text>
+<text x="212" y="1912" text-anchor="middle" class="t-note">RTP &#x89E3;&#x5305; + Jitter</text>
+<line x1="345" y1="1906" x2="385" y2="1906" class="arr"/>
+
+<rect x="385" y="1876" width="195" height="60" rx="6" class="box-bl"/>
+<text x="482" y="1896" text-anchor="middle" class="t-head">MediaCodecH264Dec</text>
+<text x="397" y="1912" text-anchor="middle" class="t-note">Android MediaCodec &#x89E3;&#x7801;</text>
+<line x1="580" y1="1906" x2="620" y2="1906" class="arr"/>
+
+<rect x="620" y="1876" width="190" height="60" rx="6" class="box-gr"/>
+<text x="715" y="1896" text-anchor="middle" class="t-head">&#x8FDC;&#x7AEF;&#x663E;&#x793A;</text>
+<text x="632" y="1912" text-anchor="middle" class="t-note">SurfaceTexture / XVideoView OpenGL</text>
+
+<rect x="920" y="1876" width="155" height="60" rx="6" class="box"/>
+<text x="997" y="1896" text-anchor="middle" class="t-head">MSRtpRecv</text>
+<text x="932" y="1912" text-anchor="middle" class="t-note">&#x97F3;&#x9891; RTP &#x89E3;&#x5305;</text>
+<line x1="1075" y1="1906" x2="1115" y2="1906" class="arr"/>
+
+<rect x="1115" y="1876" width="155" height="60" rx="6" class="box-bl"/>
+<text x="1192" y="1896" text-anchor="middle" class="t-head">Opus/G711 Dec</text>
+<text x="1127" y="1912" text-anchor="middle" class="t-note">&#x901A;&#x7528;&#x89E3;&#x7801;&#x5668;</text>
+<line x1="1270" y1="1906" x2="1310" y2="1906" class="arr"/>
+
+<rect x="1310" y="1876" width="185" height="60" rx="6" class="box-gr"/>
+<text x="1402" y="1896" text-anchor="middle" class="t-head">OpenSLES/AAudio</text>
+<text x="1322" y="1912" text-anchor="middle" class="t-note">&#x97F3;&#x9891;&#x64AD;&#x653E;&#xFF08;msandroid_sound_write&#xFF09;</text>
+
+<rect x="30" y="1956" width="1540" height="60" rx="4" class="box-yl"/>
+<text x="800" y="1976" text-anchor="middle" class="t-head">SRTP / ZRTP / FEC &#x5B89;&#x5168;&#x4E0E;&#x5197;&#x4F59;</text>
+<text x="50" y="1994" class="t-note">SRTP (SDES/DTLS) | ZRTP: bzrtp &#x6D4F;&#x89C8;&#x5BC6;&#x94A5; | FEC: media_stream_create_or_update_fec_session | ICE: libnice &#x5BF9;&#x79F0;&#x7AEF;&#x7AEF;&#x6253;&#x6D1E;</text>
+
+<!-- ===== LANE 8: Gradle / Config ===== -->
+<rect x="12" y="2030" width="1576" height="200" rx="6" class="lane-bg"/>
+<text x="24" y="2050" class="t-lane">&#x2467; Gradle &#x5DE5;&#x7A0B;&#x914D;&#x7F6E; / AndroidManifest</text>
+
+<rect x="30" y="2058" width="470" height="160" rx="6" class="box"/>
+<text x="265" y="2078" text-anchor="middle" class="t-head">app/build.gradle.kts</text>
+<text x="42" y="2098" class="t-body">implementation(libs.linphone) &#x2014; SDK AAR</text>
+<text x="42" y="2114" class="t-body">implementation(libs.google.firebase.messaging)</text>
+<text x="42" y="2130" class="t-body">ndk &#xFF5B; abiFilters armeabi-v7a, arm64-v8a &#xFF5D;</text>
+<text x="42" y="2146" class="t-note">LinphoneSdkBuildDir &#x6307;&#x5411; SDK &#x76EE;&#x5F55;</text>
+<text x="42" y="2162" class="t-note">google-services &#x63D2;&#x4EF6;&#xFF08;FCM&#xFF09;</text>
+<text x="42" y="2178" class="t-note">CorePreferences: filesDir/.linphonerc + linphonerc_factory</text>
+<text x="42" y="2194" class="t-note">VFS &#x53EF;&#x9009;&#x52A0;&#x5BC6;: VFS.setup(key)</text>
+
+<rect x="520" y="2058" width="500" height="160" rx="6" class="box-bl"/>
+<text x="770" y="2078" text-anchor="middle" class="t-head">AndroidManifest.xml &#x5173;&#x952E;&#x58F0;&#x660E;</text>
+<text x="532" y="2098" class="t-body">uses-permission: CAMERA, RECORD_AUDIO, INTERNET</text>
+<text x="532" y="2114" class="t-body">READ/WRITE_CONTACTS, BLUETOOTH_CONNECT</text>
+<text x="532" y="2130" class="t-body">activity: CallActivity (showWhenLocked, turnScreenOn)</text>
+<text x="532" y="2146" class="t-body">service: CoreInCallService (foreground PHONE_CALL)</text>
+<text x="532" y="2162" class="t-body">service: CorePushService / receiver: CorePushReceiver</text>
+<text x="532" y="2178" class="t-note">service: TelecomConnectionService</text>
+<text x="532" y="2194" class="t-note">xml: automotive_app_desc / locales_config / shortcuts</text>
+
+<rect x="1040" y="2058" width="520" height="160" rx="6" class="box-gr"/>
+<text x="1300" y="2078" text-anchor="middle" class="t-head">Assets / res &#x914D;&#x7F6E;</text>
+<text x="1052" y="2098" class="t-body">assets: linphonerc_default, linphonerc_factory</text>
+<text x="1052" y="2114" class="t-body">copyAssetsFromPackage() &#x5728;&#x542F;&#x52A8;&#x65F6;&#x62F7;&#x8D1D;</text>
+<text x="1052" y="2130" class="t-body">res/navigation: call_nav_graph.xml &#x7B49;</text>
+<text x="1052" y="2146" class="t-note">res/xml: data_extraction_rules / backup_rules</text>
+<text x="1052" y="2162" class="t-note">SDK AAR &#x5185;: liblinphone.so / libmediastreamer2.so</text>
+<text x="1052" y="2178" class="t-note">libortp.so / libbellesip.so / libspeex.so &#x7B49;</text>
+<text x="1052" y="2194" class="t-note">&#x5E94;&#x7528;&#x5185;&#x65E0;&#x9700; System.loadLibrary&#xFF0C;AAR &#x8D1F;&#x8D23;</text>
+
+<!-- ===== LANE 9: E2E Summary ===== -->
+<rect x="12" y="2244" width="1576" height="158" rx="6" class="lane-bg"/>
+<text x="24" y="2264" class="t-lane">&#x2468; &#x7AEF;&#x5230;&#x7AEF;&#x8C03;&#x7528;&#x94FE;&#x6458;&#x8981;</text>
+
+<rect x="30" y="2272" width="1540" height="118" rx="6" class="box-bl"/>
+<text x="42" y="2294" class="t-body">&#x53BB;&#x7535;: UI &#x2192; CoreContext.startAudioCall() &#x2192; postOnCoreThread &#x2192; core.inviteAddressWithParams &#x2192; SIP INVITE</text>
+<text x="42" y="2310" class="t-note">&#x2192; onCallStateChanged(OutgoingInit&#x2192;Connected&#x2192;StreamsRunning) &#x2192; TelecomManager &#x2192; NotificationsManager &#x2192; video_stream_start / audio_stream_start</text>
+<text x="42" y="2334" class="t-body">&#x6765;&#x7535;: SDK SIP &#x2192; onCallStateChanged(IncomingReceived) &#x2192; NotificationsManager.showCallNotification + TelecomManager.onCallCreated</text>
+<text x="42" y="2350" class="t-note">&#x63A5;&#x542C;: &#x901A;&#x77E5;&#x6309;&#x9215;/Telecom/UI &#x4E09;&#x8DEF; &#x2192; CoreContext.answerCall &#x2192; call.acceptWithParams &#x2192; Connected &#x2192; StreamsRunning &#x2192; &#x5A92;&#x4F53;&#x542F;&#x52A8;</text>
+<text x="42" y="2374" class="t-body">&#x6CE8;&#x518C;: &#x5411;&#x5BFC;/&#x8BBE;&#x7F6E; &#x2192; addAuthInfo + createAccount + addAccount &#x2192; SIP REGISTER &#x2192; RegistrationState.Ok &#x2192; MainViewModel &#x544A;&#x8B66;&#x6D88;&#x9664;</text>
+
+<!-- ===== LEGEND ===== -->
+<rect x="12" y="2416" width="1576" height="70" rx="4" class="box"/>
+<text x="36" y="2436" class="t-head">&#x56FE;&#x4F8B;:</text>
+<rect x="108" y="2424" width="16" height="14" rx="2" class="box-bl"/>
+<text x="130" y="2436" class="t-body">Kotlin &#x5173;&#x952E;&#x8DEF;&#x5F84;</text>
+<rect x="300" y="2424" width="16" height="14" rx="2" class="box-gr"/>
+<text x="322" y="2436" class="t-body">&#x6210;&#x529F;/&#x7EFF;&#x8272;</text>
+<rect x="460" y="2424" width="16" height="14" rx="2" class="box-yl"/>
+<text x="482" y="2436" class="t-body">&#x6CE8;&#x610F;/&#x9EC4;&#x8272;</text>
+<rect x="620" y="2424" width="16" height="14" rx="2" class="box-re"/>
+<text x="642" y="2436" class="t-body">&#x7EC8;&#x6B62;/&#x7EA2;&#x8272;</text>
+<rect x="780" y="2424" width="16" height="14" rx="2" class="box-pu"/>
+<text x="802" y="2436" class="t-body">&#x7CFB;&#x7EDF;&#x5C42;/&#x63A8;&#x9001;</text>
+<rect x="960" y="2424" width="16" height="14" rx="2" class="box"/>
+<text x="982" y="2436" class="t-body">&#x666E;&#x901A;&#x6A21;&#x5757;</text>
+<text x="36" y="2470" class="t-note">&#x6587;&#x4EF6;: linphone-android/docs/linphone_android_flow.svg  |  &#x751F;&#x6210;: 2026-05-13  |  &#x6240;&#x6709;&#x6C49;&#x5B57;&#x5747;&#x7528; XML &#x6570;&#x5B57;&#x5B57;&#x7B26;&#x5F15;&#x7528;</text>
+
+</svg>
